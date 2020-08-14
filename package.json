@@ -1,0 +1,17 @@
+{
+  "name": "prism",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "parser": "antlr4-tool -o parser Grammar.g4"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "antlr4": "^4.8.0",
+    "antlr4-tool": "^1.1.0"
+  },
+  "devDependencies": {},
+  "description": ""
+}
