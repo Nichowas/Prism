@@ -18,8 +18,19 @@ GrammarVisitor.prototype.visitIden = function(ctx) {
 };
 
 
+<<<<<<< HEAD
 // Visit a parse tree produced by GrammarParser#idenParameter.
 GrammarVisitor.prototype.visitIdenParameter = function(ctx) {
+=======
+// Visit a parse tree produced by GrammarParser#classState.
+GrammarVisitor.prototype.visitClassState = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by GrammarParser#valueParameter.
+GrammarVisitor.prototype.visitValueParameter = function(ctx) {
+>>>>>>> 33772c8f2d8c1c8d6e38936542a4915daadd0e92
   return this.visitChildren(ctx);
 };
 
@@ -54,6 +65,7 @@ GrammarVisitor.prototype.visitArrowFunc = function(ctx) {
 };
 
 
+<<<<<<< HEAD
 // Visit a parse tree produced by GrammarParser#forloop.
 GrammarVisitor.prototype.visitForloop = function(ctx) {
   return this.visitChildren(ctx);
@@ -62,6 +74,10 @@ GrammarVisitor.prototype.visitForloop = function(ctx) {
 
 // Visit a parse tree produced by GrammarParser#whileloop.
 GrammarVisitor.prototype.visitWhileloop = function(ctx) {
+=======
+// Visit a parse tree produced by GrammarParser#loop.
+GrammarVisitor.prototype.visitLoop = function(ctx) {
+>>>>>>> 33772c8f2d8c1c8d6e38936542a4915daadd0e92
   return this.visitChildren(ctx);
 };
 
@@ -72,6 +88,7 @@ GrammarVisitor.prototype.visitThreeFuncIter = function(ctx) {
 };
 
 
+<<<<<<< HEAD
 // Visit a parse tree produced by GrammarParser#inIter.
 GrammarVisitor.prototype.visitInIter = function(ctx) {
   return this.visitChildren(ctx);
@@ -80,6 +97,10 @@ GrammarVisitor.prototype.visitInIter = function(ctx) {
 
 // Visit a parse tree produced by GrammarParser#ofIter.
 GrammarVisitor.prototype.visitOfIter = function(ctx) {
+=======
+// Visit a parse tree produced by GrammarParser#inOfIter.
+GrammarVisitor.prototype.visitInOfIter = function(ctx) {
+>>>>>>> 33772c8f2d8c1c8d6e38936542a4915daadd0e92
   return this.visitChildren(ctx);
 };
 
@@ -132,6 +153,7 @@ GrammarVisitor.prototype.visitDeclar = function(ctx) {
 };
 
 
+<<<<<<< HEAD
 // Visit a parse tree produced by GrammarParser#setAssign.
 GrammarVisitor.prototype.visitSetAssign = function(ctx) {
   return this.visitChildren(ctx);
@@ -176,6 +198,10 @@ GrammarVisitor.prototype.visitIncAssign = function(ctx) {
 
 // Visit a parse tree produced by GrammarParser#decAssign.
 GrammarVisitor.prototype.visitDecAssign = function(ctx) {
+=======
+// Visit a parse tree produced by GrammarParser#assign.
+GrammarVisitor.prototype.visitAssign = function(ctx) {
+>>>>>>> 33772c8f2d8c1c8d6e38936542a4915daadd0e92
   return this.visitChildren(ctx);
 };
 
@@ -186,6 +212,7 @@ GrammarVisitor.prototype.visitDesignator = function(ctx) {
 };
 
 
+<<<<<<< HEAD
 // Visit a parse tree produced by GrammarParser#forloopStatement.
 GrammarVisitor.prototype.visitForloopStatement = function(ctx) {
   return this.visitChildren(ctx);
@@ -194,6 +221,10 @@ GrammarVisitor.prototype.visitForloopStatement = function(ctx) {
 
 // Visit a parse tree produced by GrammarParser#whileloopStatement.
 GrammarVisitor.prototype.visitWhileloopStatement = function(ctx) {
+=======
+// Visit a parse tree produced by GrammarParser#loopStatement.
+GrammarVisitor.prototype.visitLoopStatement = function(ctx) {
+>>>>>>> 33772c8f2d8c1c8d6e38936542a4915daadd0e92
   return this.visitChildren(ctx);
 };
 
@@ -234,6 +265,7 @@ GrammarVisitor.prototype.visitValueStatement = function(ctx) {
 };
 
 
+<<<<<<< HEAD
 // Visit a parse tree produced by GrammarParser#commentStatement.
 GrammarVisitor.prototype.visitCommentStatement = function(ctx) {
   return this.visitChildren(ctx);
@@ -248,12 +280,21 @@ GrammarVisitor.prototype.visitLteValue = function(ctx) {
 
 // Visit a parse tree produced by GrammarParser#ternaryValue.
 GrammarVisitor.prototype.visitTernaryValue = function(ctx) {
+=======
+// Visit a parse tree produced by GrammarParser#propertyValue.
+GrammarVisitor.prototype.visitPropertyValue = function(ctx) {
+>>>>>>> 33772c8f2d8c1c8d6e38936542a4915daadd0e92
   return this.visitChildren(ctx);
 };
 
 
+<<<<<<< HEAD
 // Visit a parse tree produced by GrammarParser#orValue.
 GrammarVisitor.prototype.visitOrValue = function(ctx) {
+=======
+// Visit a parse tree produced by GrammarParser#arrayValue.
+GrammarVisitor.prototype.visitArrayValue = function(ctx) {
+>>>>>>> 33772c8f2d8c1c8d6e38936542a4915daadd0e92
   return this.visitChildren(ctx);
 };
 
@@ -270,8 +311,19 @@ GrammarVisitor.prototype.visitInstanceValue = function(ctx) {
 };
 
 
+<<<<<<< HEAD
 // Visit a parse tree produced by GrammarParser#modValue.
 GrammarVisitor.prototype.visitModValue = function(ctx) {
+=======
+// Visit a parse tree produced by GrammarParser#multExpr.
+GrammarVisitor.prototype.visitMultExpr = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
+// Visit a parse tree produced by GrammarParser#classValue.
+GrammarVisitor.prototype.visitClassValue = function(ctx) {
+>>>>>>> 33772c8f2d8c1c8d6e38936542a4915daadd0e92
   return this.visitChildren(ctx);
 };
 
@@ -288,20 +340,35 @@ GrammarVisitor.prototype.visitApplyFuncValue = function(ctx) {
 };
 
 
+<<<<<<< HEAD
 // Visit a parse tree produced by GrammarParser#equalValue.
 GrammarVisitor.prototype.visitEqualValue = function(ctx) {
+=======
+// Visit a parse tree produced by GrammarParser#addExpr.
+GrammarVisitor.prototype.visitAddExpr = function(ctx) {
+>>>>>>> 33772c8f2d8c1c8d6e38936542a4915daadd0e92
   return this.visitChildren(ctx);
 };
 
 
+<<<<<<< HEAD
 // Visit a parse tree produced by GrammarParser#gteValue.
 GrammarVisitor.prototype.visitGteValue = function(ctx) {
+=======
+// Visit a parse tree produced by GrammarParser#idenValue.
+GrammarVisitor.prototype.visitIdenValue = function(ctx) {
+>>>>>>> 33772c8f2d8c1c8d6e38936542a4915daadd0e92
   return this.visitChildren(ctx);
 };
 
 
+<<<<<<< HEAD
 // Visit a parse tree produced by GrammarParser#andValue.
 GrammarVisitor.prototype.visitAndValue = function(ctx) {
+=======
+// Visit a parse tree produced by GrammarParser#funcValue.
+GrammarVisitor.prototype.visitFuncValue = function(ctx) {
+>>>>>>> 33772c8f2d8c1c8d6e38936542a4915daadd0e92
   return this.visitChildren(ctx);
 };
 
@@ -318,6 +385,7 @@ GrammarVisitor.prototype.visitBracketValue = function(ctx) {
 };
 
 
+<<<<<<< HEAD
 // Visit a parse tree produced by GrammarParser#numberValue.
 GrammarVisitor.prototype.visitNumberValue = function(ctx) {
   return this.visitChildren(ctx);
@@ -398,18 +466,32 @@ GrammarVisitor.prototype.visitFuncValue = function(ctx) {
 
 // Visit a parse tree produced by GrammarParser#gtValue.
 GrammarVisitor.prototype.visitGtValue = function(ctx) {
-  return this.visitChildren(ctx);
-};
-
-
-// Visit a parse tree produced by GrammarParser#boolValue.
-GrammarVisitor.prototype.visitBoolValue = function(ctx) {
-  return this.visitChildren(ctx);
-};
-
-
+=======
 // Visit a parse tree produced by GrammarParser#stringRepValue.
 GrammarVisitor.prototype.visitStringRepValue = function(ctx) {
+>>>>>>> 33772c8f2d8c1c8d6e38936542a4915daadd0e92
+  return this.visitChildren(ctx);
+};
+
+
+<<<<<<< HEAD
+// Visit a parse tree produced by GrammarParser#boolValue.
+GrammarVisitor.prototype.visitBoolValue = function(ctx) {
+=======
+// Visit a parse tree produced by GrammarParser#numberValue.
+GrammarVisitor.prototype.visitNumberValue = function(ctx) {
+>>>>>>> 33772c8f2d8c1c8d6e38936542a4915daadd0e92
+  return this.visitChildren(ctx);
+};
+
+
+<<<<<<< HEAD
+// Visit a parse tree produced by GrammarParser#stringRepValue.
+GrammarVisitor.prototype.visitStringRepValue = function(ctx) {
+=======
+// Visit a parse tree produced by GrammarParser#elementValue.
+GrammarVisitor.prototype.visitElementValue = function(ctx) {
+>>>>>>> 33772c8f2d8c1c8d6e38936542a4915daadd0e92
   return this.visitChildren(ctx);
 };
 
@@ -420,11 +502,14 @@ GrammarVisitor.prototype.visitTupleValue = function(ctx) {
 };
 
 
+<<<<<<< HEAD
 // Visit a parse tree produced by GrammarParser#rangeValue.
 GrammarVisitor.prototype.visitRangeValue = function(ctx) {
   return this.visitChildren(ctx);
 };
 
 
+=======
+>>>>>>> 33772c8f2d8c1c8d6e38936542a4915daadd0e92
 
 exports.GrammarVisitor = GrammarVisitor;

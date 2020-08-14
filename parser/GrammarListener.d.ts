@@ -3,15 +3,24 @@ import {ErrorNode, ParseTreeListener, TerminalNode} from 'antlr4/tree/Tree';
 
 import {IdenContext} from './GrammarParser';
 
+<<<<<<< HEAD
+=======
+import {ClassStateContext} from './GrammarParser';
+
+>>>>>>> 33772c8f2d8c1c8d6e38936542a4915daadd0e92
 import {ParameterContext} from './GrammarParser';
 
 import {ParametersContext} from './GrammarParser';
 
 import {FuncContext} from './GrammarParser';
 
+<<<<<<< HEAD
 import {ForloopContext} from './GrammarParser';
 
 import {WhileloopContext} from './GrammarParser';
+=======
+import {LoopContext} from './GrammarParser';
+>>>>>>> 33772c8f2d8c1c8d6e38936542a4915daadd0e92
 
 import {IterContext} from './GrammarParser';
 
@@ -43,6 +52,13 @@ export declare class GrammarListener implements ParseTreeListener {
     
     exitIden(ctx: IdenContext): void;
     
+<<<<<<< HEAD
+=======
+    enterClassState(ctx: ClassStateContext): void;
+    
+    exitClassState(ctx: ClassStateContext): void;
+    
+>>>>>>> 33772c8f2d8c1c8d6e38936542a4915daadd0e92
     enterParameter(ctx: ParameterContext): void;
     
     exitParameter(ctx: ParameterContext): void;
@@ -55,6 +71,7 @@ export declare class GrammarListener implements ParseTreeListener {
     
     exitFunc(ctx: FuncContext): void;
     
+<<<<<<< HEAD
     enterForloop(ctx: ForloopContext): void;
     
     exitForloop(ctx: ForloopContext): void;
@@ -62,6 +79,11 @@ export declare class GrammarListener implements ParseTreeListener {
     enterWhileloop(ctx: WhileloopContext): void;
     
     exitWhileloop(ctx: WhileloopContext): void;
+=======
+    enterLoop(ctx: LoopContext): void;
+    
+    exitLoop(ctx: LoopContext): void;
+>>>>>>> 33772c8f2d8c1c8d6e38936542a4915daadd0e92
     
     enterIter(ctx: IterContext): void;
     

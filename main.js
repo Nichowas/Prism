@@ -2,8 +2,8 @@ var antlr4 = require('antlr4'),
     fs = require('fs'),
     GrammarLexer = require('./parser/GrammarLexer').GrammarLexer,
     GrammarParser = require('./parser/GrammarParser').GrammarParser
-var parse = (code, group = true) => {
-    let chars = new antlr4.InputStream(group ? ('{' + code + '}') : code),
+var parse = (code) => {
+    let chars = new antlr4.InputStream('{' + code + '}'),
         lexer = new GrammarLexer(chars),
         tokens = new antlr4.CommonTokenStream(lexer),
         parser = new GrammarParser(tokens)
