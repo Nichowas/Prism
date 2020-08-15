@@ -12,760 +12,625 @@ GrammarListener.prototype = Object.create(antlr4.tree.ParseTreeListener.prototyp
 GrammarListener.prototype.constructor = GrammarListener;
 
 // Enter a parse tree produced by GrammarParser#iden.
-GrammarListener.prototype.enterIden = function(ctx) {
+GrammarListener.prototype.enterIden = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#iden.
-GrammarListener.prototype.exitIden = function(ctx) {
+GrammarListener.prototype.exitIden = function (ctx) {
 };
 
 
-<<<<<<< HEAD
 // Enter a parse tree produced by GrammarParser#idenParameter.
-GrammarListener.prototype.enterIdenParameter = function(ctx) {
+GrammarListener.prototype.enterIdenParameter = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#idenParameter.
-GrammarListener.prototype.exitIdenParameter = function(ctx) {
-=======
-// Enter a parse tree produced by GrammarParser#classState.
-GrammarListener.prototype.enterClassState = function(ctx) {
-};
-
-// Exit a parse tree produced by GrammarParser#classState.
-GrammarListener.prototype.exitClassState = function(ctx) {
-};
-
-
-// Enter a parse tree produced by GrammarParser#valueParameter.
-GrammarListener.prototype.enterValueParameter = function(ctx) {
-};
-
-// Exit a parse tree produced by GrammarParser#valueParameter.
-GrammarListener.prototype.exitValueParameter = function(ctx) {
->>>>>>> 33772c8f2d8c1c8d6e38936542a4915daadd0e92
+GrammarListener.prototype.exitIdenParameter = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#spreadParameter.
-GrammarListener.prototype.enterSpreadParameter = function(ctx) {
+GrammarListener.prototype.enterSpreadParameter = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#spreadParameter.
-GrammarListener.prototype.exitSpreadParameter = function(ctx) {
+GrammarListener.prototype.exitSpreadParameter = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#propertyParameter.
-GrammarListener.prototype.enterPropertyParameter = function(ctx) {
+GrammarListener.prototype.enterPropertyParameter = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#propertyParameter.
-GrammarListener.prototype.exitPropertyParameter = function(ctx) {
+GrammarListener.prototype.exitPropertyParameter = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#parameters.
-GrammarListener.prototype.enterParameters = function(ctx) {
+GrammarListener.prototype.enterParameters = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#parameters.
-GrammarListener.prototype.exitParameters = function(ctx) {
+GrammarListener.prototype.exitParameters = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#tradFunc.
-GrammarListener.prototype.enterTradFunc = function(ctx) {
+GrammarListener.prototype.enterTradFunc = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#tradFunc.
-GrammarListener.prototype.exitTradFunc = function(ctx) {
+GrammarListener.prototype.exitTradFunc = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#arrowFunc.
-GrammarListener.prototype.enterArrowFunc = function(ctx) {
+GrammarListener.prototype.enterArrowFunc = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#arrowFunc.
-GrammarListener.prototype.exitArrowFunc = function(ctx) {
+GrammarListener.prototype.exitArrowFunc = function (ctx) {
 };
 
 
-<<<<<<< HEAD
 // Enter a parse tree produced by GrammarParser#forloop.
-GrammarListener.prototype.enterForloop = function(ctx) {
+GrammarListener.prototype.enterForloop = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#forloop.
-GrammarListener.prototype.exitForloop = function(ctx) {
+GrammarListener.prototype.exitForloop = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#whileloop.
-GrammarListener.prototype.enterWhileloop = function(ctx) {
+GrammarListener.prototype.enterWhileloop = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#whileloop.
-GrammarListener.prototype.exitWhileloop = function(ctx) {
-=======
-// Enter a parse tree produced by GrammarParser#loop.
-GrammarListener.prototype.enterLoop = function(ctx) {
-};
-
-// Exit a parse tree produced by GrammarParser#loop.
-GrammarListener.prototype.exitLoop = function(ctx) {
->>>>>>> 33772c8f2d8c1c8d6e38936542a4915daadd0e92
+GrammarListener.prototype.exitWhileloop = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#threeFuncIter.
-GrammarListener.prototype.enterThreeFuncIter = function(ctx) {
+GrammarListener.prototype.enterThreeFuncIter = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#threeFuncIter.
-GrammarListener.prototype.exitThreeFuncIter = function(ctx) {
+GrammarListener.prototype.exitThreeFuncIter = function (ctx) {
 };
 
 
-<<<<<<< HEAD
 // Enter a parse tree produced by GrammarParser#inIter.
-GrammarListener.prototype.enterInIter = function(ctx) {
+GrammarListener.prototype.enterInIter = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#inIter.
-GrammarListener.prototype.exitInIter = function(ctx) {
+GrammarListener.prototype.exitInIter = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#ofIter.
-GrammarListener.prototype.enterOfIter = function(ctx) {
+GrammarListener.prototype.enterOfIter = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#ofIter.
-GrammarListener.prototype.exitOfIter = function(ctx) {
-=======
-// Enter a parse tree produced by GrammarParser#inOfIter.
-GrammarListener.prototype.enterInOfIter = function(ctx) {
-};
-
-// Exit a parse tree produced by GrammarParser#inOfIter.
-GrammarListener.prototype.exitInOfIter = function(ctx) {
->>>>>>> 33772c8f2d8c1c8d6e38936542a4915daadd0e92
+GrammarListener.prototype.exitOfIter = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#cond.
-GrammarListener.prototype.enterCond = function(ctx) {
+GrammarListener.prototype.enterCond = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#cond.
-GrammarListener.prototype.exitCond = function(ctx) {
+GrammarListener.prototype.exitCond = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#tuple.
-GrammarListener.prototype.enterTuple = function(ctx) {
+GrammarListener.prototype.enterTuple = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#tuple.
-GrammarListener.prototype.exitTuple = function(ctx) {
+GrammarListener.prototype.exitTuple = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#array.
-GrammarListener.prototype.enterArray = function(ctx) {
+GrammarListener.prototype.enterArray = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#array.
-GrammarListener.prototype.exitArray = function(ctx) {
+GrammarListener.prototype.exitArray = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#dictionary.
-GrammarListener.prototype.enterDictionary = function(ctx) {
+GrammarListener.prototype.enterDictionary = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#dictionary.
-GrammarListener.prototype.exitDictionary = function(ctx) {
+GrammarListener.prototype.exitDictionary = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#tradProperty.
-GrammarListener.prototype.enterTradProperty = function(ctx) {
+GrammarListener.prototype.enterTradProperty = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#tradProperty.
-GrammarListener.prototype.exitTradProperty = function(ctx) {
+GrammarListener.prototype.exitTradProperty = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#idenProperty.
-GrammarListener.prototype.enterIdenProperty = function(ctx) {
+GrammarListener.prototype.enterIdenProperty = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#idenProperty.
-GrammarListener.prototype.exitIdenProperty = function(ctx) {
+GrammarListener.prototype.exitIdenProperty = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#iterProperty.
-GrammarListener.prototype.enterIterProperty = function(ctx) {
+GrammarListener.prototype.enterIterProperty = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#iterProperty.
-GrammarListener.prototype.exitIterProperty = function(ctx) {
+GrammarListener.prototype.exitIterProperty = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#declar.
-GrammarListener.prototype.enterDeclar = function(ctx) {
+GrammarListener.prototype.enterDeclar = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#declar.
-GrammarListener.prototype.exitDeclar = function(ctx) {
+GrammarListener.prototype.exitDeclar = function (ctx) {
 };
 
 
-<<<<<<< HEAD
 // Enter a parse tree produced by GrammarParser#setAssign.
-GrammarListener.prototype.enterSetAssign = function(ctx) {
+GrammarListener.prototype.enterSetAssign = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#setAssign.
-GrammarListener.prototype.exitSetAssign = function(ctx) {
+GrammarListener.prototype.exitSetAssign = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#multAssign.
-GrammarListener.prototype.enterMultAssign = function(ctx) {
+GrammarListener.prototype.enterMultAssign = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#multAssign.
-GrammarListener.prototype.exitMultAssign = function(ctx) {
+GrammarListener.prototype.exitMultAssign = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#divAssign.
-GrammarListener.prototype.enterDivAssign = function(ctx) {
+GrammarListener.prototype.enterDivAssign = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#divAssign.
-GrammarListener.prototype.exitDivAssign = function(ctx) {
+GrammarListener.prototype.exitDivAssign = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#addAssign.
-GrammarListener.prototype.enterAddAssign = function(ctx) {
+GrammarListener.prototype.enterAddAssign = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#addAssign.
-GrammarListener.prototype.exitAddAssign = function(ctx) {
+GrammarListener.prototype.exitAddAssign = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#subAssign.
-GrammarListener.prototype.enterSubAssign = function(ctx) {
+GrammarListener.prototype.enterSubAssign = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#subAssign.
-GrammarListener.prototype.exitSubAssign = function(ctx) {
+GrammarListener.prototype.exitSubAssign = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#modAssign.
-GrammarListener.prototype.enterModAssign = function(ctx) {
+GrammarListener.prototype.enterModAssign = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#modAssign.
-GrammarListener.prototype.exitModAssign = function(ctx) {
+GrammarListener.prototype.exitModAssign = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#incAssign.
-GrammarListener.prototype.enterIncAssign = function(ctx) {
+GrammarListener.prototype.enterIncAssign = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#incAssign.
-GrammarListener.prototype.exitIncAssign = function(ctx) {
+GrammarListener.prototype.exitIncAssign = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#decAssign.
-GrammarListener.prototype.enterDecAssign = function(ctx) {
+GrammarListener.prototype.enterDecAssign = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#decAssign.
-GrammarListener.prototype.exitDecAssign = function(ctx) {
-=======
-// Enter a parse tree produced by GrammarParser#assign.
-GrammarListener.prototype.enterAssign = function(ctx) {
-};
-
-// Exit a parse tree produced by GrammarParser#assign.
-GrammarListener.prototype.exitAssign = function(ctx) {
->>>>>>> 33772c8f2d8c1c8d6e38936542a4915daadd0e92
+GrammarListener.prototype.exitDecAssign = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#designator.
-GrammarListener.prototype.enterDesignator = function(ctx) {
+GrammarListener.prototype.enterDesignator = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#designator.
-GrammarListener.prototype.exitDesignator = function(ctx) {
+GrammarListener.prototype.exitDesignator = function (ctx) {
 };
 
 
-<<<<<<< HEAD
 // Enter a parse tree produced by GrammarParser#forloopStatement.
-GrammarListener.prototype.enterForloopStatement = function(ctx) {
+GrammarListener.prototype.enterForloopStatement = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#forloopStatement.
-GrammarListener.prototype.exitForloopStatement = function(ctx) {
+GrammarListener.prototype.exitForloopStatement = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#whileloopStatement.
-GrammarListener.prototype.enterWhileloopStatement = function(ctx) {
+GrammarListener.prototype.enterWhileloopStatement = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#whileloopStatement.
-GrammarListener.prototype.exitWhileloopStatement = function(ctx) {
-=======
-// Enter a parse tree produced by GrammarParser#loopStatement.
-GrammarListener.prototype.enterLoopStatement = function(ctx) {
-};
-
-// Exit a parse tree produced by GrammarParser#loopStatement.
-GrammarListener.prototype.exitLoopStatement = function(ctx) {
->>>>>>> 33772c8f2d8c1c8d6e38936542a4915daadd0e92
+GrammarListener.prototype.exitWhileloopStatement = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#ifStatement.
-GrammarListener.prototype.enterIfStatement = function(ctx) {
+GrammarListener.prototype.enterIfStatement = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#ifStatement.
-GrammarListener.prototype.exitIfStatement = function(ctx) {
+GrammarListener.prototype.exitIfStatement = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#assignStatement.
-GrammarListener.prototype.enterAssignStatement = function(ctx) {
+GrammarListener.prototype.enterAssignStatement = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#assignStatement.
-GrammarListener.prototype.exitAssignStatement = function(ctx) {
+GrammarListener.prototype.exitAssignStatement = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#declarStatement.
-GrammarListener.prototype.enterDeclarStatement = function(ctx) {
+GrammarListener.prototype.enterDeclarStatement = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#declarStatement.
-GrammarListener.prototype.exitDeclarStatement = function(ctx) {
+GrammarListener.prototype.exitDeclarStatement = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#groupStatement.
-GrammarListener.prototype.enterGroupStatement = function(ctx) {
+GrammarListener.prototype.enterGroupStatement = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#groupStatement.
-GrammarListener.prototype.exitGroupStatement = function(ctx) {
+GrammarListener.prototype.exitGroupStatement = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#returnStatement.
-GrammarListener.prototype.enterReturnStatement = function(ctx) {
+GrammarListener.prototype.enterReturnStatement = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#returnStatement.
-GrammarListener.prototype.exitReturnStatement = function(ctx) {
+GrammarListener.prototype.exitReturnStatement = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#valueStatement.
-GrammarListener.prototype.enterValueStatement = function(ctx) {
+GrammarListener.prototype.enterValueStatement = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#valueStatement.
-GrammarListener.prototype.exitValueStatement = function(ctx) {
+GrammarListener.prototype.exitValueStatement = function (ctx) {
 };
 
 
-<<<<<<< HEAD
 // Enter a parse tree produced by GrammarParser#commentStatement.
-GrammarListener.prototype.enterCommentStatement = function(ctx) {
+GrammarListener.prototype.enterCommentStatement = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#commentStatement.
-GrammarListener.prototype.exitCommentStatement = function(ctx) {
+GrammarListener.prototype.exitCommentStatement = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#lteValue.
-GrammarListener.prototype.enterLteValue = function(ctx) {
+GrammarListener.prototype.enterLteValue = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#lteValue.
-GrammarListener.prototype.exitLteValue = function(ctx) {
+GrammarListener.prototype.exitLteValue = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#ternaryValue.
-GrammarListener.prototype.enterTernaryValue = function(ctx) {
+GrammarListener.prototype.enterTernaryValue = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#ternaryValue.
-GrammarListener.prototype.exitTernaryValue = function(ctx) {
+GrammarListener.prototype.exitTernaryValue = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#orValue.
-GrammarListener.prototype.enterOrValue = function(ctx) {
+GrammarListener.prototype.enterOrValue = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#orValue.
-GrammarListener.prototype.exitOrValue = function(ctx) {
-=======
-// Enter a parse tree produced by GrammarParser#propertyValue.
-GrammarListener.prototype.enterPropertyValue = function(ctx) {
-};
-
-// Exit a parse tree produced by GrammarParser#propertyValue.
-GrammarListener.prototype.exitPropertyValue = function(ctx) {
-};
-
-
-// Enter a parse tree produced by GrammarParser#arrayValue.
-GrammarListener.prototype.enterArrayValue = function(ctx) {
-};
-
-// Exit a parse tree produced by GrammarParser#arrayValue.
-GrammarListener.prototype.exitArrayValue = function(ctx) {
->>>>>>> 33772c8f2d8c1c8d6e38936542a4915daadd0e92
+GrammarListener.prototype.exitOrValue = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#blankConcatValue.
-GrammarListener.prototype.enterBlankConcatValue = function(ctx) {
+GrammarListener.prototype.enterBlankConcatValue = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#blankConcatValue.
-GrammarListener.prototype.exitBlankConcatValue = function(ctx) {
+GrammarListener.prototype.exitBlankConcatValue = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#instanceValue.
-GrammarListener.prototype.enterInstanceValue = function(ctx) {
+GrammarListener.prototype.enterInstanceValue = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#instanceValue.
-GrammarListener.prototype.exitInstanceValue = function(ctx) {
+GrammarListener.prototype.exitInstanceValue = function (ctx) {
 };
 
 
-<<<<<<< HEAD
 // Enter a parse tree produced by GrammarParser#modValue.
-GrammarListener.prototype.enterModValue = function(ctx) {
+GrammarListener.prototype.enterModValue = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#modValue.
-GrammarListener.prototype.exitModValue = function(ctx) {
-=======
-// Enter a parse tree produced by GrammarParser#multExpr.
-GrammarListener.prototype.enterMultExpr = function(ctx) {
-};
-
-// Exit a parse tree produced by GrammarParser#multExpr.
-GrammarListener.prototype.exitMultExpr = function(ctx) {
-};
-
-
-// Enter a parse tree produced by GrammarParser#classValue.
-GrammarListener.prototype.enterClassValue = function(ctx) {
-};
-
-// Exit a parse tree produced by GrammarParser#classValue.
-GrammarListener.prototype.exitClassValue = function(ctx) {
->>>>>>> 33772c8f2d8c1c8d6e38936542a4915daadd0e92
+GrammarListener.prototype.exitModValue = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#stringValue.
-GrammarListener.prototype.enterStringValue = function(ctx) {
+GrammarListener.prototype.enterStringValue = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#stringValue.
-GrammarListener.prototype.exitStringValue = function(ctx) {
+GrammarListener.prototype.exitStringValue = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#applyFuncValue.
-GrammarListener.prototype.enterApplyFuncValue = function(ctx) {
+GrammarListener.prototype.enterApplyFuncValue = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#applyFuncValue.
-GrammarListener.prototype.exitApplyFuncValue = function(ctx) {
+GrammarListener.prototype.exitApplyFuncValue = function (ctx) {
 };
 
 
-<<<<<<< HEAD
 // Enter a parse tree produced by GrammarParser#equalValue.
-GrammarListener.prototype.enterEqualValue = function(ctx) {
+GrammarListener.prototype.enterEqualValue = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#equalValue.
-GrammarListener.prototype.exitEqualValue = function(ctx) {
+GrammarListener.prototype.exitEqualValue = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#gteValue.
-GrammarListener.prototype.enterGteValue = function(ctx) {
+GrammarListener.prototype.enterGteValue = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#gteValue.
-GrammarListener.prototype.exitGteValue = function(ctx) {
+GrammarListener.prototype.exitGteValue = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#andValue.
-GrammarListener.prototype.enterAndValue = function(ctx) {
+GrammarListener.prototype.enterAndValue = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#andValue.
-GrammarListener.prototype.exitAndValue = function(ctx) {
-=======
-// Enter a parse tree produced by GrammarParser#addExpr.
-GrammarListener.prototype.enterAddExpr = function(ctx) {
-};
-
-// Exit a parse tree produced by GrammarParser#addExpr.
-GrammarListener.prototype.exitAddExpr = function(ctx) {
-};
-
-
-// Enter a parse tree produced by GrammarParser#idenValue.
-GrammarListener.prototype.enterIdenValue = function(ctx) {
-};
-
-// Exit a parse tree produced by GrammarParser#idenValue.
-GrammarListener.prototype.exitIdenValue = function(ctx) {
-};
-
-
-// Enter a parse tree produced by GrammarParser#funcValue.
-GrammarListener.prototype.enterFuncValue = function(ctx) {
-};
-
-// Exit a parse tree produced by GrammarParser#funcValue.
-GrammarListener.prototype.exitFuncValue = function(ctx) {
->>>>>>> 33772c8f2d8c1c8d6e38936542a4915daadd0e92
+GrammarListener.prototype.exitAndValue = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#dictionaryValue.
-GrammarListener.prototype.enterDictionaryValue = function(ctx) {
+GrammarListener.prototype.enterDictionaryValue = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#dictionaryValue.
-GrammarListener.prototype.exitDictionaryValue = function(ctx) {
+GrammarListener.prototype.exitDictionaryValue = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#bracketValue.
-GrammarListener.prototype.enterBracketValue = function(ctx) {
+GrammarListener.prototype.enterBracketValue = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#bracketValue.
-GrammarListener.prototype.exitBracketValue = function(ctx) {
+GrammarListener.prototype.exitBracketValue = function (ctx) {
 };
 
 
-<<<<<<< HEAD
-=======
-// Enter a parse tree produced by GrammarParser#stringRepValue.
-GrammarListener.prototype.enterStringRepValue = function(ctx) {
-};
-
-// Exit a parse tree produced by GrammarParser#stringRepValue.
-GrammarListener.prototype.exitStringRepValue = function(ctx) {
-};
-
-
->>>>>>> 33772c8f2d8c1c8d6e38936542a4915daadd0e92
 // Enter a parse tree produced by GrammarParser#numberValue.
-GrammarListener.prototype.enterNumberValue = function(ctx) {
+GrammarListener.prototype.enterNumberValue = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#numberValue.
-GrammarListener.prototype.exitNumberValue = function(ctx) {
+GrammarListener.prototype.exitNumberValue = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#elementValue.
-GrammarListener.prototype.enterElementValue = function(ctx) {
+GrammarListener.prototype.enterElementValue = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#elementValue.
-GrammarListener.prototype.exitElementValue = function(ctx) {
+GrammarListener.prototype.exitElementValue = function (ctx) {
 };
 
 
-<<<<<<< HEAD
 // Enter a parse tree produced by GrammarParser#addValue.
-GrammarListener.prototype.enterAddValue = function(ctx) {
+GrammarListener.prototype.enterAddValue = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#addValue.
-GrammarListener.prototype.exitAddValue = function(ctx) {
+GrammarListener.prototype.exitAddValue = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#negateValue.
-GrammarListener.prototype.enterNegateValue = function(ctx) {
+GrammarListener.prototype.enterNegateValue = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#negateValue.
-GrammarListener.prototype.exitNegateValue = function(ctx) {
+GrammarListener.prototype.exitNegateValue = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#multValue.
-GrammarListener.prototype.enterMultValue = function(ctx) {
+GrammarListener.prototype.enterMultValue = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#multValue.
-GrammarListener.prototype.exitMultValue = function(ctx) {
+GrammarListener.prototype.exitMultValue = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#inequalValue.
-GrammarListener.prototype.enterInequalValue = function(ctx) {
+GrammarListener.prototype.enterInequalValue = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#inequalValue.
-GrammarListener.prototype.exitInequalValue = function(ctx) {
+GrammarListener.prototype.exitInequalValue = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#propertyValue.
-GrammarListener.prototype.enterPropertyValue = function(ctx) {
+GrammarListener.prototype.enterPropertyValue = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#propertyValue.
-GrammarListener.prototype.exitPropertyValue = function(ctx) {
+GrammarListener.prototype.exitPropertyValue = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#arrayValue.
-GrammarListener.prototype.enterArrayValue = function(ctx) {
+GrammarListener.prototype.enterArrayValue = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#arrayValue.
-GrammarListener.prototype.exitArrayValue = function(ctx) {
+GrammarListener.prototype.exitArrayValue = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#notValue.
-GrammarListener.prototype.enterNotValue = function(ctx) {
+GrammarListener.prototype.enterNotValue = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#notValue.
-GrammarListener.prototype.exitNotValue = function(ctx) {
+GrammarListener.prototype.exitNotValue = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#classValue.
-GrammarListener.prototype.enterClassValue = function(ctx) {
+GrammarListener.prototype.enterClassValue = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#classValue.
-GrammarListener.prototype.exitClassValue = function(ctx) {
+GrammarListener.prototype.exitClassValue = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#ltValue.
-GrammarListener.prototype.enterLtValue = function(ctx) {
+GrammarListener.prototype.enterLtValue = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#ltValue.
-GrammarListener.prototype.exitLtValue = function(ctx) {
+GrammarListener.prototype.exitLtValue = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#idenValue.
-GrammarListener.prototype.enterIdenValue = function(ctx) {
+GrammarListener.prototype.enterIdenValue = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#idenValue.
-GrammarListener.prototype.exitIdenValue = function(ctx) {
+GrammarListener.prototype.exitIdenValue = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#funcValue.
-GrammarListener.prototype.enterFuncValue = function(ctx) {
+GrammarListener.prototype.enterFuncValue = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#funcValue.
-GrammarListener.prototype.exitFuncValue = function(ctx) {
+GrammarListener.prototype.exitFuncValue = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#gtValue.
-GrammarListener.prototype.enterGtValue = function(ctx) {
+GrammarListener.prototype.enterGtValue = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#gtValue.
-GrammarListener.prototype.exitGtValue = function(ctx) {
+GrammarListener.prototype.exitGtValue = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#boolValue.
-GrammarListener.prototype.enterBoolValue = function(ctx) {
+GrammarListener.prototype.enterBoolValue = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#boolValue.
-GrammarListener.prototype.exitBoolValue = function(ctx) {
+GrammarListener.prototype.exitBoolValue = function (ctx) {
 };
 
 
 // Enter a parse tree produced by GrammarParser#stringRepValue.
-GrammarListener.prototype.enterStringRepValue = function(ctx) {
+GrammarListener.prototype.enterStringRepValue = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#stringRepValue.
-GrammarListener.prototype.exitStringRepValue = function(ctx) {
+GrammarListener.prototype.exitStringRepValue = function (ctx) {
 };
 
 
-=======
->>>>>>> 33772c8f2d8c1c8d6e38936542a4915daadd0e92
 // Enter a parse tree produced by GrammarParser#tupleValue.
-GrammarListener.prototype.enterTupleValue = function(ctx) {
+GrammarListener.prototype.enterTupleValue = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#tupleValue.
-GrammarListener.prototype.exitTupleValue = function(ctx) {
+GrammarListener.prototype.exitTupleValue = function (ctx) {
 };
 
 
-<<<<<<< HEAD
 // Enter a parse tree produced by GrammarParser#rangeValue.
-GrammarListener.prototype.enterRangeValue = function(ctx) {
+GrammarListener.prototype.enterRangeValue = function (ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#rangeValue.
-GrammarListener.prototype.exitRangeValue = function(ctx) {
+GrammarListener.prototype.exitRangeValue = function (ctx) {
 };
 
 
-=======
->>>>>>> 33772c8f2d8c1c8d6e38936542a4915daadd0e92
 
 exports.GrammarListener = GrammarListener;

@@ -97,7 +97,9 @@ class Node {
             case 'Forloop':
                 return new Node('for', [ch[2], ch[4]])
             case 'ThreeFuncIter':
-                return new Node('iter', ch.filter(c => c.symbol != ';'), { type: 'bce' })
+                ch = ch.filter(c => c.symbol != ';')
+                ch = [...ch, ...Array.from({ length: 3 - ch.length }, _ => new Node('block', []))]
+                return new Node('iter', ch, { type: 'bce' })
             case 'OfIter':
                 return new Node('iter', [ch[0], ch[1], ch[3]], { type: 'of' })
             case 'InIter':
@@ -232,4 +234,29 @@ console.log(input + '\n')
 textTree(parsed).forEach(n => console.log(n))
 
 //Ideas for interpreter
-//Reference System (register and variables) e.g. Rx006, Vx012
+//Reference System (register and variables) e.g. rx006, vx012
+
+/*
+Example of Reference System:
+R:
+-   1
+-   6
+-   2
+-   3
+-   3
+V:
+-   Array {0: r0, 1: r1, 2: r3}
+Code:
+block < a: v0 >
+>   assign (changed r3 from null to 3)
+>   >   property -> r3 (added property 2: r3 to v0)
+>   >   >   iden -> v0
+>   >   >   >   a
+>   >   >   number -> r2 (added number 2 as r2)
+>   >   >   >   2
+>   >   number -> r4 (added number 3 as r4)
+>   >   >   3
+
+Output:
+a: [1, 6, 3]
+*/
