@@ -10,13 +10,21 @@ var parse = (code) => {
     parser.buildParseTrees = true;
     return parser.all()
 }
-var textTree = (tree) => {
-    if (tree.ch.length > 0) {
-        let ch = tree.ch.map(n => textTree(n)), out = [tree.string]
-        ch.forEach(i => out.push(...i.map(n => '>  ' + n)))
-        return out
+// var textTree = (tree) => {
+//     if (tree.ch.length > 0) {
+//         let ch = tree.ch.map(n => textTree(n)), out = [tree.string]
+//         ch.forEach(i => out.push(...i.map(n => '>  ' + n)))
+//         return out
+//     }
+//     return [tree.string]
+// }
+var textTree = (tree, indent = "", last = true) => {
+    console.log(`${indent}${last ? "└╴ " : "├╴ "}${tree.string}`);
+    indent += last ? "   " : "│  ";
+
+    for (let i = 0; i < tree.ch.length; i++) {
+        textTree(tree.ch[i], indent, i == tree.ch.length - 1);
     }
-    return [tree.string]
 }
 
 class Node {
@@ -247,7 +255,7 @@ var input = fs.readFileSync('./code.prsm', 'utf8')
 var parsed = parse(input)
 parsed = Node.toNode(parsed)
 console.log(input + '\n')
-textTree(parsed).forEach(n => console.log(n))
+textTree(parsed)
 
 //Ideas for interpreter
 //Reference System (register and variables) e.g. rx006, vx012
