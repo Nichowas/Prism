@@ -1,7 +1,7 @@
 grammar Grammar;
+all: (statement|value)*;
 
 iden: WORD;
-
 
 //Function
 parameter: 

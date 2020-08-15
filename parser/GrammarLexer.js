@@ -219,10 +219,10 @@ var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
 
 var atn = new antlr4.atn.ATNDeserializer().deserialize(serializedATN);
 
-var decisionsToDFA = atn.decisionToState.map(function (ds, index) { return new antlr4.dfa.DFA(ds, index); });
+var decisionsToDFA = atn.decisionToState.map( function(ds, index) { return new antlr4.dfa.DFA(ds, index); });
 
 function GrammarLexer(input) {
-    antlr4.Lexer.call(this, input);
+	antlr4.Lexer.call(this, input);
     this._interp = new antlr4.atn.LexerATNSimulator(this, atn, decisionsToDFA, new antlr4.PredictionContextCache());
     return this;
 }
@@ -231,9 +231,9 @@ GrammarLexer.prototype = Object.create(antlr4.Lexer.prototype);
 GrammarLexer.prototype.constructor = GrammarLexer;
 
 Object.defineProperty(GrammarLexer.prototype, "atn", {
-    get: function () {
-        return atn;
-    }
+        get : function() {
+                return atn;
+        }
 });
 
 GrammarLexer.EOF = antlr4.Token.EOF;
@@ -298,51 +298,51 @@ GrammarLexer.WORD = 58;
 GrammarLexer.STRING = 59;
 GrammarLexer.NUM = 60;
 
-GrammarLexer.prototype.channelNames = ["DEFAULT_TOKEN_CHANNEL", "HIDDEN"];
+GrammarLexer.prototype.channelNames = [ "DEFAULT_TOKEN_CHANNEL", "HIDDEN" ];
 
-GrammarLexer.prototype.modeNames = ["DEFAULT_MODE"];
+GrammarLexer.prototype.modeNames = [ "DEFAULT_MODE" ];
 
-GrammarLexer.prototype.literalNames = [null, "'...'", "'.'", "'('", "','",
-    "')'", "'void'", "'=>'", "'for'",
-    "'while'", "';'", "'in'", "'of'",
-    "'if'", "'elif'", "'else'", "'['",
-    "']'", "'{'", "'}'", "':'", "'='",
-    "'*='", "'/='", "'+='", "'-='",
-    "'%='", "'++'", "'--'", "'stat'",
-    "'pub'", "'var'", "'return'", "'new'",
-    "'class'", "'to'", "'by'", "'?'",
-    "'!='", "'=='", "'>'", "'>='", "'<'",
-    "'<='", "'&&'", "'||'", "'!'", "'%'",
-    "'*'", "'/'", "'+'", "'-'", "'_'",
-    "'#'", "'true'", "'false'"];
+GrammarLexer.prototype.literalNames = [ null, "'...'", "'.'", "'('", "','", 
+                                        "')'", "'void'", "'=>'", "'for'", 
+                                        "'while'", "';'", "'in'", "'of'", 
+                                        "'if'", "'elif'", "'else'", "'['", 
+                                        "']'", "'{'", "'}'", "':'", "'='", 
+                                        "'*='", "'/='", "'+='", "'-='", 
+                                        "'%='", "'++'", "'--'", "'stat'", 
+                                        "'pub'", "'var'", "'return'", "'new'", 
+                                        "'class'", "'to'", "'by'", "'?'", 
+                                        "'!='", "'=='", "'>'", "'>='", "'<'", 
+                                        "'<='", "'&&'", "'||'", "'!'", "'%'", 
+                                        "'*'", "'/'", "'+'", "'-'", "'_'", 
+                                        "'#'", "'true'", "'false'" ];
 
-GrammarLexer.prototype.symbolicNames = [null, null, null, null, null, null,
-    null, null, null, null, null, null,
-    null, null, null, null, null, null,
-    null, null, null, null, null, null,
-    null, null, null, null, null, null,
-    null, null, null, null, null, null,
-    null, null, null, null, null, null,
-    null, null, null, null, null, null,
-    null, null, null, null, null, null,
-    "TRUE", "FALSE", "WS", "COMMENT",
-    "WORD", "STRING", "NUM"];
+GrammarLexer.prototype.symbolicNames = [ null, null, null, null, null, null, 
+                                         null, null, null, null, null, null, 
+                                         null, null, null, null, null, null, 
+                                         null, null, null, null, null, null, 
+                                         null, null, null, null, null, null, 
+                                         null, null, null, null, null, null, 
+                                         null, null, null, null, null, null, 
+                                         null, null, null, null, null, null, 
+                                         null, null, null, null, null, null, 
+                                         "TRUE", "FALSE", "WS", "COMMENT", 
+                                         "WORD", "STRING", "NUM" ];
 
-GrammarLexer.prototype.ruleNames = ["T__0", "T__1", "T__2", "T__3", "T__4",
-    "T__5", "T__6", "T__7", "T__8", "T__9",
-    "T__10", "T__11", "T__12", "T__13",
-    "T__14", "T__15", "T__16", "T__17",
-    "T__18", "T__19", "T__20", "T__21",
-    "T__22", "T__23", "T__24", "T__25",
-    "T__26", "T__27", "T__28", "T__29",
-    "T__30", "T__31", "T__32", "T__33",
-    "T__34", "T__35", "T__36", "T__37",
-    "T__38", "T__39", "T__40", "T__41",
-    "T__42", "T__43", "T__44", "T__45",
-    "T__46", "T__47", "T__48", "T__49",
-    "T__50", "T__51", "T__52", "TRUE",
-    "FALSE", "WS", "COMMENT", "WORD", "STRING",
-    "NUM", "DIGIT"];
+GrammarLexer.prototype.ruleNames = [ "T__0", "T__1", "T__2", "T__3", "T__4", 
+                                     "T__5", "T__6", "T__7", "T__8", "T__9", 
+                                     "T__10", "T__11", "T__12", "T__13", 
+                                     "T__14", "T__15", "T__16", "T__17", 
+                                     "T__18", "T__19", "T__20", "T__21", 
+                                     "T__22", "T__23", "T__24", "T__25", 
+                                     "T__26", "T__27", "T__28", "T__29", 
+                                     "T__30", "T__31", "T__32", "T__33", 
+                                     "T__34", "T__35", "T__36", "T__37", 
+                                     "T__38", "T__39", "T__40", "T__41", 
+                                     "T__42", "T__43", "T__44", "T__45", 
+                                     "T__46", "T__47", "T__48", "T__49", 
+                                     "T__50", "T__51", "T__52", "TRUE", 
+                                     "FALSE", "WS", "COMMENT", "WORD", "STRING", 
+                                     "NUM", "DIGIT" ];
 
 GrammarLexer.prototype.grammarFileName = "Grammar.g4";
 

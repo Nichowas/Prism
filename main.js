@@ -3,12 +3,12 @@ var antlr4 = require('antlr4'),
     GrammarLexer = require('./parser/GrammarLexer').GrammarLexer,
     GrammarParser = require('./parser/GrammarParser').GrammarParser
 var parse = (code) => {
-    let chars = new antlr4.InputStream('{' + code + '}'),
+    let chars = new antlr4.InputStream(code),
         lexer = new GrammarLexer(chars),
         tokens = new antlr4.CommonTokenStream(lexer),
         parser = new GrammarParser(tokens)
     parser.buildParseTrees = true;
-    return parser.statement()
+    return parser.all()
 }
 var textTree = (tree) => {
     if (tree.ch.length > 0) {
@@ -32,9 +32,11 @@ class Node {
         return new Node('number', [new Node(n, [])])
     }
     static toNode(tree) {
-        let symb, ch = tree.children ? tree.children.map(Node.toNode) : []
+        let symb, ch = (tree.children && tree.children != null) ? tree.children.map(Node.toNode) : []
         if (ch.length > 0) symb = tree.constructor.name.replace(/Context/, '')
-        else symb = tree.symbol.text
+        else if (tree.symbol) symb = tree.symbol.text
+        else symb = 'All'
+
         switch (symb) {
             //Parameters/Properties
             case 'Parameters':
@@ -221,6 +223,8 @@ class Node {
                 return ch[0]
             case 'CommentStatement':
                 return new Node('comment', [new Node(ch[0].symbol.slice(2, ch[0].symbol.length - 1), [])])
+            case 'All':
+                return new Node('block', ch)
         }
         return new Node(symb, ch)
     }
@@ -228,8 +232,8 @@ class Node {
 
 
 var input = fs.readFileSync('./code.prsm', 'utf8')
-var parsed = Node.toNode(parse(input))
-
+var parsed = parse(input)
+parsed = Node.toNode(parsed)
 console.log(input + '\n')
 textTree(parsed).forEach(n => console.log(n))
 
