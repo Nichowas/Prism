@@ -38,6 +38,13 @@ class Node {
         else symb = 'All'
 
         switch (symb) {
+
+            //Classes
+            case 'InstanceValue':
+                return new Node('new', [ch[1]])
+            case 'ClassValue':
+                return new Node('class', [ch[1]])
+
             //Parameters/Properties
             case 'Parameters':
                 return new Node('params', ch.filter(c => !'(),'.includes(c.symbol)))
@@ -68,6 +75,8 @@ class Node {
             case 'ApplyFuncValue':
                 symb = 'apply'
                 break
+            case 'ReturnStatement':
+                return new Node('return', [ch[1]])
 
             //Conditions
             case 'IfStatement':
@@ -162,6 +171,8 @@ class Node {
                 return new Node('assign', [ch[0], new Node('-', [ch[0], ch[2]])])
             case 'DivAssign':
                 return new Node('assign', [ch[0], new Node('/', [ch[0], ch[2]])])
+            case 'ModAssign':
+                return new Node('assign', [ch[0], new Node('%', [ch[0], ch[2]])])
             case 'IncAssign':
                 return new Node('assign', [ch[0], new Node('+', [ch[0], Node.number(1)])])
             case 'DecAssign':
@@ -171,6 +182,7 @@ class Node {
             case 'Designator':
                 return new Node('designator', [], { type: ch.map(c => c.symbol) })
             case 'Declar':
+                ch = ch.filter(c => c.symbol != ',')
                 ch[0].ch = ch.slice(1).map(c => c.ch[0])
                 return new Node('declaration', ch)
 
@@ -204,7 +216,7 @@ class Node {
             case 'EqualValue':
                 return new Node('==', [ch[0], ch[2]])
             case 'InequalValue':
-                return new Node('!=', [ch[0], ch[2]])
+                return new Node('!', [new Node('==', [ch[0], ch[2]])])
             case 'TernaryValue':
                 return new Node('?', [ch[0], ch[2], ch[4]])
             case 'RangeValue':
