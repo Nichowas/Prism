@@ -21,7 +21,6 @@ var parse = (code) => {
 var textTree = (tree, indent = "", last = true) => {
     console.log(`${indent}${last ? "└╴ " : "├╴ "}${tree.string}`);
     indent += last ? "   " : "│  ";
-
     for (let i = 0; i < tree.ch.length; i++) {
         textTree(tree.ch[i], indent, i == tree.ch.length - 1);
     }
