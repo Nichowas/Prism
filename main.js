@@ -10,14 +10,6 @@ var parse = (code) => {
     parser.buildParseTrees = true;
     return parser.all()
 }
-// var textTree = (tree) => {
-//     if (tree.ch.length > 0) {
-//         let ch = tree.ch.map(n => textTree(n)), out = [tree.string]
-//         ch.forEach(i => out.push(...i.map(n => '>  ' + n)))
-//         return out
-//     }
-//     return [tree.string]
-// }
 var textTree = (tree, indent = "", last = true) => {
     console.log(`${indent}${last ? "└╴ " : "├╴ "}${tree.string}`);
     indent += last ? "   " : "│  ";
@@ -32,26 +24,141 @@ class Node {
         this.ch = ch
         for (let [i, e] of Object.entries(add)) this[i] = e
         Object.defineProperty(this, 'string', {
-            get: () => this.symbol + (this.type ? ` (${this.type})` : '')
+            //symbol: token string, type: additional info, value: output of interpreting
+            //symbol (type?) => value?
+            get: () => `${this.symbol}${this.type ? ` (${this.type})` : ''}${(this.value != undefined) ? ` => ${this.value.str()}` : ''}`
         })
     }
-    static number(n) {
-        return new Node('number', [new Node(n, [])])
+    exec(scope) {
+        switch (this.symbol) {
+            case 'iden': {
+                this.value = scope[this.ch[0].symbol]
+                return this.value
+            }
+            case 'number': {
+                let num = new Variable('number', Number(this.ch[0].symbol))
+                this.value = num.saveToR()
+                return this.value
+            }
+            case 'designator': {
+                for (let c of this.ch) {
+                    let symb = c.ch[0].symbol
+                    let val = new Variable('undefined', undefined)
+                    let ref = val.saveToV()
+                    scope[symb] = ref
+                }
+                break;
+            }
+            case 'assign': {
+                let iden = this.ch[0].exec(scope), val = this.ch[1].exec(scope)
+                if (val) {
+                    iden.setVar(val.v.copy())
+                    this.value = iden
+                    return this.value
+
+                }
+                break;
+            }
+            case '+': {
+                let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
+                if (v1 && v2) {
+                    let v3 = new Variable('number', v1.v.val + v2.v.val)
+                    this.value = v3.saveToR()
+                    return this.value
+
+                }
+                break;
+            }
+            case '*': {
+                let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
+                if (v1 && v2) {
+                    let v3 = new Variable('number', v1.v.val * v2.v.val)
+                    this.value = v3.saveToR()
+                    return this.value
+
+                }
+                break;
+            }
+            case '-': {
+                let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
+                if (v1 && v2) {
+                    let v3 = new Variable('number', v1.v.val - v2.v.val)
+                    this.value = v3.saveToR()
+                    return this.value
+
+                }
+                break;
+            }
+            case '/': {
+                let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
+                if (v1 && v2) {
+                    let v3 = new Variable('number', v1.v.val / v2.v.val)
+                    this.value = v3.saveToR()
+                    return this.value
+
+                }
+                break;
+            }
+            case '>': {
+                let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
+                if (v1 && v2) {
+                    let v3 = new Variable('boolean', v1.v.val > v2.v.val)
+                    this.value = v3.saveToR()
+                    return this.value
+
+                }
+                break;
+            }
+            case '<': {
+                let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
+                if (v1 && v2) {
+                    let v3 = new Variable('boolean', v1.v.val < v2.v.val)
+                    this.value = v3.saveToR()
+                    return this.value
+
+                }
+                break;
+            }
+            case 'for': {
+                let iter = this.ch[0], block = this.ch[1]
+                if (iter.type = 'bce') {
+                    let [b, c, e] = iter.ch
+                    b.exec(scope)
+                    do {
+                        block.exec(scope)
+                        e.exec(scope)
+                    } while (c.exec(scope).v.val)
+                }
+            }
+            case 'if': {
+                for (let i = 0; i < this.ch.length;) {
+                    if (this.ch[i + 1] && (this.ch[i + 1].type == 'if' || this.ch[i + 1].type == 'elif')) {
+                        if (this.ch[i].exec(scope).v.val)
+                            return this.ch[i + 1].exec(scope)
+                        i += 2
+                    } else {
+                        return this.ch[i].exec(scope)
+                    }
+                }
+            }
+            default: {
+                for (let c of this.ch) c.exec(scope)
+                break;
+            }
+        }
     }
+    static number(n) { return new Node('number', [new Node(n, [])]) }
     static toNode(tree) {
-        let symb, ch = (tree.children && tree.children != null) ? tree.children.map(Node.toNode) : []
+        let symb, ch = tree.children ? tree.children.map(Node.toNode) : []
         if (ch.length > 0) symb = tree.constructor.name.replace(/Context/, '')
         else if (tree.symbol) symb = tree.symbol.text
-        else symb = 'All'
-
+        else return new Node('block', ch)
         switch (symb) {
-
             //Classes
             case 'InstanceValue':
                 return new Node('new', [ch[1]])
             case 'ClassValue':
                 return new Node('class', [ch[1]])
-
             //Parameters/Properties
             case 'Parameters':
                 return new Node('params', ch.filter(c => !'(),'.includes(c.symbol)))
@@ -70,7 +177,6 @@ class Node {
                 return new Node('property', ch, { type: 'iden' })
             case 'IterProperty':
                 return new Node('property', [ch[1]], { type: 'spread' })
-
             //Functions
             case 'ArrowFunc':
                 if (ch[0].symbol == 'iden') ch[0] = new Node('params', [ch[0]])
@@ -84,7 +190,6 @@ class Node {
                 break
             case 'ReturnStatement':
                 return new Node('return', [ch[1]])
-
             //Conditions
             case 'IfStatement':
                 return ch[0]
@@ -126,7 +231,6 @@ class Node {
                 return ch[0]
             case 'Whileloop':
                 return new Node('while', [ch[2], ch[4]])
-
             //Number/String/Boolean
             case 'NumberValue':
                 return new Node('number', [ch[0]])
@@ -134,7 +238,6 @@ class Node {
                 return new Node('string', [ch[0]])
             case 'BoolValue':
                 return new Node('boolean', [ch[0]])
-
             //Arrays/Tuples/Dictionaries
             case 'ArrayValue':
                 return ch[0]
@@ -164,7 +267,6 @@ class Node {
                 return ch[0]
             case 'Dictionary':
                 return new Node('dictionary', ch.filter(c => !'{},'.includes(c.symbol)))
-
             //Assignments/Declarations
             case 'AssignStatement':
                 return ch[0]
@@ -191,8 +293,7 @@ class Node {
             case 'Declar':
                 ch = ch.filter(c => c.symbol != ',')
                 ch[0].ch = ch.slice(1).map(c => c.ch[0])
-                return new Node('declaration', ch)
-
+                return new Node('block', ch)
             //Operations
             case 'AddValue':
                 return new Node(ch[1].symbol, [ch[0], ch[2]])
@@ -230,7 +331,6 @@ class Node {
                 return new Node('to', [ch[0], ch[2], ch[4] ? ch[4] : Node.number(1)])
             case 'BracketValue':
                 return ch[1]
-
             case 'Iden':
                 symb = 'iden'
                 break
@@ -242,44 +342,64 @@ class Node {
                 return ch[0]
             case 'CommentStatement':
                 return new Node('comment', [new Node(ch[0].symbol.slice(2, ch[0].symbol.length - 1), [])])
-            case 'All':
-                return new Node('block', ch)
         }
         return new Node(symb, ch)
     }
 }
+class Reference {
+    constructor(type, index) {
+        this.type = type
+        this.index = index
+        Reference.refs.push(this)
+        Reference.total[this.type]++
+    }
+    setVar(v) {
+        v.ref = this
+        this.v = v
+    }
+    str() {
+        return `${this.type}x${this.index}`
+    }
+    static getRef(type, index) {
+        return Reference.refs.find(r => r.type == type && r.index == index)
+    }
+    static memory() {
+        let out = ''
+        for (let ref of Reference.refs) out += `${ref.str()}: ${ref.v.val}\n`
+        return out
+    }
+}
+Reference.total = { r: 0, v: 0 }
+Reference.refs = []
 
+class Variable {
+    constructor(type, val) {
+        this.type = type
+        this.val = val
+    }
+    saveToR() {
+        let i = Reference.total.r
+        let ref = new Reference('r', i)
+        ref.setVar(this)
+        return ref
+    }
+    saveToV() {
+        let i = Reference.total.v
+        let ref = new Reference('v', i)
+        ref.setVar(this)
+        return ref
+    }
+    copy() {
+        return new Variable(this.type, this.val)
+    }
+}
 
 var input = fs.readFileSync('./code.prsm', 'utf8')
 var parsed = parse(input)
 parsed = Node.toNode(parsed)
+parsed.exec({})
 console.log(input + '\n')
 textTree(parsed)
-
+console.log(Reference.memory())
 //Ideas for interpreter
 //Reference System (register and variables) e.g. rx006, vx012
-
-/*
-Example of Reference System:
-R:
--   1
--   6
--   2
--   3
--   3
-V:
--   Array {0: r0, 1: r1, 2: r3}
-Code:
-block < a: v0 >
->   assign (changed r3 from null to 3)
->   >   property -> r3 (added property 2: r3 to v0)
->   >   >   iden -> v0
->   >   >   >   a
->   >   >   number -> r2 (added number 2 as r2)
->   >   >   >   2
->   >   number -> r4 (added number 3 as r4)
->   >   >   3
-
-Output:
-a: [1, 6, 3]
-*/
