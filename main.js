@@ -40,6 +40,24 @@ class Node {
                 this.value = num.saveToR()
                 return this.value
             }
+            case 'string': {
+                let str = new Variable('string', this.ch[0].symbol)
+                return str.saveToR()
+            }
+            case 'array': {
+                let ch = []
+                this.ch.forEach(c => {
+                    let ref = c.exec(scope)
+                    if (c.type == 'spread' && ref.v.type == 'array') {
+                        ch.push(...ref.v.val)
+                    } else {
+                        ch.push(ref)
+                    }
+                })
+                let arr = new Variable('array', ch)
+                this.value = arr.saveToR()
+                return this.value
+            }
             case 'designator': {
                 for (let c of this.ch) {
                     let symb = c.ch[0].symbol
@@ -113,6 +131,36 @@ class Node {
                 let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
                 if (v1 && v2) {
                     let v3 = new Variable('boolean', v1.v.val < v2.v.val)
+                    this.value = v3.saveToR()
+                    return this.value
+
+                }
+                break;
+            }
+            case '>=': {
+                let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
+                if (v1 && v2) {
+                    let v3 = new Variable('boolean', v1.v.val >= v2.v.val)
+                    this.value = v3.saveToR()
+                    return this.value
+
+                }
+                break;
+            }
+            case '<=': {
+                let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
+                if (v1 && v2) {
+                    let v3 = new Variable('boolean', v1.v.val <= v2.v.val)
+                    this.value = v3.saveToR()
+                    return this.value
+
+                }
+                break;
+            }
+            case '==': {
+                let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
+                if (v1 && v2) {
+                    let v3 = new Variable('boolean', v1.v.val == v2.v.val)
                     this.value = v3.saveToR()
                     return this.value
 
@@ -353,6 +401,17 @@ class Reference {
         Reference.refs.push(this)
         Reference.total[this.type]++
     }
+    val() {
+        let v = this.v.val
+        let clean = val => {
+            if (val instanceof Reference)
+                return val.str()
+            return val
+        }
+        if (this.v.type == 'array')
+            return `[${v.map(clean)}]`
+        return clean(v)
+    }
     setVar(v) {
         v.ref = this
         this.v = v
@@ -365,7 +424,7 @@ class Reference {
     }
     static memory() {
         let out = ''
-        for (let ref of Reference.refs) out += `${ref.str()}: ${ref.v.val}\n`
+        for (let ref of Reference.refs) out += `${ref.str()}: ${ref.val()}\n`
         return out
     }
 }
