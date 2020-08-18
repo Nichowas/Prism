@@ -10,12 +10,18 @@ var parse = (code) => {
     parser.buildParseTrees = true;
     return parser.all()
 }
-var textTree = (tree, indent = "", last = true) => {
-    console.log(`${indent}${last ? "└╴ " : "├╴ "}${tree.string}`);
-    indent += last ? "   " : "│  ";
-    for (let i = 0; i < tree.ch.length; i++) {
-        textTree(tree.ch[i], indent, i == tree.ch.length - 1);
+var textTree = (tree) => {
+    let out = ''
+    let txtTree = (tree, indent = "", last = true, notroot = false) => {
+        out += `${indent}${notroot ? (last ? "└╴ " : "├╴ ") : ''}${tree.string} \n`
+        if (notroot)
+            indent += last ? "   " : "│  ";
+        for (let i = 0; i < tree.ch.length; i++) {
+            txtTree(tree.ch[i], indent, i == tree.ch.length - 1, true);
+        }
     }
+    txtTree(tree)
+    return out
 }
 
 class Node {
@@ -29,20 +35,25 @@ class Node {
             get: () => `${this.symbol}${this.type ? ` (${this.type})` : ''}${(this.value != undefined) ? ` => ${this.value.str()}` : ''}`
         })
     }
-    exec(scope) {
+    exec(scope = {}) {
         switch (this.symbol) {
             case 'iden': {
                 this.value = scope[this.ch[0].symbol]
                 return this.value
             }
+            case 'boolean': {
+                let bool = new Variable('boolean', this.ch[0].symbol == 'true')
+                this.value = bool.saveTo('r')
+                return this.value
+            }
             case 'number': {
                 let num = new Variable('number', Number(this.ch[0].symbol))
-                this.value = num.saveToR()
+                this.value = num.saveTo('r')
                 return this.value
             }
             case 'string': {
                 let str = new Variable('string', this.ch[0].symbol)
-                return str.saveToR()
+                return str.saveTo('r')
             }
             case 'array': {
                 let ch = []
@@ -50,19 +61,36 @@ class Node {
                     let ref = c.exec(scope)
                     if (c.type == 'spread' && ref.v.type == 'array') {
                         ch.push(...ref.v.val)
-                    } else {
-                        ch.push(ref)
+                        return
                     }
+                    ch.push(ref)
                 })
                 let arr = new Variable('array', ch)
-                this.value = arr.saveToR()
+                this.value = arr.saveTo('r')
+                return this.value
+            }
+            case 'dictionary': {
+                let ch = []
+                this.ch.forEach(c => {
+                    if (c.type == 'spread') {
+                        let ref = c.ch[0].exec(scope)
+                        if (ref.v.type == 'dictionary') {
+                            ch.push(...ref.v.val)
+                            return
+                        }
+                    }
+                    let key = new Variable('string', c.ch[0].ch[0].symbol).saveTo('r')
+                    c.value = key
+                    ch.push(key, c.ch[1].exec(scope))
+                })
+                this.value = new Variable('dictionary', ch).saveTo('r')
                 return this.value
             }
             case 'designator': {
                 for (let c of this.ch) {
                     let symb = c.ch[0].symbol
                     let val = new Variable('undefined', undefined)
-                    let ref = val.saveToV()
+                    let ref = val.saveTo('v')
                     scope[symb] = ref
                 }
                 break;
@@ -73,7 +101,6 @@ class Node {
                     iden.setVar(val.v.copy())
                     this.value = iden
                     return this.value
-
                 }
                 break;
             }
@@ -81,7 +108,7 @@ class Node {
                 let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
                 if (v1 && v2) {
                     let v3 = new Variable('number', v1.v.val + v2.v.val)
-                    this.value = v3.saveToR()
+                    this.value = v3.saveTo('r')
                     return this.value
 
                 }
@@ -91,7 +118,7 @@ class Node {
                 let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
                 if (v1 && v2) {
                     let v3 = new Variable('number', v1.v.val * v2.v.val)
-                    this.value = v3.saveToR()
+                    this.value = v3.saveTo('r')
                     return this.value
 
                 }
@@ -101,7 +128,7 @@ class Node {
                 let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
                 if (v1 && v2) {
                     let v3 = new Variable('number', v1.v.val - v2.v.val)
-                    this.value = v3.saveToR()
+                    this.value = v3.saveTo('r')
                     return this.value
 
                 }
@@ -111,7 +138,17 @@ class Node {
                 let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
                 if (v1 && v2) {
                     let v3 = new Variable('number', v1.v.val / v2.v.val)
-                    this.value = v3.saveToR()
+                    this.value = v3.saveTo('r')
+                    return this.value
+
+                }
+                break;
+            }
+            case '%': {
+                let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
+                if (v1 && v2) {
+                    let v3 = new Variable('number', v1.v.val % v2.v.val)
+                    this.value = v3.saveTo('r')
                     return this.value
 
                 }
@@ -121,7 +158,7 @@ class Node {
                 let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
                 if (v1 && v2) {
                     let v3 = new Variable('boolean', v1.v.val > v2.v.val)
-                    this.value = v3.saveToR()
+                    this.value = v3.saveTo('r')
                     return this.value
 
                 }
@@ -131,7 +168,7 @@ class Node {
                 let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
                 if (v1 && v2) {
                     let v3 = new Variable('boolean', v1.v.val < v2.v.val)
-                    this.value = v3.saveToR()
+                    this.value = v3.saveTo('r')
                     return this.value
 
                 }
@@ -141,7 +178,7 @@ class Node {
                 let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
                 if (v1 && v2) {
                     let v3 = new Variable('boolean', v1.v.val >= v2.v.val)
-                    this.value = v3.saveToR()
+                    this.value = v3.saveTo('r')
                     return this.value
 
                 }
@@ -151,7 +188,7 @@ class Node {
                 let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
                 if (v1 && v2) {
                     let v3 = new Variable('boolean', v1.v.val <= v2.v.val)
-                    this.value = v3.saveToR()
+                    this.value = v3.saveTo('r')
                     return this.value
 
                 }
@@ -161,9 +198,38 @@ class Node {
                 let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
                 if (v1 && v2) {
                     let v3 = new Variable('boolean', v1.v.val == v2.v.val)
-                    this.value = v3.saveToR()
+                    this.value = v3.saveTo('r')
                     return this.value
 
+                }
+                break;
+            }
+            case '&&': {
+                let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
+                if (v1 && v2) {
+                    let v3 = new Variable('boolean', v1.v.val && v2.v.val)
+                    this.value = v3.saveTo('r')
+                    return this.value
+
+                }
+                break;
+            }
+            case '||': {
+                let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
+                if (v1 && v2) {
+                    let v3 = new Variable('boolean', v1.v.val || v2.v.val)
+                    this.value = v3.saveTo('r')
+                    return this.value
+
+                }
+                break;
+            }
+            case '!': {
+                let v1 = this.ch[0].exec(scope)
+                if (v1) {
+                    let v2 = new Variable('boolean', !v1.v.val)
+                    this.value = v2.saveTo('r')
+                    return this.value
                 }
                 break;
             }
@@ -196,11 +262,12 @@ class Node {
         }
     }
     static number(n) { return new Node('number', [new Node(n, [])]) }
-    static toNode(tree) {
-        let symb, ch = tree.children ? tree.children.map(Node.toNode) : []
-        if (ch.length > 0) symb = tree.constructor.name.replace(/Context/, '')
-        else if (tree.symbol) symb = tree.symbol.text
-        else return new Node('block', ch)
+    static toNode(tree, root = true) {
+        let symb, ch = tree.children ? tree.children.map(n => Node.toNode(n, false)) : []
+        if (root)
+            return new Node('block', ch)
+        else if (ch.length > 0) symb = tree.constructor.name.replace(/Context/, '')
+        else symb = tree.symbol.text
         switch (symb) {
             //Classes
             case 'InstanceValue':
@@ -410,6 +477,13 @@ class Reference {
         }
         if (this.v.type == 'array')
             return `[${v.map(clean)}]`
+        if (this.v.type == 'dictionary') {
+            let out = []
+            for (let i = 0; i < v.length; i += 2) {
+                out.push(`${clean(v[i])}: ${clean(v[i + 1])}`)
+            }
+            return `{ ${out.join(', ')} } `
+        }
         return clean(v)
     }
     setVar(v) {
@@ -424,7 +498,7 @@ class Reference {
     }
     static memory() {
         let out = ''
-        for (let ref of Reference.refs) out += `${ref.str()}: ${ref.val()}\n`
+        for (let ref of Reference.refs) out += `${ref.str()}: ${ref.val()} \n`
         return out
     }
 }
@@ -436,15 +510,9 @@ class Variable {
         this.type = type
         this.val = val
     }
-    saveToR() {
-        let i = Reference.total.r
-        let ref = new Reference('r', i)
-        ref.setVar(this)
-        return ref
-    }
-    saveToV() {
-        let i = Reference.total.v
-        let ref = new Reference('v', i)
+    saveTo(reg) {
+        let i = Reference.total[reg]
+        let ref = new Reference(reg, i)
         ref.setVar(this)
         return ref
     }
@@ -456,9 +524,9 @@ class Variable {
 var input = fs.readFileSync('./code.prsm', 'utf8')
 var parsed = parse(input)
 parsed = Node.toNode(parsed)
-parsed.exec({})
+parsed.exec()
 console.log(input + '\n')
-textTree(parsed)
+console.log(textTree(parsed))
 console.log(Reference.memory())
 //Ideas for interpreter
 //Reference System (register and variables) e.g. rx006, vx012

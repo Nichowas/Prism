@@ -64,7 +64,7 @@ var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
     "\u0003\u0013\u0003\u0013\u0003\u0013\u0003\u0013\u0007\u0013\u0161\n",
     "\u0013\f\u0013\u000e\u0013\u0164\u000b\u0013\u0003\u0013\u0002\u0003",
     "$\u0014\u0002\u0004\u0006\b\n\f\u000e\u0010\u0012\u0014\u0016\u0018",
-    "\u001a\u001c\u001e \"$\u0002\u0006\u0003\u0002 !\u0003\u000289\u0003",
+    "\u001a\u001c\u001e \"$\u0002\u0006\u0003\u0002 !\u0003\u00029:\u0003",
     "\u000223\u0003\u000245\u0002\u01a0\u0002*\u0003\u0002\u0002\u0002\u0004",
     "-\u0003\u0002\u0002\u0002\u00064\u0003\u0002\u0002\u0002\b6\u0003\u0002",
     "\u0002\u0002\nO\u0003\u0002\u0002\u0002\fQ\u0003\u0002\u0002\u0002\u000e",
@@ -77,7 +77,7 @@ var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
     ")\u0005$\u0013\u0002(&\u0003\u0002\u0002\u0002(\'\u0003\u0002\u0002",
     "\u0002),\u0003\u0002\u0002\u0002*(\u0003\u0002\u0002\u0002*+\u0003\u0002",
     "\u0002\u0002+\u0003\u0003\u0002\u0002\u0002,*\u0003\u0002\u0002\u0002",
-    "-.\u0007<\u0002\u0002.\u0005\u0003\u0002\u0002\u0002/5\u0005\u0004\u0003",
+    "-.\u0007=\u0002\u0002.\u0005\u0003\u0002\u0002\u0002/5\u0005\u0004\u0003",
     "\u000201\u0007\u0003\u0002\u000215\u0005\u0004\u0003\u000223\u0007\u0004",
     "\u0002\u000235\u0005\u0004\u0003\u00024/\u0003\u0002\u0002\u000240\u0003",
     "\u0002\u0002\u000242\u0003\u0002\u0002\u00025\u0007\u0003\u0002\u0002",
@@ -192,7 +192,7 @@ var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
     "\u0103\u0105\u0003\u0002\u0002\u0002\u0104\u0102\u0003\u0002\u0002\u0002",
     "\u0105\u010b\u0007\u0015\u0002\u0002\u0106\u0107\u0007\"\u0002\u0002",
     "\u0107\u010b\u0005$\u0013\u0002\u0108\u010b\u0005$\u0013\u0002\u0109",
-    "\u010b\u0007;\u0002\u0002\u010a\u00f9\u0003\u0002\u0002\u0002\u010a",
+    "\u010b\u0007<\u0002\u0002\u010a\u00f9\u0003\u0002\u0002\u0002\u010a",
     "\u00fa\u0003\u0002\u0002\u0002\u010a\u00fb\u0003\u0002\u0002\u0002\u010a",
     "\u00fc\u0003\u0002\u0002\u0002\u010a\u00fd\u0003\u0002\u0002\u0002\u010a",
     "\u00fe\u0003\u0002\u0002\u0002\u010a\u0106\u0003\u0002\u0002\u0002\u010a",
@@ -206,8 +206,8 @@ var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
     "\u0118\u0119\u00070\u0002\u0002\u0119\u0124\u0005$\u0013\u0011\u011a",
     "\u011b\u00075\u0002\u0002\u011b\u0124\u0005$\u0013\f\u011c\u011d\u0007",
     "7\u0002\u0002\u011d\u0124\u0005$\u0013\b\u011e\u0124\u0005\u0004\u0003",
-    "\u0002\u011f\u0124\u0005\n\u0006\u0002\u0120\u0124\u0007>\u0002\u0002",
-    "\u0121\u0124\u0007=\u0002\u0002\u0122\u0124\t\u0003\u0002\u0002\u0123",
+    "\u0002\u011f\u0124\u0005\n\u0006\u0002\u0120\u0124\u00078\u0002\u0002",
+    "\u0121\u0124\u0007>\u0002\u0002\u0122\u0124\t\u0003\u0002\u0002\u0123",
     "\u010c\u0003\u0002\u0002\u0002\u0123\u0111\u0003\u0002\u0002\u0002\u0123",
     "\u0113\u0003\u0002\u0002\u0002\u0123\u0115\u0003\u0002\u0002\u0002\u0123",
     "\u0116\u0003\u0002\u0002\u0002\u0123\u0117\u0003\u0002\u0002\u0002\u0123",
@@ -273,7 +273,7 @@ var literalNames = [ null, "'...'", "'.'", "'('", "','", "')'", "'void'",
                      "'new'", "'class'", "'to'", "'by'", "'?'", "'!='", 
                      "'=='", "'>'", "'>='", "'<'", "'<='", "'&&'", "'||'", 
                      "'!'", "'%'", "'*'", "'/'", "'+'", "'-'", "'_'", "'#'", 
-                     "'true'", "'false'" ];
+                     null, "'true'", "'false'" ];
 
 var symbolicNames = [ null, null, null, null, null, null, null, null, null, 
                       null, null, null, null, null, null, null, null, null, 
@@ -281,8 +281,7 @@ var symbolicNames = [ null, null, null, null, null, null, null, null, null,
                       null, null, null, null, null, null, null, null, null, 
                       null, null, null, null, null, null, null, null, null, 
                       null, null, null, null, null, null, null, null, null, 
-                      "TRUE", "FALSE", "WS", "COMMENT", "WORD", "STRING", 
-                      "NUM" ];
+                      "NUM", "TRUE", "FALSE", "WS", "COMMENT", "WORD", "STRING" ];
 
 var ruleNames =  [ "all", "iden", "parameter", "parameters", "func", "forloop", 
                    "whileloop", "iter", "cond", "tuple", "array", "dictionary", 
@@ -361,13 +360,13 @@ GrammarParser.T__49 = 50;
 GrammarParser.T__50 = 51;
 GrammarParser.T__51 = 52;
 GrammarParser.T__52 = 53;
-GrammarParser.TRUE = 54;
-GrammarParser.FALSE = 55;
-GrammarParser.WS = 56;
-GrammarParser.COMMENT = 57;
-GrammarParser.WORD = 58;
-GrammarParser.STRING = 59;
-GrammarParser.NUM = 60;
+GrammarParser.NUM = 54;
+GrammarParser.TRUE = 55;
+GrammarParser.FALSE = 56;
+GrammarParser.WS = 57;
+GrammarParser.COMMENT = 58;
+GrammarParser.WORD = 59;
+GrammarParser.STRING = 60;
 
 GrammarParser.RULE_all = 0;
 GrammarParser.RULE_iden = 1;
@@ -462,7 +461,7 @@ GrammarParser.prototype.all = function() {
         this.state = 40;
         this._errHandler.sync(this);
         _la = this._input.LA(1);
-        while((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << GrammarParser.T__0) | (1 << GrammarParser.T__1) | (1 << GrammarParser.T__2) | (1 << GrammarParser.T__5) | (1 << GrammarParser.T__7) | (1 << GrammarParser.T__8) | (1 << GrammarParser.T__12) | (1 << GrammarParser.T__15) | (1 << GrammarParser.T__17) | (1 << GrammarParser.T__28) | (1 << GrammarParser.T__29) | (1 << GrammarParser.T__30))) !== 0) || ((((_la - 32)) & ~0x1f) == 0 && ((1 << (_la - 32)) & ((1 << (GrammarParser.T__31 - 32)) | (1 << (GrammarParser.T__32 - 32)) | (1 << (GrammarParser.T__33 - 32)) | (1 << (GrammarParser.T__45 - 32)) | (1 << (GrammarParser.T__50 - 32)) | (1 << (GrammarParser.T__52 - 32)) | (1 << (GrammarParser.TRUE - 32)) | (1 << (GrammarParser.FALSE - 32)) | (1 << (GrammarParser.COMMENT - 32)) | (1 << (GrammarParser.WORD - 32)) | (1 << (GrammarParser.STRING - 32)) | (1 << (GrammarParser.NUM - 32)))) !== 0)) {
+        while((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << GrammarParser.T__0) | (1 << GrammarParser.T__1) | (1 << GrammarParser.T__2) | (1 << GrammarParser.T__5) | (1 << GrammarParser.T__7) | (1 << GrammarParser.T__8) | (1 << GrammarParser.T__12) | (1 << GrammarParser.T__15) | (1 << GrammarParser.T__17) | (1 << GrammarParser.T__28) | (1 << GrammarParser.T__29) | (1 << GrammarParser.T__30))) !== 0) || ((((_la - 32)) & ~0x1f) == 0 && ((1 << (_la - 32)) & ((1 << (GrammarParser.T__31 - 32)) | (1 << (GrammarParser.T__32 - 32)) | (1 << (GrammarParser.T__33 - 32)) | (1 << (GrammarParser.T__45 - 32)) | (1 << (GrammarParser.T__50 - 32)) | (1 << (GrammarParser.T__52 - 32)) | (1 << (GrammarParser.NUM - 32)) | (1 << (GrammarParser.TRUE - 32)) | (1 << (GrammarParser.FALSE - 32)) | (1 << (GrammarParser.COMMENT - 32)) | (1 << (GrammarParser.WORD - 32)) | (1 << (GrammarParser.STRING - 32)))) !== 0)) {
             this.state = 38;
             this._errHandler.sync(this);
             var la_ = this._interp.adaptivePredict(this._input,0,this._ctx);
@@ -1350,7 +1349,7 @@ GrammarParser.prototype.iter = function() {
             this.state = 92;
             this._errHandler.sync(this);
             _la = this._input.LA(1);
-            if((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << GrammarParser.T__0) | (1 << GrammarParser.T__1) | (1 << GrammarParser.T__2) | (1 << GrammarParser.T__5) | (1 << GrammarParser.T__7) | (1 << GrammarParser.T__8) | (1 << GrammarParser.T__12) | (1 << GrammarParser.T__15) | (1 << GrammarParser.T__17) | (1 << GrammarParser.T__28) | (1 << GrammarParser.T__29) | (1 << GrammarParser.T__30))) !== 0) || ((((_la - 32)) & ~0x1f) == 0 && ((1 << (_la - 32)) & ((1 << (GrammarParser.T__31 - 32)) | (1 << (GrammarParser.T__32 - 32)) | (1 << (GrammarParser.T__33 - 32)) | (1 << (GrammarParser.T__45 - 32)) | (1 << (GrammarParser.T__50 - 32)) | (1 << (GrammarParser.T__52 - 32)) | (1 << (GrammarParser.TRUE - 32)) | (1 << (GrammarParser.FALSE - 32)) | (1 << (GrammarParser.COMMENT - 32)) | (1 << (GrammarParser.WORD - 32)) | (1 << (GrammarParser.STRING - 32)) | (1 << (GrammarParser.NUM - 32)))) !== 0)) {
+            if((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << GrammarParser.T__0) | (1 << GrammarParser.T__1) | (1 << GrammarParser.T__2) | (1 << GrammarParser.T__5) | (1 << GrammarParser.T__7) | (1 << GrammarParser.T__8) | (1 << GrammarParser.T__12) | (1 << GrammarParser.T__15) | (1 << GrammarParser.T__17) | (1 << GrammarParser.T__28) | (1 << GrammarParser.T__29) | (1 << GrammarParser.T__30))) !== 0) || ((((_la - 32)) & ~0x1f) == 0 && ((1 << (_la - 32)) & ((1 << (GrammarParser.T__31 - 32)) | (1 << (GrammarParser.T__32 - 32)) | (1 << (GrammarParser.T__33 - 32)) | (1 << (GrammarParser.T__45 - 32)) | (1 << (GrammarParser.T__50 - 32)) | (1 << (GrammarParser.T__52 - 32)) | (1 << (GrammarParser.NUM - 32)) | (1 << (GrammarParser.TRUE - 32)) | (1 << (GrammarParser.FALSE - 32)) | (1 << (GrammarParser.COMMENT - 32)) | (1 << (GrammarParser.WORD - 32)) | (1 << (GrammarParser.STRING - 32)))) !== 0)) {
                 this.state = 91;
                 this.statement();
             }
@@ -1360,7 +1359,7 @@ GrammarParser.prototype.iter = function() {
             this.state = 96;
             this._errHandler.sync(this);
             _la = this._input.LA(1);
-            if((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << GrammarParser.T__0) | (1 << GrammarParser.T__1) | (1 << GrammarParser.T__2) | (1 << GrammarParser.T__5) | (1 << GrammarParser.T__15) | (1 << GrammarParser.T__17))) !== 0) || ((((_la - 33)) & ~0x1f) == 0 && ((1 << (_la - 33)) & ((1 << (GrammarParser.T__32 - 33)) | (1 << (GrammarParser.T__33 - 33)) | (1 << (GrammarParser.T__45 - 33)) | (1 << (GrammarParser.T__50 - 33)) | (1 << (GrammarParser.T__52 - 33)) | (1 << (GrammarParser.TRUE - 33)) | (1 << (GrammarParser.FALSE - 33)) | (1 << (GrammarParser.WORD - 33)) | (1 << (GrammarParser.STRING - 33)) | (1 << (GrammarParser.NUM - 33)))) !== 0)) {
+            if((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << GrammarParser.T__0) | (1 << GrammarParser.T__1) | (1 << GrammarParser.T__2) | (1 << GrammarParser.T__5) | (1 << GrammarParser.T__15) | (1 << GrammarParser.T__17))) !== 0) || ((((_la - 33)) & ~0x1f) == 0 && ((1 << (_la - 33)) & ((1 << (GrammarParser.T__32 - 33)) | (1 << (GrammarParser.T__33 - 33)) | (1 << (GrammarParser.T__45 - 33)) | (1 << (GrammarParser.T__50 - 33)) | (1 << (GrammarParser.T__52 - 33)) | (1 << (GrammarParser.NUM - 33)) | (1 << (GrammarParser.TRUE - 33)) | (1 << (GrammarParser.FALSE - 33)) | (1 << (GrammarParser.WORD - 33)) | (1 << (GrammarParser.STRING - 33)))) !== 0)) {
                 this.state = 95;
                 this.value(0);
             }
@@ -1370,7 +1369,7 @@ GrammarParser.prototype.iter = function() {
             this.state = 100;
             this._errHandler.sync(this);
             _la = this._input.LA(1);
-            if((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << GrammarParser.T__0) | (1 << GrammarParser.T__1) | (1 << GrammarParser.T__2) | (1 << GrammarParser.T__5) | (1 << GrammarParser.T__7) | (1 << GrammarParser.T__8) | (1 << GrammarParser.T__12) | (1 << GrammarParser.T__15) | (1 << GrammarParser.T__17) | (1 << GrammarParser.T__28) | (1 << GrammarParser.T__29) | (1 << GrammarParser.T__30))) !== 0) || ((((_la - 32)) & ~0x1f) == 0 && ((1 << (_la - 32)) & ((1 << (GrammarParser.T__31 - 32)) | (1 << (GrammarParser.T__32 - 32)) | (1 << (GrammarParser.T__33 - 32)) | (1 << (GrammarParser.T__45 - 32)) | (1 << (GrammarParser.T__50 - 32)) | (1 << (GrammarParser.T__52 - 32)) | (1 << (GrammarParser.TRUE - 32)) | (1 << (GrammarParser.FALSE - 32)) | (1 << (GrammarParser.COMMENT - 32)) | (1 << (GrammarParser.WORD - 32)) | (1 << (GrammarParser.STRING - 32)) | (1 << (GrammarParser.NUM - 32)))) !== 0)) {
+            if((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << GrammarParser.T__0) | (1 << GrammarParser.T__1) | (1 << GrammarParser.T__2) | (1 << GrammarParser.T__5) | (1 << GrammarParser.T__7) | (1 << GrammarParser.T__8) | (1 << GrammarParser.T__12) | (1 << GrammarParser.T__15) | (1 << GrammarParser.T__17) | (1 << GrammarParser.T__28) | (1 << GrammarParser.T__29) | (1 << GrammarParser.T__30))) !== 0) || ((((_la - 32)) & ~0x1f) == 0 && ((1 << (_la - 32)) & ((1 << (GrammarParser.T__31 - 32)) | (1 << (GrammarParser.T__32 - 32)) | (1 << (GrammarParser.T__33 - 32)) | (1 << (GrammarParser.T__45 - 32)) | (1 << (GrammarParser.T__50 - 32)) | (1 << (GrammarParser.T__52 - 32)) | (1 << (GrammarParser.NUM - 32)) | (1 << (GrammarParser.TRUE - 32)) | (1 << (GrammarParser.FALSE - 32)) | (1 << (GrammarParser.COMMENT - 32)) | (1 << (GrammarParser.WORD - 32)) | (1 << (GrammarParser.STRING - 32)))) !== 0)) {
                 this.state = 99;
                 this.statement();
             }
@@ -1634,7 +1633,7 @@ GrammarParser.prototype.tuple = function() {
         this.state = 149;
         this._errHandler.sync(this);
         _la = this._input.LA(1);
-        if((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << GrammarParser.T__0) | (1 << GrammarParser.T__1) | (1 << GrammarParser.T__2) | (1 << GrammarParser.T__5) | (1 << GrammarParser.T__15) | (1 << GrammarParser.T__17))) !== 0) || ((((_la - 33)) & ~0x1f) == 0 && ((1 << (_la - 33)) & ((1 << (GrammarParser.T__32 - 33)) | (1 << (GrammarParser.T__33 - 33)) | (1 << (GrammarParser.T__45 - 33)) | (1 << (GrammarParser.T__50 - 33)) | (1 << (GrammarParser.T__52 - 33)) | (1 << (GrammarParser.TRUE - 33)) | (1 << (GrammarParser.FALSE - 33)) | (1 << (GrammarParser.WORD - 33)) | (1 << (GrammarParser.STRING - 33)) | (1 << (GrammarParser.NUM - 33)))) !== 0)) {
+        if((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << GrammarParser.T__0) | (1 << GrammarParser.T__1) | (1 << GrammarParser.T__2) | (1 << GrammarParser.T__5) | (1 << GrammarParser.T__15) | (1 << GrammarParser.T__17))) !== 0) || ((((_la - 33)) & ~0x1f) == 0 && ((1 << (_la - 33)) & ((1 << (GrammarParser.T__32 - 33)) | (1 << (GrammarParser.T__33 - 33)) | (1 << (GrammarParser.T__45 - 33)) | (1 << (GrammarParser.T__50 - 33)) | (1 << (GrammarParser.T__52 - 33)) | (1 << (GrammarParser.NUM - 33)) | (1 << (GrammarParser.TRUE - 33)) | (1 << (GrammarParser.FALSE - 33)) | (1 << (GrammarParser.WORD - 33)) | (1 << (GrammarParser.STRING - 33)))) !== 0)) {
             this.state = 146;
             this._errHandler.sync(this);
             var la_ = this._interp.adaptivePredict(this._input,15,this._ctx);
@@ -1751,7 +1750,7 @@ GrammarParser.prototype.array = function() {
         this.state = 169;
         this._errHandler.sync(this);
         _la = this._input.LA(1);
-        if((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << GrammarParser.T__0) | (1 << GrammarParser.T__1) | (1 << GrammarParser.T__2) | (1 << GrammarParser.T__5) | (1 << GrammarParser.T__15) | (1 << GrammarParser.T__17))) !== 0) || ((((_la - 33)) & ~0x1f) == 0 && ((1 << (_la - 33)) & ((1 << (GrammarParser.T__32 - 33)) | (1 << (GrammarParser.T__33 - 33)) | (1 << (GrammarParser.T__45 - 33)) | (1 << (GrammarParser.T__50 - 33)) | (1 << (GrammarParser.T__52 - 33)) | (1 << (GrammarParser.TRUE - 33)) | (1 << (GrammarParser.FALSE - 33)) | (1 << (GrammarParser.WORD - 33)) | (1 << (GrammarParser.STRING - 33)) | (1 << (GrammarParser.NUM - 33)))) !== 0)) {
+        if((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << GrammarParser.T__0) | (1 << GrammarParser.T__1) | (1 << GrammarParser.T__2) | (1 << GrammarParser.T__5) | (1 << GrammarParser.T__15) | (1 << GrammarParser.T__17))) !== 0) || ((((_la - 33)) & ~0x1f) == 0 && ((1 << (_la - 33)) & ((1 << (GrammarParser.T__32 - 33)) | (1 << (GrammarParser.T__33 - 33)) | (1 << (GrammarParser.T__45 - 33)) | (1 << (GrammarParser.T__50 - 33)) | (1 << (GrammarParser.T__52 - 33)) | (1 << (GrammarParser.NUM - 33)) | (1 << (GrammarParser.TRUE - 33)) | (1 << (GrammarParser.FALSE - 33)) | (1 << (GrammarParser.WORD - 33)) | (1 << (GrammarParser.STRING - 33)))) !== 0)) {
             this.state = 166;
             this._errHandler.sync(this);
             var la_ = this._interp.adaptivePredict(this._input,19,this._ctx);
@@ -3094,7 +3093,7 @@ GrammarParser.prototype.statement = function() {
             this.state = 256;
             this._errHandler.sync(this);
             _la = this._input.LA(1);
-            while((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << GrammarParser.T__0) | (1 << GrammarParser.T__1) | (1 << GrammarParser.T__2) | (1 << GrammarParser.T__5) | (1 << GrammarParser.T__7) | (1 << GrammarParser.T__8) | (1 << GrammarParser.T__12) | (1 << GrammarParser.T__15) | (1 << GrammarParser.T__17) | (1 << GrammarParser.T__28) | (1 << GrammarParser.T__29) | (1 << GrammarParser.T__30))) !== 0) || ((((_la - 32)) & ~0x1f) == 0 && ((1 << (_la - 32)) & ((1 << (GrammarParser.T__31 - 32)) | (1 << (GrammarParser.T__32 - 32)) | (1 << (GrammarParser.T__33 - 32)) | (1 << (GrammarParser.T__45 - 32)) | (1 << (GrammarParser.T__50 - 32)) | (1 << (GrammarParser.T__52 - 32)) | (1 << (GrammarParser.TRUE - 32)) | (1 << (GrammarParser.FALSE - 32)) | (1 << (GrammarParser.COMMENT - 32)) | (1 << (GrammarParser.WORD - 32)) | (1 << (GrammarParser.STRING - 32)) | (1 << (GrammarParser.NUM - 32)))) !== 0)) {
+            while((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << GrammarParser.T__0) | (1 << GrammarParser.T__1) | (1 << GrammarParser.T__2) | (1 << GrammarParser.T__5) | (1 << GrammarParser.T__7) | (1 << GrammarParser.T__8) | (1 << GrammarParser.T__12) | (1 << GrammarParser.T__15) | (1 << GrammarParser.T__17) | (1 << GrammarParser.T__28) | (1 << GrammarParser.T__29) | (1 << GrammarParser.T__30))) !== 0) || ((((_la - 32)) & ~0x1f) == 0 && ((1 << (_la - 32)) & ((1 << (GrammarParser.T__31 - 32)) | (1 << (GrammarParser.T__32 - 32)) | (1 << (GrammarParser.T__33 - 32)) | (1 << (GrammarParser.T__45 - 32)) | (1 << (GrammarParser.T__50 - 32)) | (1 << (GrammarParser.T__52 - 32)) | (1 << (GrammarParser.NUM - 32)) | (1 << (GrammarParser.TRUE - 32)) | (1 << (GrammarParser.FALSE - 32)) | (1 << (GrammarParser.COMMENT - 32)) | (1 << (GrammarParser.WORD - 32)) | (1 << (GrammarParser.STRING - 32)))) !== 0)) {
                 this.state = 253;
                 this.statement();
                 this.state = 258;
