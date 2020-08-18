@@ -96,12 +96,6 @@ GrammarVisitor.prototype.visitCond = function(ctx) {
 };
 
 
-// Visit a parse tree produced by GrammarParser#tuple.
-GrammarVisitor.prototype.visitTuple = function(ctx) {
-  return this.visitChildren(ctx);
-};
-
-
 // Visit a parse tree produced by GrammarParser#array.
 GrammarVisitor.prototype.visitArray = function(ctx) {
   return this.visitChildren(ctx);
@@ -416,12 +410,6 @@ GrammarVisitor.prototype.visitBoolValue = function(ctx) {
 
 // Visit a parse tree produced by GrammarParser#stringRepValue.
 GrammarVisitor.prototype.visitStringRepValue = function(ctx) {
-  return this.visitChildren(ctx);
-};
-
-
-// Visit a parse tree produced by GrammarParser#tupleValue.
-GrammarVisitor.prototype.visitTupleValue = function(ctx) {
   return this.visitChildren(ctx);
 };
 

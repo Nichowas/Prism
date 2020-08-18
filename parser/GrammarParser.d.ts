@@ -110,10 +110,6 @@ export declare class CondContext extends ParserRuleContext {
     
 }
 
-export declare class TupleContext extends ParserRuleContext {
-    
-}
-
 export declare class ArrayContext extends ParserRuleContext {
     
 }
@@ -310,10 +306,6 @@ export declare class StringValueContext extends ParserRuleContext {
 
 export declare class ApplyFuncValueContext extends ParserRuleContext {
     
-    value(): ValueContext;
-    
-    tuple(): TupleContext;
-    
 }
 
 export declare class EqualValueContext extends ParserRuleContext {
@@ -428,12 +420,6 @@ export declare class StringRepValueContext extends ParserRuleContext {
     
 }
 
-export declare class TupleValueContext extends ParserRuleContext {
-    
-    tuple(): TupleContext;
-    
-}
-
 export declare class RangeValueContext extends ParserRuleContext {
     
 }
@@ -467,8 +453,6 @@ export declare class GrammarParser extends Parser {
     iter(): IterContext;
 
     cond(): CondContext;
-
-    tuple(): TupleContext;
 
     array(): ArrayContext;
 

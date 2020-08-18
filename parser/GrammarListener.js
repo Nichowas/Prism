@@ -137,15 +137,6 @@ GrammarListener.prototype.exitCond = function(ctx) {
 };
 
 
-// Enter a parse tree produced by GrammarParser#tuple.
-GrammarListener.prototype.enterTuple = function(ctx) {
-};
-
-// Exit a parse tree produced by GrammarParser#tuple.
-GrammarListener.prototype.exitTuple = function(ctx) {
-};
-
-
 // Enter a parse tree produced by GrammarParser#array.
 GrammarListener.prototype.enterArray = function(ctx) {
 };
@@ -620,15 +611,6 @@ GrammarListener.prototype.enterStringRepValue = function(ctx) {
 
 // Exit a parse tree produced by GrammarParser#stringRepValue.
 GrammarListener.prototype.exitStringRepValue = function(ctx) {
-};
-
-
-// Enter a parse tree produced by GrammarParser#tupleValue.
-GrammarListener.prototype.enterTupleValue = function(ctx) {
-};
-
-// Exit a parse tree produced by GrammarParser#tupleValue.
-GrammarListener.prototype.exitTupleValue = function(ctx) {
 };
 
 

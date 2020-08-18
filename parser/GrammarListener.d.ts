@@ -19,8 +19,6 @@ import {IterContext} from './GrammarParser';
 
 import {CondContext} from './GrammarParser';
 
-import {TupleContext} from './GrammarParser';
-
 import {ArrayContext} from './GrammarParser';
 
 import {DictionaryContext} from './GrammarParser';
@@ -76,10 +74,6 @@ export declare class GrammarListener implements ParseTreeListener {
     enterCond(ctx: CondContext): void;
     
     exitCond(ctx: CondContext): void;
-    
-    enterTuple(ctx: TupleContext): void;
-    
-    exitTuple(ctx: TupleContext): void;
     
     enterArray(ctx: ArrayContext): void;
     

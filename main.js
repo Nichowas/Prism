@@ -30,12 +30,17 @@ class Node {
         this.ch = ch
         for (let [i, e] of Object.entries(add)) this[i] = e
         Object.defineProperty(this, 'string', {
-            //symbol: token string, type: additional info, value: output of interpreting
-            //symbol (type?) => value?
-            get: () => `${this.symbol}${this.type ? ` (${this.type})` : ''}${(this.value != undefined) ? ` => ${this.value.str()}` : ''}`
+            get: () => {
+                let symb = this.symbol,
+                    type = this.type ? ` (${this.type})` : '',
+                    val = (this.value != undefined) ? ` => ${this.value.str()}` : '',
+                    scope = this.scope ? ` {${Object.entries(this.scope).map(v => `${v[0]}: ${v[1].str()}`)}}` : ''
+                return `${symb}${scope}${type}${val}`
+            }
         })
     }
     exec(scope = {}) {
+        this.scope = scope
         switch (this.symbol) {
             case 'iden': {
                 this.value = scope[this.ch[0].symbol]
@@ -86,6 +91,11 @@ class Node {
                 this.value = new Variable('dictionary', ch).saveTo('r')
                 return this.value
             }
+            case 'func': {
+                let func = new Variable('function', this.address)
+                this.value = func.saveTo('r')
+                return this.value
+            }
             case 'designator': {
                 for (let c of this.ch) {
                     let symb = c.ch[0].symbol
@@ -98,7 +108,10 @@ class Node {
             case 'assign': {
                 let iden = this.ch[0].exec(scope), val = this.ch[1].exec(scope)
                 if (val) {
+                    // if (['number', 'string', 'boolean'].some(v => v == val.v.type))
                     iden.setVar(val.v.copy())
+                    // else
+                    // iden.v = val
                     this.value = iden
                     return this.value
                 }
@@ -255,17 +268,43 @@ class Node {
                     }
                 }
             }
+            case 'apply': {
+                let func = this.ch[0].exec(scope),
+                    params = this.ch[1].ch.map(c => c.exec(scope)),
+                    node = Node.root.getNodeByAddress(func.v.val),
+                    expected = node.ch[0].ch.map(c => c.ch[0].symbol)
+                expected.forEach((v, i) => node.scope[v] = params[i])
+                //Scope addition
+                this.value = node.ch[1].exec(node.scope)
+                return this.value
+                break
+            }
+            case 'element': {
+                let array = this.ch[0].exec(scope), index = this.ch[1].exec(scope)
+                this.value = array.v.val[index.v.val]
+                return this.value
+            }
             default: {
                 for (let c of this.ch) c.exec(scope)
                 break;
             }
         }
     }
+    setAddress(address = []) {
+        this.address = address
+        this.ch.forEach((c, i) => c.setAddress([...address, i]))
+        return this
+    }
+    getNodeByAddress(address) {
+        if (address.length != 0)
+            return this.ch[address[0]].getNodeByAddress(address.slice(1))
+        return this
+    }
     static number(n) { return new Node('number', [new Node(n, [])]) }
     static toNode(tree, root = true) {
         let symb, ch = tree.children ? tree.children.map(n => Node.toNode(n, false)) : []
         if (root)
-            return new Node('block', ch)
+            return new Node('block', ch).setAddress()
         else if (ch.length > 0) symb = tree.constructor.name.replace(/Context/, '')
         else symb = tree.symbol.text
         switch (symb) {
@@ -300,9 +339,21 @@ class Node {
                 return new Node('func', [ch[1], ch[2]])
             case 'FuncValue':
                 return ch[0]
-            case 'ApplyFuncValue':
+            case 'ApplyFuncValue': {
                 symb = 'apply'
+                let params = ch.slice(2, ch.length - 1)
+                for (let i = 0; i < params.length;) {
+                    if (params[i].symbol == '...') {
+                        params.splice(i, 1)
+                        params[i].type = 'spread'
+                        continue
+                    }
+                    if (params[i].symbol == ',') { params.splice(i, 1); continue }
+                    i++
+                }
+                ch = [ch[0], new Node('params', params)]
                 break
+            }
             case 'ReturnStatement':
                 return new Node('return', [ch[1]])
             //Conditions
@@ -366,6 +417,9 @@ class Node {
                     }
                 }
                 return new Node('array', ch)
+            case 'ElementValue':
+                return new Node('element', [ch[0], ch[2]])
+            /*
             case 'TupleValue':
                 return ch[0]
             case 'Tuple':
@@ -378,6 +432,7 @@ class Node {
                     }
                 }
                 return new Node('tuple', ch)
+            */
             case 'DictionaryValue':
                 return ch[0]
             case 'Dictionary':
@@ -468,11 +523,11 @@ class Reference {
         Reference.refs.push(this)
         Reference.total[this.type]++
     }
-    val() {
+    valstr() {
         let v = this.v.val
         let clean = val => {
             if (val instanceof Reference)
-                return val.str()
+                return val.valstr()
             return val
         }
         if (this.v.type == 'array')
@@ -480,10 +535,13 @@ class Reference {
         if (this.v.type == 'dictionary') {
             let out = []
             for (let i = 0; i < v.length; i += 2) {
-                out.push(`${clean(v[i])}: ${clean(v[i + 1])}`)
+                out.push(`${clean(v[i])}: ${clean(v[i + 1])
+                    }`)
             }
             return `{ ${out.join(', ')} } `
         }
+        if (this.v.type == 'function')
+            return `(${v.map(clean)})`
         return clean(v)
     }
     setVar(v) {
@@ -498,7 +556,7 @@ class Reference {
     }
     static memory() {
         let out = ''
-        for (let ref of Reference.refs) out += `${ref.str()}: ${ref.val()} \n`
+        for (let ref of Reference.refs) out += `${ref.str()}: ${ref.valstr()} \n`
         return out
     }
 }
@@ -522,10 +580,11 @@ class Variable {
 }
 
 var input = fs.readFileSync('./code.prsm', 'utf8')
+console.log(input + '\n')
 var parsed = parse(input)
 parsed = Node.toNode(parsed)
+Node.root = parsed
 parsed.exec()
-console.log(input + '\n')
 console.log(textTree(parsed))
 console.log(Reference.memory())
 //Ideas for interpreter

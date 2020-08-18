@@ -32,7 +32,7 @@ cond:
     ;
 
 //Arrays/Tuples/Dictionaries
-tuple: '(' ('...'? value ',')+ ('...'? value)? ')';
+// tuple: '(' ('...'? value ',')+ ('...'? value)? ')';
 array: '[' ('...'? value ',')* ('...'? value)? ']';
 dictionary: '{' (property ',')* ('...'? property)? '}';
 property: 
@@ -74,7 +74,6 @@ value:
     | 'new' value                                           #instanceValue
     | 'class' value                                         #classValue
     | dictionary                                            #dictionaryValue
-    | tuple                                                 #tupleValue
     | array                                                 #arrayValue
 
     | value 'to' value ('by' value)?                        #rangeValue
@@ -96,7 +95,7 @@ value:
     | value ('+'|'-') value                                 #addValue
     | value '_' value                                       #blankConcatValue
     | '-' value                                             #negateValue
-    | value tuple                                           #applyFuncValue
+    | value '(' ('...'? value ',')* ('...'? value)? ')'     #applyFuncValue
     | value '[' value ']'                                   #elementValue
     | value '.' iden                                        #propertyValue
     | '#' value                                             #stringRepValue
