@@ -150,61 +150,37 @@ export declare class DeclarContext extends ParserRuleContext {
 
 export declare class SubAssignContext extends ParserRuleContext {
     
-    iden(): IdenContext;
-    
-    value(): ValueContext;
-    
 }
 
 export declare class DecAssignContext extends ParserRuleContext {
     
-    iden(): IdenContext;
+    value(): ValueContext;
     
 }
 
 export declare class AddAssignContext extends ParserRuleContext {
     
-    iden(): IdenContext;
-    
-    value(): ValueContext;
-    
 }
 
 export declare class DivAssignContext extends ParserRuleContext {
-    
-    iden(): IdenContext;
-    
-    value(): ValueContext;
     
 }
 
 export declare class ModAssignContext extends ParserRuleContext {
     
-    iden(): IdenContext;
-    
-    value(): ValueContext;
-    
 }
 
 export declare class MultAssignContext extends ParserRuleContext {
-    
-    iden(): IdenContext;
-    
-    value(): ValueContext;
     
 }
 
 export declare class IncAssignContext extends ParserRuleContext {
     
-    iden(): IdenContext;
+    value(): ValueContext;
     
 }
 
 export declare class SetAssignContext extends ParserRuleContext {
-    
-    iden(): IdenContext;
-    
-    value(): ValueContext;
     
 }
 

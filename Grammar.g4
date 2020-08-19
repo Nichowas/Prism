@@ -44,14 +44,14 @@ property:
 //Variable
 declar: designator (assign ',')* assign;
 assign: 
-    iden '=' value                                          #setAssign
-    | iden '*=' value                                       #multAssign
-    | iden '/=' value                                       #divAssign
-    | iden '+=' value                                       #addAssign
-    | iden '-=' value                                       #subAssign
-    | iden '%=' value                                       #modAssign
-    | iden '++'                                             #incAssign
-    | iden '--'                                             #decAssign
+    value '=' value                                          #setAssign
+    | value '*=' value                                       #multAssign
+    | value '/=' value                                       #divAssign
+    | value '+=' value                                       #addAssign
+    | value '-=' value                                       #subAssign
+    | value '%=' value                                       #modAssign
+    | value '++'                                             #incAssign
+    | value '--'                                             #decAssign
     ;
 designator: ('stat')? ('pub'|'var');
 

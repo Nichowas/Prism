@@ -149,21 +149,21 @@ var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
     "\u00bc\u0003\u0002\u0002\u0002\u00ba\u00b8\u0003\u0002\u0002\u0002\u00ba",
     "\u00bb\u0003\u0002\u0002\u0002\u00bb\u00bd\u0003\u0002\u0002\u0002\u00bc",
     "\u00ba\u0003\u0002\u0002\u0002\u00bd\u00be\u0005\u001c\u000f\u0002\u00be",
-    "\u001b\u0003\u0002\u0002\u0002\u00bf\u00c0\u0005\u0004\u0003\u0002\u00c0",
+    "\u001b\u0003\u0002\u0002\u0002\u00bf\u00c0\u0005\"\u0012\u0002\u00c0",
     "\u00c1\u0007\u0017\u0002\u0002\u00c1\u00c2\u0005\"\u0012\u0002\u00c2",
-    "\u00de\u0003\u0002\u0002\u0002\u00c3\u00c4\u0005\u0004\u0003\u0002\u00c4",
+    "\u00de\u0003\u0002\u0002\u0002\u00c3\u00c4\u0005\"\u0012\u0002\u00c4",
     "\u00c5\u0007\u0018\u0002\u0002\u00c5\u00c6\u0005\"\u0012\u0002\u00c6",
-    "\u00de\u0003\u0002\u0002\u0002\u00c7\u00c8\u0005\u0004\u0003\u0002\u00c8",
+    "\u00de\u0003\u0002\u0002\u0002\u00c7\u00c8\u0005\"\u0012\u0002\u00c8",
     "\u00c9\u0007\u0019\u0002\u0002\u00c9\u00ca\u0005\"\u0012\u0002\u00ca",
-    "\u00de\u0003\u0002\u0002\u0002\u00cb\u00cc\u0005\u0004\u0003\u0002\u00cc",
+    "\u00de\u0003\u0002\u0002\u0002\u00cb\u00cc\u0005\"\u0012\u0002\u00cc",
     "\u00cd\u0007\u001a\u0002\u0002\u00cd\u00ce\u0005\"\u0012\u0002\u00ce",
-    "\u00de\u0003\u0002\u0002\u0002\u00cf\u00d0\u0005\u0004\u0003\u0002\u00d0",
+    "\u00de\u0003\u0002\u0002\u0002\u00cf\u00d0\u0005\"\u0012\u0002\u00d0",
     "\u00d1\u0007\u001b\u0002\u0002\u00d1\u00d2\u0005\"\u0012\u0002\u00d2",
-    "\u00de\u0003\u0002\u0002\u0002\u00d3\u00d4\u0005\u0004\u0003\u0002\u00d4",
+    "\u00de\u0003\u0002\u0002\u0002\u00d3\u00d4\u0005\"\u0012\u0002\u00d4",
     "\u00d5\u0007\u001c\u0002\u0002\u00d5\u00d6\u0005\"\u0012\u0002\u00d6",
-    "\u00de\u0003\u0002\u0002\u0002\u00d7\u00d8\u0005\u0004\u0003\u0002\u00d8",
+    "\u00de\u0003\u0002\u0002\u0002\u00d7\u00d8\u0005\"\u0012\u0002\u00d8",
     "\u00d9\u0007\u001d\u0002\u0002\u00d9\u00de\u0003\u0002\u0002\u0002\u00da",
-    "\u00db\u0005\u0004\u0003\u0002\u00db\u00dc\u0007\u001e\u0002\u0002\u00dc",
+    "\u00db\u0005\"\u0012\u0002\u00db\u00dc\u0007\u001e\u0002\u0002\u00dc",
     "\u00de\u0003\u0002\u0002\u0002\u00dd\u00bf\u0003\u0002\u0002\u0002\u00dd",
     "\u00c3\u0003\u0002\u0002\u0002\u00dd\u00c7\u0003\u0002\u0002\u0002\u00dd",
     "\u00cb\u0003\u0002\u0002\u0002\u00dd\u00cf\u0003\u0002\u0002\u0002\u00dd",
@@ -2083,12 +2083,15 @@ SubAssignContext.prototype.constructor = SubAssignContext;
 
 GrammarParser.SubAssignContext = SubAssignContext;
 
-SubAssignContext.prototype.iden = function() {
-    return this.getTypedRuleContext(IdenContext,0);
-};
-
-SubAssignContext.prototype.value = function() {
-    return this.getTypedRuleContext(ValueContext,0);
+SubAssignContext.prototype.value = function(i) {
+    if(i===undefined) {
+        i = null;
+    }
+    if(i===null) {
+        return this.getTypedRuleContexts(ValueContext);
+    } else {
+        return this.getTypedRuleContext(ValueContext,i);
+    }
 };
 SubAssignContext.prototype.enterRule = function(listener) {
     if(listener instanceof GrammarListener ) {
@@ -2122,8 +2125,8 @@ DecAssignContext.prototype.constructor = DecAssignContext;
 
 GrammarParser.DecAssignContext = DecAssignContext;
 
-DecAssignContext.prototype.iden = function() {
-    return this.getTypedRuleContext(IdenContext,0);
+DecAssignContext.prototype.value = function() {
+    return this.getTypedRuleContext(ValueContext,0);
 };
 DecAssignContext.prototype.enterRule = function(listener) {
     if(listener instanceof GrammarListener ) {
@@ -2157,12 +2160,15 @@ AddAssignContext.prototype.constructor = AddAssignContext;
 
 GrammarParser.AddAssignContext = AddAssignContext;
 
-AddAssignContext.prototype.iden = function() {
-    return this.getTypedRuleContext(IdenContext,0);
-};
-
-AddAssignContext.prototype.value = function() {
-    return this.getTypedRuleContext(ValueContext,0);
+AddAssignContext.prototype.value = function(i) {
+    if(i===undefined) {
+        i = null;
+    }
+    if(i===null) {
+        return this.getTypedRuleContexts(ValueContext);
+    } else {
+        return this.getTypedRuleContext(ValueContext,i);
+    }
 };
 AddAssignContext.prototype.enterRule = function(listener) {
     if(listener instanceof GrammarListener ) {
@@ -2196,12 +2202,15 @@ DivAssignContext.prototype.constructor = DivAssignContext;
 
 GrammarParser.DivAssignContext = DivAssignContext;
 
-DivAssignContext.prototype.iden = function() {
-    return this.getTypedRuleContext(IdenContext,0);
-};
-
-DivAssignContext.prototype.value = function() {
-    return this.getTypedRuleContext(ValueContext,0);
+DivAssignContext.prototype.value = function(i) {
+    if(i===undefined) {
+        i = null;
+    }
+    if(i===null) {
+        return this.getTypedRuleContexts(ValueContext);
+    } else {
+        return this.getTypedRuleContext(ValueContext,i);
+    }
 };
 DivAssignContext.prototype.enterRule = function(listener) {
     if(listener instanceof GrammarListener ) {
@@ -2235,12 +2244,15 @@ ModAssignContext.prototype.constructor = ModAssignContext;
 
 GrammarParser.ModAssignContext = ModAssignContext;
 
-ModAssignContext.prototype.iden = function() {
-    return this.getTypedRuleContext(IdenContext,0);
-};
-
-ModAssignContext.prototype.value = function() {
-    return this.getTypedRuleContext(ValueContext,0);
+ModAssignContext.prototype.value = function(i) {
+    if(i===undefined) {
+        i = null;
+    }
+    if(i===null) {
+        return this.getTypedRuleContexts(ValueContext);
+    } else {
+        return this.getTypedRuleContext(ValueContext,i);
+    }
 };
 ModAssignContext.prototype.enterRule = function(listener) {
     if(listener instanceof GrammarListener ) {
@@ -2274,12 +2286,15 @@ MultAssignContext.prototype.constructor = MultAssignContext;
 
 GrammarParser.MultAssignContext = MultAssignContext;
 
-MultAssignContext.prototype.iden = function() {
-    return this.getTypedRuleContext(IdenContext,0);
-};
-
-MultAssignContext.prototype.value = function() {
-    return this.getTypedRuleContext(ValueContext,0);
+MultAssignContext.prototype.value = function(i) {
+    if(i===undefined) {
+        i = null;
+    }
+    if(i===null) {
+        return this.getTypedRuleContexts(ValueContext);
+    } else {
+        return this.getTypedRuleContext(ValueContext,i);
+    }
 };
 MultAssignContext.prototype.enterRule = function(listener) {
     if(listener instanceof GrammarListener ) {
@@ -2313,8 +2328,8 @@ IncAssignContext.prototype.constructor = IncAssignContext;
 
 GrammarParser.IncAssignContext = IncAssignContext;
 
-IncAssignContext.prototype.iden = function() {
-    return this.getTypedRuleContext(IdenContext,0);
+IncAssignContext.prototype.value = function() {
+    return this.getTypedRuleContext(ValueContext,0);
 };
 IncAssignContext.prototype.enterRule = function(listener) {
     if(listener instanceof GrammarListener ) {
@@ -2348,12 +2363,15 @@ SetAssignContext.prototype.constructor = SetAssignContext;
 
 GrammarParser.SetAssignContext = SetAssignContext;
 
-SetAssignContext.prototype.iden = function() {
-    return this.getTypedRuleContext(IdenContext,0);
-};
-
-SetAssignContext.prototype.value = function() {
-    return this.getTypedRuleContext(ValueContext,0);
+SetAssignContext.prototype.value = function(i) {
+    if(i===undefined) {
+        i = null;
+    }
+    if(i===null) {
+        return this.getTypedRuleContexts(ValueContext);
+    } else {
+        return this.getTypedRuleContext(ValueContext,i);
+    }
 };
 SetAssignContext.prototype.enterRule = function(listener) {
     if(listener instanceof GrammarListener ) {
@@ -2392,7 +2410,7 @@ GrammarParser.prototype.assign = function() {
             localctx = new SetAssignContext(this, localctx);
             this.enterOuterAlt(localctx, 1);
             this.state = 189;
-            this.iden();
+            this.value(0);
             this.state = 190;
             this.match(GrammarParser.T__20);
             this.state = 191;
@@ -2403,7 +2421,7 @@ GrammarParser.prototype.assign = function() {
             localctx = new MultAssignContext(this, localctx);
             this.enterOuterAlt(localctx, 2);
             this.state = 193;
-            this.iden();
+            this.value(0);
             this.state = 194;
             this.match(GrammarParser.T__21);
             this.state = 195;
@@ -2414,7 +2432,7 @@ GrammarParser.prototype.assign = function() {
             localctx = new DivAssignContext(this, localctx);
             this.enterOuterAlt(localctx, 3);
             this.state = 197;
-            this.iden();
+            this.value(0);
             this.state = 198;
             this.match(GrammarParser.T__22);
             this.state = 199;
@@ -2425,7 +2443,7 @@ GrammarParser.prototype.assign = function() {
             localctx = new AddAssignContext(this, localctx);
             this.enterOuterAlt(localctx, 4);
             this.state = 201;
-            this.iden();
+            this.value(0);
             this.state = 202;
             this.match(GrammarParser.T__23);
             this.state = 203;
@@ -2436,7 +2454,7 @@ GrammarParser.prototype.assign = function() {
             localctx = new SubAssignContext(this, localctx);
             this.enterOuterAlt(localctx, 5);
             this.state = 205;
-            this.iden();
+            this.value(0);
             this.state = 206;
             this.match(GrammarParser.T__24);
             this.state = 207;
@@ -2447,7 +2465,7 @@ GrammarParser.prototype.assign = function() {
             localctx = new ModAssignContext(this, localctx);
             this.enterOuterAlt(localctx, 6);
             this.state = 209;
-            this.iden();
+            this.value(0);
             this.state = 210;
             this.match(GrammarParser.T__25);
             this.state = 211;
@@ -2458,7 +2476,7 @@ GrammarParser.prototype.assign = function() {
             localctx = new IncAssignContext(this, localctx);
             this.enterOuterAlt(localctx, 7);
             this.state = 213;
-            this.iden();
+            this.value(0);
             this.state = 214;
             this.match(GrammarParser.T__26);
             break;
@@ -2467,7 +2485,7 @@ GrammarParser.prototype.assign = function() {
             localctx = new DecAssignContext(this, localctx);
             this.enterOuterAlt(localctx, 8);
             this.state = 216;
-            this.iden();
+            this.value(0);
             this.state = 217;
             this.match(GrammarParser.T__27);
             break;

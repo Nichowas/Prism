@@ -43,7 +43,8 @@ class Node {
         this.scope = scope
         switch (this.symbol) {
             case 'iden': {
-                this.value = scope[this.ch[0].symbol]
+                let local = scope[this.ch[0].symbol], global = Node.root.scope[this.ch[0].symbol]
+                this.value = local ? local : global
                 return this.value
             }
             case 'boolean': {
@@ -102,7 +103,15 @@ class Node {
                     let symb = c.ch[0].symbol
                     let val = new Variable('undefined', undefined)
                     let ref = val.saveTo('v')
-                    scope[symb] = ref
+                    // console.log(this.type)
+                    switch (this.type.join(' ')) {
+                        case 'var':
+                            scope[symb] = ref
+                            break
+                        case 'pub':
+                            Node.root.scope[symb] = ref
+                            break
+                    }
                 }
                 break;
             }
@@ -606,6 +615,6 @@ class Variable {
 var input = fs.readFileSync('./code.prsm', 'utf8')
 console.log(input + '\n')
 let out = Node.runCode(input)
-// console.log(out[0])
-// console.log(out[1])
+console.log(out[0])
+console.log(out[1])
 console.log(Node.varOutput())
