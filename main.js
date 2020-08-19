@@ -326,7 +326,6 @@ class Node {
                     i++
                 } while (i < this.ch.length && !(ret && ret.returnVal))
                 if (ret && ret.returnVal) {
-                    console.log(this.address.join(', '))
                     this.value = ret
                     return this.value
                 }
