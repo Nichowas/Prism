@@ -33,7 +33,12 @@ class Node {
             get: () => {
                 let symb = this.symbol,
                     type = this.type ? ` (${this.type})` : '',
-                    val = (this.value != undefined) ? ` => ${this.value.str()}` : '',
+                    val = (this.value != undefined) ? (` => ${
+                        this.value.returnVal ?
+                            '$' + this.value.returnVal.str() :
+                            this.value.str()
+                        }`) : '',
+                    //scope may or may not be represented in tree (it's too messy)
                     scope = this.scope ? ` {${Object.entries(this.scope).map(v => `${v[0]}: ${v[1].str()}`)}}` : ''
                 return `${symb}${type}${val}`
             }
@@ -261,22 +266,33 @@ class Node {
                 if (iter.type = 'bce') {
                     let [b, c, e] = iter.ch
                     b.exec(scope)
-                    do {
+                    while (true) {
                         block.exec(scope)
+                        if (block.value && block.value.returnVal) {
+                            this.value = block.value
+                            return this.value
+                        }
+                        if (!c.exec(scope).v.val)
+                            break
                         e.exec(scope)
-                    } while (c.exec(scope).v.val)
+                    }
                 }
+                break
             }
             case 'if': {
                 for (let i = 0; i < this.ch.length;) {
                     if (this.ch[i + 1] && (this.ch[i + 1].type == 'if' || this.ch[i + 1].type == 'elif')) {
-                        if (this.ch[i].exec(scope).v.val)
-                            return this.ch[i + 1].exec(scope)
+                        if (this.ch[i].exec(scope).v.val) {
+                            this.value = this.ch[i + 1].exec(scope)
+                            return this.value
+                        }
                         i += 2
                     } else {
-                        return this.ch[i].exec(scope)
+                        this.value = this.ch[i].exec(scope)
+                        return this.value
                     }
                 }
+                break
             }
             case 'apply': {
                 let func = this.ch[0].exec(scope),
@@ -284,9 +300,9 @@ class Node {
                     node = Node.root.getNodeByAddress(func.v.val),
                     expected = node.ch[0].ch.map(c => c.ch[0].symbol), newScope = {}
                 expected.forEach((v, i) => newScope[v] = params[i])
-                this.value = node.ch[1].exec({ ...node.scope, ...newScope })
+                let val = node.ch[1].exec({ ...node.scope, ...newScope })
+                this.value = val && val.returnVal
                 return this.value
-                break
             }
             case 'element': {
                 let obj = this.ch[0].exec(scope),
@@ -299,6 +315,23 @@ class Node {
                 }
                 return this.value
             }
+            case 'return': {
+                this.value = { returnVal: this.ch[0].exec(scope) }
+                return this.value
+            }
+            case 'block': {
+                let i = 0, ret = undefined
+                do {
+                    ret = this.ch[i].exec(scope)
+                    i++
+                } while (i < this.ch.length && !(ret && ret.returnVal))
+                if (ret && ret.returnVal) {
+                    console.log(this.address.join(', '))
+                    this.value = ret
+                    return this.value
+                }
+                break
+            }
             default: {
                 for (let c of this.ch) c.exec(scope)
                 break;
@@ -310,9 +343,9 @@ class Node {
         this.ch.forEach((c, i) => c.setAddress([...address, i]))
         return this
     }
-    getNodeByAddress(address) {
+    getNodeByAddress(address, d = 0) {
         if (address.length != 0)
-            return this.ch[address[0]].getNodeByAddress(address.slice(1))
+            return this.ch[address[0]].getNodeByAddress(address.slice(1), d + 1)
         return this
     }
     static number(n) {
@@ -544,10 +577,10 @@ class Node {
         parsed.exec()
         return [textTree(parsed), Reference.memory()]
     }
-    static varOutput() {
+    static varOutput(cleaned = true) {
         let scope = Node.root.scope, out = ''
         for (let i in scope) {
-            out += `${i}: ${scope[i].valstr()}\n`
+            out += `${i}: ${cleaned ? scope[i].valstr() : scope[i].val()}\n`
         }
         return out
     }
