@@ -35,7 +35,7 @@ class Node {
                     type = this.type ? ` (${this.type})` : '',
                     val = (this.value != undefined) ? ` => ${this.value.str()}` : '',
                     scope = this.scope ? ` {${Object.entries(this.scope).map(v => `${v[0]}: ${v[1].str()}`)}}` : ''
-                return `${symb}${scope}${type}${val}`
+                return `${symb}${type}${val}`
             }
         })
     }
@@ -58,7 +58,8 @@ class Node {
             }
             case 'string': {
                 let str = new Variable('string', this.ch[0].symbol)
-                return str.saveTo('r')
+                this.value = str.saveTo('r')
+                return this.value
             }
             case 'array': {
                 let ch = []
@@ -272,16 +273,21 @@ class Node {
                 let func = this.ch[0].exec(scope),
                     params = this.ch[1].ch.map(c => c.exec(scope)),
                     node = Node.root.getNodeByAddress(func.v.val),
-                    expected = node.ch[0].ch.map(c => c.ch[0].symbol)
-                expected.forEach((v, i) => node.scope[v] = params[i])
-                //Scope addition
-                this.value = node.ch[1].exec(node.scope)
+                    expected = node.ch[0].ch.map(c => c.ch[0].symbol), newScope = {}
+                expected.forEach((v, i) => newScope[v] = params[i])
+                this.value = node.ch[1].exec({ ...node.scope, ...newScope })
                 return this.value
                 break
             }
             case 'element': {
-                let array = this.ch[0].exec(scope), index = this.ch[1].exec(scope)
-                this.value = array.v.val[index.v.val]
+                let obj = this.ch[0].exec(scope),
+                    index = this.ch[1].exec(scope)
+                if (obj.v.type == 'array')
+                    this.value = obj.v.val[index.v.val]
+                else if (obj.v.type == 'dictionary') {
+                    let key = obj.v.val.findIndex((ref, i) => i % 2 == 0 && ref.v.val === index.v.val)
+                    this.value = obj.v.val[key + 1]
+                }
                 return this.value
             }
             default: {
@@ -300,7 +306,9 @@ class Node {
             return this.ch[address[0]].getNodeByAddress(address.slice(1))
         return this
     }
-    static number(n) { return new Node('number', [new Node(n, [])]) }
+    static number(n) {
+        return new Node('number', [new Node(n, [])])
+    }
     static toNode(tree, root = true) {
         let symb, ch = tree.children ? tree.children.map(n => Node.toNode(n, false)) : []
         if (root)
@@ -401,7 +409,7 @@ class Node {
             case 'NumberValue':
                 return new Node('number', [ch[0]])
             case 'StringValue':
-                return new Node('string', [ch[0]])
+                return new Node('string', [new Node(ch[0].symbol.slice(1, ch[0].symbol.length - 1), [])])
             case 'BoolValue':
                 return new Node('boolean', [ch[0]])
             //Arrays/Tuples/Dictionaries
@@ -419,6 +427,8 @@ class Node {
                 return new Node('array', ch)
             case 'ElementValue':
                 return new Node('element', [ch[0], ch[2]])
+            case 'PropertyValue':
+                return new Node('element', [ch[0], new Node('string', [ch[2].ch[0]])])
             /*
             case 'TupleValue':
                 return ch[0]
@@ -515,6 +525,23 @@ class Node {
         }
         return new Node(symb, ch)
     }
+    static runCode(code) {
+        var parsed = Node.toNode(parse(code))
+        //Set up interpreter
+        Node.root = parsed
+        Reference.total = { r: 0, v: 0 }
+        Reference.refs = []
+
+        parsed.exec()
+        return [textTree(parsed), Reference.memory()]
+    }
+    static varOutput() {
+        let scope = Node.root.scope, out = ''
+        for (let i in scope) {
+            out += `${i}: ${scope[i].valstr()}\n`
+        }
+        return out
+    }
 }
 class Reference {
     constructor(type, index) {
@@ -534,14 +561,13 @@ class Reference {
             return `[${v.map(clean)}]`
         if (this.v.type == 'dictionary') {
             let out = []
-            for (let i = 0; i < v.length; i += 2) {
-                out.push(`${clean(v[i])}: ${clean(v[i + 1])
-                    }`)
-            }
-            return `{ ${out.join(', ')} } `
+            for (let i = 0; i < v.length; i += 2) out.push(`${clean(v[i])}: ${clean(v[i + 1])}`)
+            return `{ ${out.join(', ')} }`
         }
         if (this.v.type == 'function')
             return `(${v.map(clean)})`
+        if (this.v.type == 'string')
+            return `"${v}"`
         return clean(v)
     }
     setVar(v) {
@@ -560,8 +586,6 @@ class Reference {
         return out
     }
 }
-Reference.total = { r: 0, v: 0 }
-Reference.refs = []
 
 class Variable {
     constructor(type, val) {
@@ -581,11 +605,7 @@ class Variable {
 
 var input = fs.readFileSync('./code.prsm', 'utf8')
 console.log(input + '\n')
-var parsed = parse(input)
-parsed = Node.toNode(parsed)
-Node.root = parsed
-parsed.exec()
-console.log(textTree(parsed))
-console.log(Reference.memory())
-//Ideas for interpreter
-//Reference System (register and variables) e.g. rx006, vx012
+let out = Node.runCode(input)
+// console.log(out[0])
+// console.log(out[1])
+console.log(Node.varOutput())
