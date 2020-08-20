@@ -127,6 +127,7 @@ class Node {
                     iden.setVar(val.v.copy())
                     // else
                     // iden.v = val
+                    val.delete()
                     this.value = iden
                     return this.value
                 }
@@ -135,16 +136,17 @@ class Node {
             case '+': {
                 let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
                 if (v1 && v2) {
+                    v1.delete(); v2.delete()
                     let v3 = new Variable('number', v1.v.val + v2.v.val)
                     this.value = v3.saveTo('r')
                     return this.value
-
                 }
                 break;
             }
             case '*': {
                 let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
                 if (v1 && v2) {
+                    v1.delete(); v2.delete()
                     let v3 = new Variable('number', v1.v.val * v2.v.val)
                     this.value = v3.saveTo('r')
                     return this.value
@@ -155,6 +157,7 @@ class Node {
             case '-': {
                 let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
                 if (v1 && v2) {
+                    v1.delete(); v2.delete()
                     let v3 = new Variable('number', v1.v.val - v2.v.val)
                     this.value = v3.saveTo('r')
                     return this.value
@@ -165,6 +168,7 @@ class Node {
             case '/': {
                 let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
                 if (v1 && v2) {
+                    v1.delete(); v2.delete()
                     let v3 = new Variable('number', v1.v.val / v2.v.val)
                     this.value = v3.saveTo('r')
                     return this.value
@@ -175,6 +179,7 @@ class Node {
             case '%': {
                 let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
                 if (v1 && v2) {
+                    v1.delete(); v2.delete()
                     let v3 = new Variable('number', v1.v.val % v2.v.val)
                     this.value = v3.saveTo('r')
                     return this.value
@@ -185,6 +190,7 @@ class Node {
             case '>': {
                 let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
                 if (v1 && v2) {
+                    v1.delete(); v2.delete()
                     let v3 = new Variable('boolean', v1.v.val > v2.v.val)
                     this.value = v3.saveTo('r')
                     return this.value
@@ -195,6 +201,7 @@ class Node {
             case '<': {
                 let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
                 if (v1 && v2) {
+                    v1.delete(); v2.delete()
                     let v3 = new Variable('boolean', v1.v.val < v2.v.val)
                     this.value = v3.saveTo('r')
                     return this.value
@@ -205,6 +212,7 @@ class Node {
             case '>=': {
                 let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
                 if (v1 && v2) {
+                    v1.delete(); v2.delete()
                     let v3 = new Variable('boolean', v1.v.val >= v2.v.val)
                     this.value = v3.saveTo('r')
                     return this.value
@@ -215,6 +223,7 @@ class Node {
             case '<=': {
                 let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
                 if (v1 && v2) {
+                    v1.delete(); v2.delete()
                     let v3 = new Variable('boolean', v1.v.val <= v2.v.val)
                     this.value = v3.saveTo('r')
                     return this.value
@@ -225,6 +234,7 @@ class Node {
             case '==': {
                 let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
                 if (v1 && v2) {
+                    v1.delete(); v2.delete()
                     let v3 = new Variable('boolean', v1.v.val == v2.v.val)
                     this.value = v3.saveTo('r')
                     return this.value
@@ -235,26 +245,27 @@ class Node {
             case '&&': {
                 let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
                 if (v1 && v2) {
+                    v1.delete(); v2.delete()
                     let v3 = new Variable('boolean', v1.v.val && v2.v.val)
                     this.value = v3.saveTo('r')
                     return this.value
-
                 }
                 break;
             }
             case '||': {
                 let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
                 if (v1 && v2) {
+                    v1.delete(); v2.delete()
                     let v3 = new Variable('boolean', v1.v.val || v2.v.val)
                     this.value = v3.saveTo('r')
                     return this.value
-
                 }
                 break;
             }
             case '!': {
                 let v1 = this.ch[0].exec(scope)
                 if (v1) {
+                    v1.delete()
                     let v2 = new Variable('boolean', !v1.v.val)
                     this.value = v2.saveTo('r')
                     return this.value
@@ -276,6 +287,19 @@ class Node {
                             break
                         e.exec(scope)
                     }
+                }
+                break
+            }
+            case 'while': {
+                let cond = this.ch[0], block = this.ch[1]
+                while (true) {
+                    block.exec(scope)
+                    if (block.value && block.value.returnVal) {
+                        this.value = block.value
+                        return this.value
+                    }
+                    if (!cond.exec(scope).v.val)
+                        break
                 }
                 break
             }
@@ -321,10 +345,11 @@ class Node {
             }
             case 'block': {
                 let i = 0, ret = undefined
-                do {
-                    ret = this.ch[i].exec(scope)
-                    i++
-                } while (i < this.ch.length && !(ret && ret.returnVal))
+                if (this.ch.length != 0)
+                    do {
+                        ret = this.ch[i].exec(scope)
+                        i++
+                    } while (i < this.ch.length && !(ret && ret.returnVal))
                 if (ret && ret.returnVal) {
                     this.value = ret
                     return this.value
@@ -383,8 +408,10 @@ class Node {
             //Functions
             case 'ArrowFunc':
                 if (ch[0].symbol == 'iden') ch[0] = new Node('params', [ch[0]])
+                if (ch[2].symbol != 'block') ch[2] = new Node('block', [new Node('return', [ch[2]])])
                 return new Node('func', [ch[0], ch[2]])
             case 'TradFunc':
+                if (ch[2].symbol != 'block') ch[2] = new Node('block', [new Node('return', [ch[2]])])
                 return new Node('func', [ch[1], ch[2]])
             case 'FuncValue':
                 return ch[0]
@@ -574,7 +601,7 @@ class Node {
         Reference.refs = []
 
         parsed.exec()
-        return [textTree(parsed), Reference.memory()]
+        return textTree(parsed)
     }
     static varOutput(cleaned = true) {
         let scope = Node.root.scope, out = ''
@@ -591,11 +618,11 @@ class Reference {
         Reference.refs.push(this)
         Reference.total[this.type]++
     }
-    valstr() {
+    valstr(raw) {
         let v = this.v.val
         let clean = val => {
             if (val instanceof Reference)
-                return val.valstr()
+                return raw ? val.str() : val.valstr(raw)
             return val
         }
         if (this.v.type == 'array')
@@ -616,14 +643,41 @@ class Reference {
         this.v = v
     }
     str() {
-        return `${this.type}x${this.index}`
+        return `${this.type}x${this.index}${this.deleted() ? ' (X)' : ''}`
+    }
+    equals(ref) {
+        return ref.type == this.type && ref.index == this.index
+    }
+    isReferenced() {
+        let out = []
+        Reference.refs.forEach(ref => {
+            if (ref.v.type == 'array')
+                return out.push(...ref.v.val.filter(ref2 => this.equals(ref2)))
+            if (ref.v.type == 'dictionary')
+                return out.push(...ref.v.val.filter(ref2 => this.equals(ref2)))
+        })
+        return out
+    }
+    delete() {
+        if (this.isReferenced().length == 0 && this.type != 'v') {
+            Reference.refs.forEach((ref, i) => {
+                if (this.equals(ref))
+                    return Reference.refs.splice(i, 1)
+                if (this.type == ref.type && ref.index > this.index)
+                    ref.index--
+            })
+            Reference.total[this.type]--
+        }
+    }
+    deleted() {
+        return !Reference.refs.find(ref => ref === this)
     }
     static getRef(type, index) {
         return Reference.refs.find(r => r.type == type && r.index == index)
     }
-    static memory() {
+    static memory(raw = false) {
         let out = ''
-        for (let ref of Reference.refs) out += `${ref.str()}: ${ref.valstr()} \n`
+        for (let ref of Reference.refs) out += `${ref.str()}: ${ref.valstr(raw)} \n`
         return out
     }
 }
@@ -646,7 +700,6 @@ class Variable {
 
 var input = fs.readFileSync('./code.prsm', 'utf8')
 console.log(input + '\n')
-let out = Node.runCode(input)
-console.log(out[0])
-console.log(out[1])
+console.log(Node.runCode(input))
+console.log(Reference.memory(false))
 console.log(Node.varOutput())
