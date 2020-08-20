@@ -283,8 +283,11 @@ class Node {
                             this.value = block.value
                             return this.value
                         }
-                        if (!c.exec(scope).v.val)
+                        if (!c.exec(scope).v.val) {
+                            c.value.delete()
                             break
+                        }
+                        c.value.delete()
                         e.exec(scope)
                     }
                 }
@@ -323,8 +326,15 @@ class Node {
                     params = this.ch[1].ch.map(c => c.exec(scope)),
                     node = Node.root.getNodeByAddress(func.v.val),
                     expected = node.ch[0].ch.map(c => c.ch[0].symbol), newScope = {}
+                params = params.map(par => {
+                    if (par.v.category() == 'primitive') {
+                        return par.v.saveTo('r')
+                    }
+                    return par
+                })
                 expected.forEach((v, i) => newScope[v] = params[i])
                 let val = node.ch[1].exec({ ...node.scope, ...newScope })
+                params.forEach(par => par.delete())
                 this.value = val && val.returnVal
                 return this.value
             }
@@ -337,6 +347,7 @@ class Node {
                     let key = obj.v.val.findIndex((ref, i) => i % 2 == 0 && ref.v.val === index.v.val)
                     this.value = obj.v.val[key + 1]
                 }
+                obj.delete(); index.delete()
                 return this.value
             }
             case 'return': {
@@ -347,7 +358,12 @@ class Node {
                 let i = 0, ret = undefined
                 if (this.ch.length != 0)
                     do {
-                        ret = this.ch[i].exec(scope)
+                        let newScope = scope
+                        if (this.ch[i].symbol == 'for')
+                            newScope = { ...scope }
+                        if (this.ch[i].symbol == 'while')
+                            newScope = { ...scope }
+                        ret = this.ch[i].exec(newScope)
                         i++
                     } while (i < this.ch.length && !(ret && ret.returnVal))
                 if (ret && ret.returnVal) {
@@ -594,7 +610,7 @@ class Node {
         return new Node(symb, ch)
     }
     static runCode(code) {
-        var parsed = Node.toNode(parse(code))
+        var parsed = Node.toNode(parse(Node.setup + code))
         //Set up interpreter
         Node.root = parsed
         Reference.total = { r: 0, v: 0 }
@@ -611,6 +627,7 @@ class Node {
         return out
     }
 }
+Node.setup = fs.readFileSync('setup.prsm')
 class Reference {
     constructor(type, index) {
         this.type = type
@@ -696,10 +713,29 @@ class Variable {
     copy() {
         return new Variable(this.type, this.val)
     }
+    category() {
+        switch (this.type) {
+            case 'number':
+                return 'primitive'
+            case 'string':
+                return 'primitive'
+            case 'boolean':
+                return 'primitive'
+            case 'undefined':
+                return 'primitive'
+            case 'array':
+                return 'reference'
+            case 'dictionary':
+                return 'reference'
+            case 'function':
+                return 'reference'
+        }
+    }
 }
 
 var input = fs.readFileSync('./code.prsm', 'utf8')
 console.log(input + '\n')
-console.log(Node.runCode(input))
-console.log(Reference.memory(false))
+let out = Node.runCode(input)
+// console.log(out)
+// console.log(Reference.memory(false))
 console.log(Node.varOutput())

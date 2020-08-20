@@ -1,0 +1,8 @@
+{
+    pub console = {
+        log: str => {
+            console.logs = [...console.logs, str]
+        },
+        logs: []
+    }
+}
