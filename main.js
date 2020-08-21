@@ -38,7 +38,6 @@ class Node {
                             '$' + this.value.returnVal.str() :
                             this.value.str()
                         }`) : '',
-                    //scope may or may not be represented in tree (it's too messy)
                     scope = this.scope ? ` {${Object.entries(this.scope).map(v => `${v[0]}: ${v[1].str()}`)}}` : ''
                 return `${symb}${type}${val}`
             }
@@ -71,8 +70,8 @@ class Node {
                 let ch = []
                 this.ch.forEach(c => {
                     let ref = c.exec(scope)
-                    if (c.type == 'spread' && ref.v.type == 'array') {
-                        ch.push(...ref.v.val)
+                    if (c.type == 'spread' && ref.var.type == 'array') {
+                        ch.push(...ref.var.val)
                         return
                     }
                     ch.push(ref)
@@ -86,8 +85,8 @@ class Node {
                 this.ch.forEach(c => {
                     if (c.type == 'spread') {
                         let ref = c.ch[0].exec(scope)
-                        if (ref.v.type == 'dictionary') {
-                            ch.push(...ref.v.val)
+                        if (ref.var.type == 'dictionary') {
+                            ch.push(...ref.var.val)
                             return
                         }
                     }
@@ -96,6 +95,9 @@ class Node {
                     ch.push(key, c.ch[1].exec(scope))
                 })
                 this.value = new Variable('dictionary', ch).saveTo('r')
+                ch.forEach((c, i) => {
+                    if (i % 2 == 1) c.object = this.value
+                })
                 return this.value
             }
             case 'func': {
@@ -123,11 +125,11 @@ class Node {
             case 'assign': {
                 let iden = this.ch[0].exec(scope), val = this.ch[1].exec(scope)
                 if (val) {
-                    // if (['number', 'string', 'boolean'].some(v => v == val.v.type))
-                    iden.setVar(val.v.copy())
-                    // else
-                    // iden.v = val
-                    val.delete()
+                    if (val.var.category() == 'primitive') {
+                        iden.setVar(val.var.copy())
+                        val.delete()
+                    } else
+                        iden.setVar(new Variable('reference', val))
                     this.value = iden
                     return this.value
                 }
@@ -137,7 +139,7 @@ class Node {
                 let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
                 if (v1 && v2) {
                     v1.delete(); v2.delete()
-                    let v3 = new Variable('number', v1.v.val + v2.v.val)
+                    let v3 = new Variable('number', v1.var.val + v2.var.val)
                     this.value = v3.saveTo('r')
                     return this.value
                 }
@@ -147,7 +149,7 @@ class Node {
                 let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
                 if (v1 && v2) {
                     v1.delete(); v2.delete()
-                    let v3 = new Variable('number', v1.v.val * v2.v.val)
+                    let v3 = new Variable('number', v1.var.val * v2.var.val)
                     this.value = v3.saveTo('r')
                     return this.value
 
@@ -158,7 +160,7 @@ class Node {
                 let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
                 if (v1 && v2) {
                     v1.delete(); v2.delete()
-                    let v3 = new Variable('number', v1.v.val - v2.v.val)
+                    let v3 = new Variable('number', v1.var.val - v2.var.val)
                     this.value = v3.saveTo('r')
                     return this.value
 
@@ -169,7 +171,7 @@ class Node {
                 let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
                 if (v1 && v2) {
                     v1.delete(); v2.delete()
-                    let v3 = new Variable('number', v1.v.val / v2.v.val)
+                    let v3 = new Variable('number', v1.var.val / v2.var.val)
                     this.value = v3.saveTo('r')
                     return this.value
 
@@ -180,7 +182,7 @@ class Node {
                 let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
                 if (v1 && v2) {
                     v1.delete(); v2.delete()
-                    let v3 = new Variable('number', v1.v.val % v2.v.val)
+                    let v3 = new Variable('number', v1.var.val % v2.var.val)
                     this.value = v3.saveTo('r')
                     return this.value
 
@@ -191,7 +193,7 @@ class Node {
                 let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
                 if (v1 && v2) {
                     v1.delete(); v2.delete()
-                    let v3 = new Variable('boolean', v1.v.val > v2.v.val)
+                    let v3 = new Variable('boolean', v1.var.val > v2.var.val)
                     this.value = v3.saveTo('r')
                     return this.value
 
@@ -202,7 +204,7 @@ class Node {
                 let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
                 if (v1 && v2) {
                     v1.delete(); v2.delete()
-                    let v3 = new Variable('boolean', v1.v.val < v2.v.val)
+                    let v3 = new Variable('boolean', v1.var.val < v2.var.val)
                     this.value = v3.saveTo('r')
                     return this.value
 
@@ -213,7 +215,7 @@ class Node {
                 let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
                 if (v1 && v2) {
                     v1.delete(); v2.delete()
-                    let v3 = new Variable('boolean', v1.v.val >= v2.v.val)
+                    let v3 = new Variable('boolean', v1.var.val >= v2.var.val)
                     this.value = v3.saveTo('r')
                     return this.value
 
@@ -224,7 +226,7 @@ class Node {
                 let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
                 if (v1 && v2) {
                     v1.delete(); v2.delete()
-                    let v3 = new Variable('boolean', v1.v.val <= v2.v.val)
+                    let v3 = new Variable('boolean', v1.var.val <= v2.v.val)
                     this.value = v3.saveTo('r')
                     return this.value
 
@@ -235,7 +237,7 @@ class Node {
                 let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
                 if (v1 && v2) {
                     v1.delete(); v2.delete()
-                    let v3 = new Variable('boolean', v1.v.val == v2.v.val)
+                    let v3 = new Variable('boolean', v1.var.val == v2.var.val)
                     this.value = v3.saveTo('r')
                     return this.value
 
@@ -246,7 +248,7 @@ class Node {
                 let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
                 if (v1 && v2) {
                     v1.delete(); v2.delete()
-                    let v3 = new Variable('boolean', v1.v.val && v2.v.val)
+                    let v3 = new Variable('boolean', v1.var.val && v2.var.val)
                     this.value = v3.saveTo('r')
                     return this.value
                 }
@@ -256,7 +258,7 @@ class Node {
                 let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
                 if (v1 && v2) {
                     v1.delete(); v2.delete()
-                    let v3 = new Variable('boolean', v1.v.val || v2.v.val)
+                    let v3 = new Variable('boolean', v1.var.val || v2.var.val)
                     this.value = v3.saveTo('r')
                     return this.value
                 }
@@ -266,7 +268,7 @@ class Node {
                 let v1 = this.ch[0].exec(scope)
                 if (v1) {
                     v1.delete()
-                    let v2 = new Variable('boolean', !v1.v.val)
+                    let v2 = new Variable('boolean', !v1.var.val)
                     this.value = v2.saveTo('r')
                     return this.value
                 }
@@ -283,7 +285,7 @@ class Node {
                             this.value = block.value
                             return this.value
                         }
-                        if (!c.exec(scope).v.val) {
+                        if (!c.exec(scope).var.val) {
                             c.value.delete()
                             break
                         }
@@ -301,7 +303,7 @@ class Node {
                         this.value = block.value
                         return this.value
                     }
-                    if (!cond.exec(scope).v.val)
+                    if (!cond.exec(scope).var.val)
                         break
                 }
                 break
@@ -309,7 +311,7 @@ class Node {
             case 'if': {
                 for (let i = 0; i < this.ch.length;) {
                     if (this.ch[i + 1] && (this.ch[i + 1].type == 'if' || this.ch[i + 1].type == 'elif')) {
-                        if (this.ch[i].exec(scope).v.val) {
+                        if (this.ch[i].exec(scope).var.val) {
                             this.value = this.ch[i + 1].exec(scope)
                             return this.value
                         }
@@ -323,12 +325,15 @@ class Node {
             }
             case 'apply': {
                 let func = this.ch[0].exec(scope),
-                    params = this.ch[1].ch.map(c => c.exec(scope)),
-                    node = Node.root.getNodeByAddress(func.v.val),
+                    params = this.ch[1].ch.map(c => c.exec(scope))
+                if (!func)
+                    return
+                let node = Node.root.getNodeByAddress(func.var.val),
                     expected = node.ch[0].ch.map(c => c.ch[0].symbol), newScope = {}
                 params = params.map(par => {
                     if (par.v.category() == 'primitive') {
-                        return par.v.saveTo('r')
+                        par.delete()
+                        return par.v.copy().saveTo('r')
                     }
                     return par
                 })
@@ -341,11 +346,11 @@ class Node {
             case 'element': {
                 let obj = this.ch[0].exec(scope),
                     index = this.ch[1].exec(scope)
-                if (obj.v.type == 'array')
-                    this.value = obj.v.val[index.v.val]
-                else if (obj.v.type == 'dictionary') {
-                    let key = obj.v.val.findIndex((ref, i) => i % 2 == 0 && ref.v.val === index.v.val)
-                    this.value = obj.v.val[key + 1]
+                if (obj.var.type == 'array')
+                    this.value = obj.var.val[index.var.val]
+                else if (obj.var.type == 'dictionary') {
+                    let key = obj.var.val.findIndex((ref, i) => i % 2 == 0 && ref.var.val === index.var.val)
+                    this.value = obj.var.val[key + 1]
                 }
                 obj.delete(); index.delete()
                 return this.value
@@ -619,12 +624,15 @@ class Node {
         parsed.exec()
         return textTree(parsed)
     }
-    static varOutput(cleaned = true) {
+    static varOutput(raw = false) {
         let scope = Node.root.scope, out = ''
         for (let i in scope) {
-            out += `${i}: ${cleaned ? scope[i].valstr() : scope[i].val()}\n`
+            out += `${i}: ${scope[i].valstr(raw)}\n`
         }
         return out
+    }
+    static console() {
+        return Reference.refs[1].var.val.map(c => c.var.val).join('\n')
     }
 }
 Node.setup = fs.readFileSync('setup.prsm')
@@ -634,25 +642,38 @@ class Reference {
         this.index = index
         Reference.refs.push(this)
         Reference.total[this.type]++
+        Object.defineProperty(this, 'var', { get: _ => this.getV(), set: v => this.getV() = v })
+    }
+    getV() {
+        if (!this.v)
+            return
+        if (this.v.type == 'reference')
+            return this.v.val.getV()
+        return this.v
     }
     valstr(raw) {
         let v = this.v.val
         let clean = val => {
             if (val instanceof Reference)
-                return raw ? val.str() : val.valstr(raw)
-            return val
+                return raw ? `${val.str()}` : val.valstr(raw)
+            return `${val}`
         }
-        if (this.v.type == 'array')
-            return `[${v.map(clean)}]`
-        if (this.v.type == 'dictionary') {
-            let out = []
-            for (let i = 0; i < v.length; i += 2) out.push(`${clean(v[i])}: ${clean(v[i + 1])}`)
-            return `{ ${out.join(', ')} }`
+        switch (this.v.type) {
+            case 'array':
+                return `[${v.map(clean)}]`
+            case 'dictionary':
+                let out = []
+                for (let i = 0; i < v.length; i += 2) out.push(`${clean(v[i])}: ${clean(v[i + 1])}`)
+                return `{ ${out.join(', ')} }`
+            case 'function':
+                return `(${v.map(clean)})${(this.object && raw) ? ` <${this.object.str()}>` : ''}`
+            case 'string':
+                return `"${v}"${(this.object && raw) ? ` <${this.object.str()}>` : ''}`
+            case 'number':
+                return `${v}${(this.object && raw) ? ` <${this.object.str()}>` : ''}`
+            case 'boolean':
+                return `${v ? 'true' : 'false'}${(this.object && raw) ? ` <${this.object.str()}>` : ''}`
         }
-        if (this.v.type == 'function')
-            return `(${v.map(clean)})`
-        if (this.v.type == 'string')
-            return `"${v}"`
         return clean(v)
     }
     setVar(v) {
@@ -723,11 +744,11 @@ class Variable {
                 return 'primitive'
             case 'undefined':
                 return 'primitive'
+            case 'function':
+                return 'primitive'
             case 'array':
                 return 'reference'
             case 'dictionary':
-                return 'reference'
-            case 'function':
                 return 'reference'
         }
     }
@@ -737,5 +758,7 @@ var input = fs.readFileSync('./code.prsm', 'utf8')
 console.log(input + '\n')
 let out = Node.runCode(input)
 // console.log(out)
-// console.log(Reference.memory(false))
-console.log(Node.varOutput())
+// console.log(Reference.memory(true))
+// console.log(Node.varOutput(false))
+console.log(Node.console())
+

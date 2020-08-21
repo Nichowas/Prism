@@ -1,8 +1,10 @@
 {
+    var log = str => {
+        console.logs = [...console.logs, str]
+    }
+    var logs = []
     pub console = {
-        log: str => {
-            console.logs = [...console.logs, str]
-        },
-        logs: []
+        log: log,
+        logs: logs
     }
 }
