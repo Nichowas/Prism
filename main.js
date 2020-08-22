@@ -383,6 +383,11 @@ class Node {
                 }
                 break
             }
+            case '#': {
+                let v1 = this.ch[0].exec(scope), v2 = v1.valstr(false)
+                this.value = (new Variable('string', v2)).saveTo('r')
+                return this.value
+            }
             default: {
                 for (let c of this.ch) c.exec(scope)
                 break;
@@ -681,7 +686,7 @@ class Reference {
         }
         switch (this.v.type) {
             case 'array':
-                return `[${v.map(clean)}]`
+                return `[${v.map(clean).join(', ')}]`
             case 'dictionary':
                 let out = []
                 for (let i = 0; i < v.length; i += 2) out.push(`${clean(v[i])}: ${clean(v[i + 1])}`)
