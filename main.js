@@ -10,19 +10,7 @@ var parse = (code) => {
     parser.buildParseTrees = true;
     return parser.all()
 }
-var textTree = (tree) => {
-    let out = ''
-    let txtTree = (tree, indent = "", last = true, notroot = false) => {
-        out += `${indent}${notroot ? (last ? "└╴ " : "├╴ ") : ''}${tree.string} \n`
-        if (notroot)
-            indent += last ? "   " : "│  ";
-        for (let i = 0; i < tree.ch.length; i++) {
-            txtTree(tree.ch[i], indent, i == tree.ch.length - 1, true);
-        }
-    }
-    txtTree(tree)
-    return out
-}
+
 
 class Node {
     constructor(symbol, ch, add = {}) {
@@ -37,8 +25,8 @@ class Node {
                         this.value.returnVal ?
                             '$' + this.value.returnVal.str() :
                             this.value.str()
-                        }`) : '',
-                    scope = this.scope ? ` {${Object.entries(this.scope).map(v => `${v[0]}: ${v[1].str()}`)}}` : ''
+                        }`) : ''
+                // scope = this.scope ? ` {${Object.entries(this.scope).map(v => `${v[0]}: ${v[1].str()}`)}}` : ''
                 return `${symb}${type}${val}`
             }
         })
@@ -70,14 +58,20 @@ class Node {
                 let ch = []
                 this.ch.forEach(c => {
                     let ref = c.exec(scope)
-                    if (c.type == 'spread' && ref.var.type == 'array') {
+                    if (c.type == 'spread' && ref && ref.var.type == 'array') {
                         ch.push(...ref.var.val)
                         return
                     }
                     ch.push(ref)
                 })
+
                 let arr = new Variable('array', ch)
                 this.value = arr.saveTo('r')
+
+                arr.val['$push'] = Reference.getRef('v', 0)
+                ch.forEach(c => c.object = this.value)
+                ch['$push'].object = this.value
+
                 return this.value
             }
             case 'dictionary': {
@@ -96,7 +90,8 @@ class Node {
                 })
                 this.value = new Variable('dictionary', ch).saveTo('r')
                 ch.forEach((c, i) => {
-                    if (i % 2 == 1) c.object = this.value
+                    if (i % 2 == 1)
+                        c.object = this.value
                 })
                 return this.value
             }
@@ -128,6 +123,13 @@ class Node {
                     if (val.var.category() == 'primitive') {
                         iden.setVar(val.var.copy())
                         val.delete()
+                        if (val.deleted && val.v.val.type == 'array')
+                            val.v.val.forEach(c => c.object = iden)
+                        if (val.deleted && val.v.val.type == 'dictionary')
+                            val.v.val.forEach((c, i) => {
+                                if (i % 2 == 1)
+                                    c.object = iden
+                            })
                     } else
                         iden.setVar(new Variable('reference', val))
                     this.value = iden
@@ -338,6 +340,7 @@ class Node {
                     return par
                 })
                 expected.forEach((v, i) => newScope[v] = params[i])
+                newScope['this'] = func.object
                 let val = node.ch[1].exec({ ...node.scope, ...newScope })
                 params.forEach(par => par.delete())
                 this.value = val && val.returnVal
@@ -346,8 +349,11 @@ class Node {
             case 'element': {
                 let obj = this.ch[0].exec(scope),
                     index = this.ch[1].exec(scope)
+                let string = index.var.val
+                let overwrite = { 'push': '$push' }
+                string = overwrite[string] || string
                 if (obj.var.type == 'array')
-                    this.value = obj.var.val[index.var.val]
+                    this.value = obj.var.val[string]
                 else if (obj.var.type == 'dictionary') {
                     let key = obj.var.val.findIndex((ref, i) => i % 2 == 0 && ref.var.val === index.var.val)
                     this.value = obj.var.val[key + 1]
@@ -622,7 +628,6 @@ class Node {
         Reference.refs = []
 
         parsed.exec()
-        return textTree(parsed)
     }
     static varOutput(raw = false) {
         let scope = Node.root.scope, out = ''
@@ -631,13 +636,29 @@ class Node {
         }
         return out
     }
-    static console() {
-        return Reference.refs[1].var.val.map(c => c.var.val).join('\n')
+    static console(i) {
+        return Reference.getRef('v', i).var.val.map(v => v.valstr(false)).join('\n')
+    }
+    static textTree() {
+        let out = ''
+        let txtTree = (tree, indent = "", last = true, notroot = false) => {
+            out += `${indent}${notroot ? (last ? "└╴ " : "├╴ ") : ''}${tree ? tree.string : ''} \n`
+            if (notroot)
+                indent += last ? "   " : "│  ";
+            if (tree)
+                for (let i = 0; i < tree.ch.length; i++) {
+                    txtTree(tree.ch[i], indent, i == tree.ch.length - 1, true);
+                }
+        }
+        txtTree(Node.root)
+        return out
     }
 }
 Node.setup = fs.readFileSync('setup.prsm')
+
 class Reference {
     constructor(type, index) {
+        this.deleted = false
         this.type = type
         this.index = index
         Reference.refs.push(this)
@@ -673,6 +694,8 @@ class Reference {
                 return `${v}${(this.object && raw) ? ` <${this.object.str()}>` : ''}`
             case 'boolean':
                 return `${v ? 'true' : 'false'}${(this.object && raw) ? ` <${this.object.str()}>` : ''}`
+            case 'reference':
+                return `${raw ? v.str() : v.valstr(raw)}${(this.object && raw) ? ` <${this.object.str()}>` : ''}`
         }
         return clean(v)
     }
@@ -681,7 +704,7 @@ class Reference {
         this.v = v
     }
     str() {
-        return `${this.type}x${this.index}${this.deleted() ? ' (X)' : ''}`
+        return `${this.type}x${this.index}${this.deleted ? ' (X)' : ''}`
     }
     equals(ref) {
         return ref.type == this.type && ref.index == this.index
@@ -697,7 +720,9 @@ class Reference {
         return out
     }
     delete() {
+        return
         if (this.isReferenced().length == 0 && this.type != 'v') {
+            this.deleted = true
             Reference.refs.forEach((ref, i) => {
                 if (this.equals(ref))
                     return Reference.refs.splice(i, 1)
@@ -706,9 +731,6 @@ class Reference {
             })
             Reference.total[this.type]--
         }
-    }
-    deleted() {
-        return !Reference.refs.find(ref => ref === this)
     }
     static getRef(type, index) {
         return Reference.refs.find(r => r.type == type && r.index == index)
@@ -745,7 +767,7 @@ class Variable {
             case 'undefined':
                 return 'primitive'
             case 'function':
-                return 'primitive'
+                return 'reference'
             case 'array':
                 return 'reference'
             case 'dictionary':
@@ -755,10 +777,9 @@ class Variable {
 }
 
 var input = fs.readFileSync('./code.prsm', 'utf8')
+Node.runCode(input)
 console.log(input + '\n')
-let out = Node.runCode(input)
-// console.log(out)
+// console.log(Node.textTree())
 // console.log(Reference.memory(true))
 // console.log(Node.varOutput(false))
-console.log(Node.console())
-
+console.log(Node.console(2))

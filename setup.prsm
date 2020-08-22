@@ -1,6 +1,9 @@
 {
+    var push = (item) => {
+        this = [...this, item]
+    }
     var log = str => {
-        console.logs = [...console.logs, str]
+        this.logs = [...console.logs, str]
     }
     var logs = []
     pub console = {
