@@ -1,9 +1,9 @@
-{
+~{
     var push = (item) => {
         this = [...this, item]
     }
     var log = str => {
-        this.logs = [...console.logs, str]
+        logs.push(str)
     }
     var logs = []
     pub console = {

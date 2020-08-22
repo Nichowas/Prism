@@ -62,7 +62,8 @@ statement:
     | cond                                                  #ifStatement
     | assign                                                #assignStatement    
     | declar                                                #declarStatement
-    | '{'statement*'}'                                      #groupStatement
+    | '~{'statement*'}'                                     #groupStatement
+    |  '{'statement*'}'                                     #blockStatement
     | 'return' value                                        #returnStatement
     | value                                                 #valueStatement
     | COMMENT                                               #commentStatement
@@ -73,8 +74,6 @@ value:
     '('value')'                                             #bracketValue
     | 'new' value                                           #instanceValue
     | 'class' value                                         #classValue
-    | dictionary                                            #dictionaryValue
-    | array                                                 #arrayValue
 
     | value 'to' value ('by' value)?                        #rangeValue
 
@@ -102,6 +101,8 @@ value:
 
     | iden                                                  #idenValue
     | func                                                  #funcValue
+    | dictionary                                            #dictionaryValue
+    | array                                                 #arrayValue
     | NUM                                                   #numberValue
     | STRING                                                #stringValue
     | (TRUE|FALSE)                                          #boolValue

@@ -278,21 +278,56 @@ class Node {
             }
             case 'for': {
                 let iter = this.ch[0], block = this.ch[1]
-                if (iter.type = 'bce') {
-                    let [b, c, e] = iter.ch
-                    b.exec(scope)
-                    while (true) {
-                        block.exec(scope)
-                        if (block.value && block.value.returnVal) {
-                            this.value = block.value
-                            return this.value
-                        }
-                        if (!c.exec(scope).var.val) {
+                switch (iter.type) {
+                    case 'bce': {
+                        let [b, c, e] = iter.ch
+                        b.exec(scope)
+                        while (true) {
+                            block.exec(scope)
+                            if (block.value && block.value.returnVal) {
+                                this.value = block.value
+                                return this.value
+                            }
+                            if (c.exec(scope) && !c.value.var.val) {
+                                c.value.delete()
+                                break
+                            }
                             c.value.delete()
-                            break
+                            e.exec(scope)
                         }
-                        c.value.delete()
-                        e.exec(scope)
+                        break
+                    }
+                    case 'in': {
+                        iter.ch[0].ch = [iter.ch[1]]
+                        let iterR = iter.ch[0].exec(scope),
+                            valR = iter.ch[2].exec(scope)
+                        for (let i in valR.var.val) {
+                            if (i[0] == '$')
+                                continue
+                            iter.ch[1].exec(scope).var.val = i
+                            this.ch[1].exec(scope)
+                            if (this.ch[1].value && this.ch[1].value.returnVal) {
+                                this.value = this.ch[1].value
+                                return this.ch[1]
+                            }
+                        }
+                        break
+                    }
+                    case 'of': {
+                        iter.ch[0].ch = [iter.ch[1]]
+                        let iterR = iter.ch[0].exec(scope),
+                            valR = iter.ch[2].exec(scope)
+                        for (let i in valR.var.val) {
+                            if (i[0] == '$')
+                                continue
+                            iter.ch[1].exec(scope).var.val = valR.var.val[i]
+                            this.ch[1].exec(scope)
+                            if (this.ch[1].value && this.ch[1].value.returnVal) {
+                                this.value = this.ch[1].value
+                                return this.ch[1]
+                            }
+                        }
+                        break
                     }
                 }
                 break
@@ -327,9 +362,13 @@ class Node {
             }
             case 'apply': {
                 let func = this.ch[0].exec(scope),
-                    params = this.ch[1].ch.map(c => c.exec(scope))
-                if (!func)
-                    return
+                    params = []
+                this.ch[1].ch.forEach(c => {
+                    // if (c.type == 'spread')
+                    // params.push(...c.exec(scope).var.val)
+                    // else
+                    params.push(c.exec(scope))
+                })
                 let node = Node.root.getNodeByAddress(func.var.val),
                     expected = node.ch[0].ch.map(c => c.ch[0].symbol), newScope = {}
                 params = params.map(par => {
@@ -339,7 +378,13 @@ class Node {
                     }
                     return par
                 })
-                expected.forEach((v, i) => newScope[v] = params[i])
+                expected.forEach((v, I) => {
+                    if (v.var && v.var.type == 'spread') {
+                        // for (let i of v.var.val)
+                        newScope[v] = [...params[I]]
+                    } else
+                        newScope[v] = params[I]
+                })
                 newScope['this'] = func.object
                 let val = node.ch[1].exec({ ...node.scope, ...newScope })
                 params.forEach(par => par.delete())
@@ -350,10 +395,13 @@ class Node {
                 let obj = this.ch[0].exec(scope),
                     index = this.ch[1].exec(scope)
                 let string = index.var.val
-                let overwrite = { 'push': '$push' }
+                let overwrite = { 'push': '$push', 'length': '$length' }
                 string = overwrite[string] || string
                 if (obj.var.type == 'array')
-                    this.value = obj.var.val[string]
+                    if (string == '$length')
+                        this.value = (new Variable('number', obj.var.val.length)).saveTo('r')
+                    else
+                        this.value = obj.var.val[string]
                 else if (obj.var.type == 'dictionary') {
                     let key = obj.var.val.findIndex((ref, i) => i % 2 == 0 && ref.var.val === index.var.val)
                     this.value = obj.var.val[key + 1]
@@ -374,6 +422,28 @@ class Node {
                             newScope = { ...scope }
                         if (this.ch[i].symbol == 'while')
                             newScope = { ...scope }
+                        if (this.ch[i].symbol == 'group')
+                            newScope = { ...scope }
+                        ret = this.ch[i].exec(newScope)
+                        i++
+                    } while (i < this.ch.length && !(ret && ret.returnVal))
+                if (ret && ret.returnVal) {
+                    this.value = ret
+                    return this.value
+                }
+                break
+            }
+            case 'group': {
+                let i = 0, ret = undefined
+                if (this.ch.length != 0)
+                    do {
+                        let newScope = scope
+                        if (this.ch[i].symbol == 'for')
+                            newScope = { ...scope }
+                        if (this.ch[i].symbol == 'while')
+                            newScope = { ...scope }
+                        if (this.ch[i].symbol == 'group')
+                            newScope = { ...scope }
                         ret = this.ch[i].exec(newScope)
                         i++
                     } while (i < this.ch.length && !(ret && ret.returnVal))
@@ -388,10 +458,10 @@ class Node {
                 this.value = (new Variable('string', v2)).saveTo('r')
                 return this.value
             }
-            default: {
-                for (let c of this.ch) c.exec(scope)
-                break;
-            }
+            // default: {
+            // for (let c of this.ch) c.exec({ ...scope })
+            // break;
+            // }
         }
     }
     setAddress(address = []) {
@@ -616,8 +686,10 @@ class Node {
                 break
             case 'IdenValue':
                 return ch[0]
-            case 'GroupStatement':
+            case 'BlockStatement':
                 return new Node('block', ch.filter(c => !'{}'.includes(c.symbol)))
+            case 'GroupStatement':
+                return new Node('group', ch.filter(c => !'~{}'.includes(c.symbol)))
             case 'ValueStatement':
                 return ch[0]
             case 'CommentStatement':
@@ -782,9 +854,10 @@ class Variable {
 }
 
 var input = fs.readFileSync('./code.prsm', 'utf8')
-Node.runCode(input)
-console.log(input + '\n')
-// console.log(Node.textTree())
+Node.root = Node.toNode(parse(input))
+console.log(Node.textTree())
+// Node.runCode(input)
+// console.log(input + '\n')
 // console.log(Reference.memory(true))
 // console.log(Node.varOutput(false))
-console.log(Node.console(2))
+// console.log(Node.console(2))

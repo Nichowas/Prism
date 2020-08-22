@@ -222,6 +222,12 @@ GrammarVisitor.prototype.visitGroupStatement = function(ctx) {
 };
 
 
+// Visit a parse tree produced by GrammarParser#blockStatement.
+GrammarVisitor.prototype.visitBlockStatement = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
 // Visit a parse tree produced by GrammarParser#returnStatement.
 GrammarVisitor.prototype.visitReturnStatement = function(ctx) {
   return this.visitChildren(ctx);

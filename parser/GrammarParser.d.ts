@@ -204,6 +204,10 @@ export declare class WhileloopStatementContext extends ParserRuleContext {
     
 }
 
+export declare class BlockStatementContext extends ParserRuleContext {
+    
+}
+
 export declare class ForloopStatementContext extends ParserRuleContext {
     
     forloop(): ForloopContext;

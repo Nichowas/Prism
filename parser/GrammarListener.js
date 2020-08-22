@@ -326,6 +326,15 @@ GrammarListener.prototype.exitGroupStatement = function(ctx) {
 };
 
 
+// Enter a parse tree produced by GrammarParser#blockStatement.
+GrammarListener.prototype.enterBlockStatement = function(ctx) {
+};
+
+// Exit a parse tree produced by GrammarParser#blockStatement.
+GrammarListener.prototype.exitBlockStatement = function(ctx) {
+};
+
+
 // Enter a parse tree produced by GrammarParser#returnStatement.
 GrammarListener.prototype.enterReturnStatement = function(ctx) {
 };
