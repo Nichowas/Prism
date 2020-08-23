@@ -470,21 +470,21 @@ GrammarListener.prototype.exitDictionaryValue = function(ctx) {
 };
 
 
-// Enter a parse tree produced by GrammarParser#bracketValue.
-GrammarListener.prototype.enterBracketValue = function(ctx) {
-};
-
-// Exit a parse tree produced by GrammarParser#bracketValue.
-GrammarListener.prototype.exitBracketValue = function(ctx) {
-};
-
-
 // Enter a parse tree produced by GrammarParser#numberValue.
 GrammarListener.prototype.enterNumberValue = function(ctx) {
 };
 
 // Exit a parse tree produced by GrammarParser#numberValue.
 GrammarListener.prototype.exitNumberValue = function(ctx) {
+};
+
+
+// Enter a parse tree produced by GrammarParser#bracketValue.
+GrammarListener.prototype.enterBracketValue = function(ctx) {
+};
+
+// Exit a parse tree produced by GrammarParser#bracketValue.
+GrammarListener.prototype.exitBracketValue = function(ctx) {
 };
 
 

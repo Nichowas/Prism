@@ -318,14 +318,14 @@ GrammarVisitor.prototype.visitDictionaryValue = function(ctx) {
 };
 
 
-// Visit a parse tree produced by GrammarParser#bracketValue.
-GrammarVisitor.prototype.visitBracketValue = function(ctx) {
+// Visit a parse tree produced by GrammarParser#numberValue.
+GrammarVisitor.prototype.visitNumberValue = function(ctx) {
   return this.visitChildren(ctx);
 };
 
 
-// Visit a parse tree produced by GrammarParser#numberValue.
-GrammarVisitor.prototype.visitNumberValue = function(ctx) {
+// Visit a parse tree produced by GrammarParser#bracketValue.
+GrammarVisitor.prototype.visitBracketValue = function(ctx) {
   return this.visitChildren(ctx);
 };
 

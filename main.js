@@ -67,11 +67,7 @@ class Node {
 
                 let arr = new Variable('array', ch)
                 this.value = arr.saveTo('r')
-
-                arr.val['$push'] = Reference.getRef('v', 0)
-                ch.forEach(c => c.object = this.value)
-                ch['$push'].object = this.value
-
+                this.value.var.array()
                 return this.value
             }
             case 'dictionary': {
@@ -123,13 +119,13 @@ class Node {
                     if (val.var.category() == 'primitive') {
                         iden.setVar(val.var.copy())
                         val.delete()
-                        if (val.deleted && val.v.val.type == 'array')
-                            val.v.val.forEach(c => c.object = iden)
-                        if (val.deleted && val.v.val.type == 'dictionary')
-                            val.v.val.forEach((c, i) => {
-                                if (i % 2 == 1)
-                                    c.object = iden
-                            })
+                        // if (val.deleted && val.v.val.type == 'array')
+                        //     val.v.val.forEach(c => c.object = iden)
+                        // if (val.deleted && val.v.val.type == 'dictionary')
+                        //     val.v.val.forEach((c, i) => {
+                        //         if (i % 2 == 1)
+                        //             c.object = iden
+                        //     })
                     } else
                         iden.setVar(new Variable('reference', val))
                     this.value = iden
@@ -246,6 +242,18 @@ class Node {
                 }
                 break;
             }
+            case 'to': {
+                let arr = [],
+                    from = this.ch[0].exec(scope),
+                    to = this.ch[1].exec(scope),
+                    by = this.ch[2].exec(scope)
+                for (let i = from.var.val; i < to.var.val; i += by.var.val) {
+                    arr.push(new Variable('number', i).saveTo('r'))
+                }
+                this.value = new Variable('array', arr).saveTo('r')
+                this.value.var.array()
+                return this.value
+            }
             case '&&': {
                 let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
                 if (v1 && v2) {
@@ -288,12 +296,13 @@ class Node {
                                 this.value = block.value
                                 return this.value
                             }
-                            if (c.exec(scope) && !c.value.var.val) {
+                            e.exec(scope)
+                            c.exec(scope)
+                            if (!c.value.var.val) {
                                 c.value.delete()
                                 break
                             }
                             c.value.delete()
-                            e.exec(scope)
                         }
                         break
                     }
@@ -320,7 +329,7 @@ class Node {
                         for (let i in valR.var.val) {
                             if (i[0] == '$')
                                 continue
-                            iter.ch[1].exec(scope).var.val = valR.var.val[i]
+                            iter.ch[1].exec(scope).var.val = valR.var.val[i].var.val
                             this.ch[1].exec(scope)
                             if (this.ch[1].value && this.ch[1].value.returnVal) {
                                 this.value = this.ch[1].value
@@ -363,6 +372,7 @@ class Node {
             case 'apply': {
                 let func = this.ch[0].exec(scope),
                     params = []
+                params.push(func.object)
                 this.ch[1].ch.forEach(c => {
                     // if (c.type == 'spread')
                     // params.push(...c.exec(scope).var.val)
@@ -371,6 +381,7 @@ class Node {
                 })
                 let node = Node.root.getNodeByAddress(func.var.val),
                     expected = node.ch[0].ch.map(c => c.ch[0].symbol), newScope = {}
+                expected.unshift('this')
                 params = params.map(par => {
                     if (par.v.category() == 'primitive') {
                         par.delete()
@@ -385,7 +396,6 @@ class Node {
                     } else
                         newScope[v] = params[I]
                 })
-                newScope['this'] = func.object
                 let val = node.ch[1].exec({ ...node.scope, ...newScope })
                 params.forEach(par => par.delete())
                 this.value = val && val.returnVal
@@ -824,6 +834,11 @@ class Variable {
         this.type = type
         this.val = val
     }
+    array() {
+        this.val['$push'] = new Variable('reference', Reference.getRef('v', 0)).saveTo('r')
+        this.val.forEach(c => c.object = this.ref)
+        this.val['$push'].object = this.ref
+    }
     saveTo(reg) {
         let i = Reference.total[reg]
         let ref = new Reference(reg, i)
@@ -849,15 +864,17 @@ class Variable {
                 return 'reference'
             case 'dictionary':
                 return 'reference'
+            case 'reference':
+                return 'reference'
         }
     }
 }
 
 var input = fs.readFileSync('./code.prsm', 'utf8')
-Node.root = Node.toNode(parse(input))
+// Node.root = Node.toNode(parse(input))
+Node.runCode(input)
+console.log(input + '\n')
 console.log(Node.textTree())
-// Node.runCode(input)
-// console.log(input + '\n')
-// console.log(Reference.memory(true))
+console.log(Reference.memory(false))
 // console.log(Node.varOutput(false))
-// console.log(Node.console(2))
+console.log(Node.console(2))

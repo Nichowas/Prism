@@ -71,41 +71,42 @@ statement:
 
 //Value/Variable
 value:
-    '('value')'                                             #bracketValue
-    | 'new' value                                           #instanceValue
-    | 'class' value                                         #classValue
-
-    | value 'to' value ('by' value)?                        #rangeValue
-
-    | value '?' value ':' value                             #ternaryValue
-    | value '!=' value                                      #inequalValue
-    | value '==' value                                      #equalValue
-    | value '>' value                                       #gtValue
-    | value '>=' value                                      #gteValue
-    | value '<' value                                       #ltValue
-    | value '<=' value                                      #lteValue
-
-    | value '&&' value                                      #andValue
-    | value '||' value                                      #orValue
-    | '!' value                                             #notValue
-
-    | value '%' value                                       #modValue
-    | value ('*'|'/') value                                 #multValue
-    | value ('+'|'-') value                                 #addValue
-    | value '_' value                                       #blankConcatValue
-    | '-' value                                             #negateValue
-    | value '(' ('...'? value ',')* ('...'? value)? ')'     #applyFuncValue
-    | value '[' value ']'                                   #elementValue
-    | value '.' iden                                        #propertyValue
-    | '#' value                                             #stringRepValue
-
-    | iden                                                  #idenValue
+    iden                                                    #idenValue
     | func                                                  #funcValue
     | dictionary                                            #dictionaryValue
     | array                                                 #arrayValue
     | NUM                                                   #numberValue
     | STRING                                                #stringValue
     | (TRUE|FALSE)                                          #boolValue
+
+    | 'new' value                                           #instanceValue
+    | 'class' value                                         #classValue
+
+    | '-' value                                             #negateValue
+    | value ('*'|'/') value                                 #multValue
+    | value ('+'|'-') value                                 #addValue
+    | value '%' value                                       #modValue
+    | value '_' value                                       #blankConcatValue
+    | value '(' ('...'? value ',')* ('...'? value)? ')'     #applyFuncValue
+    | value '[' value ']'                                   #elementValue
+    | value '.' iden                                        #propertyValue
+
+    | value '>' value                                       #gtValue
+    | value '>=' value                                      #gteValue
+    | value '<' value                                       #ltValue
+    | value '<=' value                                      #lteValue
+    | value '!=' value                                      #inequalValue
+    | value '?' value ':' value                             #ternaryValue
+
+    | value 'to' value ('by' value)?                        #rangeValue
+    | '#' value                                             #stringRepValue
+    | value '==' value                                      #equalValue
+
+    | '!' value                                             #notValue
+    | value '&&' value                                      #andValue
+    | value '||' value                                      #orValue
+
+    | '('value')'                                           #bracketValue
     ;
 
 //Lexer Rules
@@ -115,5 +116,5 @@ WS: [' '\r\n\t] -> skip;
 COMMENT: '//' ~('\n')* '\n';
 WORD: [a-zA-Z]+;
 STRING: '"' ~('"')* '"';
-NUM: '-'? DIGIT+ ('.' DIGIT+)?;
+NUM: DIGIT+ ('.' DIGIT+)?;
 fragment DIGIT: [0-9];

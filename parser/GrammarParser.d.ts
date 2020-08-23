@@ -306,15 +306,15 @@ export declare class DictionaryValueContext extends ParserRuleContext {
     
 }
 
-export declare class BracketValueContext extends ParserRuleContext {
-    
-    value(): ValueContext;
-    
-}
-
 export declare class NumberValueContext extends ParserRuleContext {
     
     NUM(): TerminalNode;
+    
+}
+
+export declare class BracketValueContext extends ParserRuleContext {
+    
+    value(): ValueContext;
     
 }
 

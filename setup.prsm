@@ -3,7 +3,8 @@
         this = [...this, item]
     }
     var log = str => {
-        logs.push(str)
+        this.logs.push(str)
+        return str
     }
     var logs = []
     pub console = {

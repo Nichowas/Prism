@@ -57,16 +57,16 @@ var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
     "\u0012\u0003\u0012\u0003\u0012\u0003\u0012\u0003\u0012\u0003\u0012\u0003",
     "\u0012\u0003\u0012\u0003\u0012\u0003\u0012\u0003\u0012\u0003\u0012\u0003",
     "\u0012\u0003\u0012\u0003\u0012\u0003\u0012\u0003\u0012\u0003\u0012\u0003",
-    "\u0012\u0003\u0012\u0003\u0012\u0003\u0012\u0003\u0012\u0003\u0012\u0005",
-    "\u0012\u0147\n\u0012\u0003\u0012\u0003\u0012\u0003\u0012\u0005\u0012",
-    "\u014c\n\u0012\u0003\u0012\u0003\u0012\u0003\u0012\u0007\u0012\u0151",
-    "\n\u0012\f\u0012\u000e\u0012\u0154\u000b\u0012\u0003\u0012\u0005\u0012",
-    "\u0157\n\u0012\u0003\u0012\u0005\u0012\u015a\n\u0012\u0003\u0012\u0003",
+    "\u0012\u0003\u0012\u0003\u0012\u0003\u0012\u0005\u0012\u0145\n\u0012",
+    "\u0003\u0012\u0003\u0012\u0003\u0012\u0007\u0012\u014a\n\u0012\f\u0012",
+    "\u000e\u0012\u014d\u000b\u0012\u0003\u0012\u0005\u0012\u0150\n\u0012",
+    "\u0003\u0012\u0005\u0012\u0153\n\u0012\u0003\u0012\u0003\u0012\u0003",
     "\u0012\u0003\u0012\u0003\u0012\u0003\u0012\u0003\u0012\u0003\u0012\u0003",
-    "\u0012\u0003\u0012\u0007\u0012\u0165\n\u0012\f\u0012\u000e\u0012\u0168",
+    "\u0012\u0003\u0012\u0003\u0012\u0003\u0012\u0003\u0012\u0003\u0012\u0005",
+    "\u0012\u0163\n\u0012\u0007\u0012\u0165\n\u0012\f\u0012\u000e\u0012\u0168",
     "\u000b\u0012\u0003\u0012\u0002\u0003\"\u0013\u0002\u0004\u0006\b\n\f",
     "\u000e\u0010\u0012\u0014\u0016\u0018\u001a\u001c\u001e \"\u0002\u0006",
-    "\u0003\u0002 !\u0003\u00029:\u0003\u000234\u0003\u000256\u0002\u01a6",
+    "\u0003\u0002 !\u0003\u00029:\u0003\u0002\'(\u0004\u0002&&))\u0002\u01a6",
     "\u0002(\u0003\u0002\u0002\u0002\u0004+\u0003\u0002\u0002\u0002\u0006",
     "2\u0003\u0002\u0002\u0002\b4\u0003\u0002\u0002\u0002\nM\u0003\u0002",
     "\u0002\u0002\fO\u0003\u0002\u0002\u0002\u000eU\u0003\u0002\u0002\u0002",
@@ -192,76 +192,76 @@ var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
     "\u0002\u00fd\u00e9\u0003\u0002\u0002\u0002\u00fd\u00f1\u0003\u0002\u0002",
     "\u0002\u00fd\u00f9\u0003\u0002\u0002\u0002\u00fd\u00fb\u0003\u0002\u0002",
     "\u0002\u00fd\u00fc\u0003\u0002\u0002\u0002\u00fe!\u0003\u0002\u0002",
-    "\u0002\u00ff\u0100\b\u0012\u0001\u0002\u0100\u0101\u0007\u0005\u0002",
-    "\u0002\u0101\u0102\u0005\"\u0012\u0002\u0102\u0103\u0007\u0007\u0002",
-    "\u0002\u0103\u0116\u0003\u0002\u0002\u0002\u0104\u0105\u0007$\u0002",
-    "\u0002\u0105\u0116\u0005\"\u0012\u001f\u0106\u0107\u0007%\u0002\u0002",
-    "\u0107\u0116\u0005\"\u0012\u001e\u0108\u0109\u00071\u0002\u0002\u0109",
-    "\u0116\u0005\"\u0012\u0013\u010a\u010b\u00076\u0002\u0002\u010b\u0116",
-    "\u0005\"\u0012\u000e\u010c\u010d\u00078\u0002\u0002\u010d\u0116\u0005",
-    "\"\u0012\n\u010e\u0116\u0005\u0004\u0003\u0002\u010f\u0116\u0005\n\u0006",
-    "\u0002\u0110\u0116\u0005\u0016\f\u0002\u0111\u0116\u0005\u0014\u000b",
-    "\u0002\u0112\u0116\u0007?\u0002\u0002\u0113\u0116\u0007>\u0002\u0002",
-    "\u0114\u0116\t\u0003\u0002\u0002\u0115\u00ff\u0003\u0002\u0002\u0002",
-    "\u0115\u0104\u0003\u0002\u0002\u0002\u0115\u0106\u0003\u0002\u0002\u0002",
-    "\u0115\u0108\u0003\u0002\u0002\u0002\u0115\u010a\u0003\u0002\u0002\u0002",
-    "\u0115\u010c\u0003\u0002\u0002\u0002\u0115\u010e\u0003\u0002\u0002\u0002",
-    "\u0115\u010f\u0003\u0002\u0002\u0002\u0115\u0110\u0003\u0002\u0002\u0002",
-    "\u0115\u0111\u0003\u0002\u0002\u0002\u0115\u0112\u0003\u0002\u0002\u0002",
-    "\u0115\u0113\u0003\u0002\u0002\u0002\u0115\u0114\u0003\u0002\u0002\u0002",
-    "\u0116\u0166\u0003\u0002\u0002\u0002\u0117\u0118\f\u001c\u0002\u0002",
-    "\u0118\u0119\u0007(\u0002\u0002\u0119\u011a\u0005\"\u0012\u0002\u011a",
-    "\u011b\u0007\u0016\u0002\u0002\u011b\u011c\u0005\"\u0012\u001d\u011c",
-    "\u0165\u0003\u0002\u0002\u0002\u011d\u011e\f\u001b\u0002\u0002\u011e",
-    "\u011f\u0007)\u0002\u0002\u011f\u0165\u0005\"\u0012\u001c\u0120\u0121",
-    "\f\u001a\u0002\u0002\u0121\u0122\u0007*\u0002\u0002\u0122\u0165\u0005",
-    "\"\u0012\u001b\u0123\u0124\f\u0019\u0002\u0002\u0124\u0125\u0007+\u0002",
-    "\u0002\u0125\u0165\u0005\"\u0012\u001a\u0126\u0127\f\u0018\u0002\u0002",
-    "\u0127\u0128\u0007,\u0002\u0002\u0128\u0165\u0005\"\u0012\u0019\u0129",
-    "\u012a\f\u0017\u0002\u0002\u012a\u012b\u0007-\u0002\u0002\u012b\u0165",
-    "\u0005\"\u0012\u0018\u012c\u012d\f\u0016\u0002\u0002\u012d\u012e\u0007",
-    ".\u0002\u0002\u012e\u0165\u0005\"\u0012\u0017\u012f\u0130\f\u0015\u0002",
-    "\u0002\u0130\u0131\u0007/\u0002\u0002\u0131\u0165\u0005\"\u0012\u0016",
-    "\u0132\u0133\f\u0014\u0002\u0002\u0133\u0134\u00070\u0002\u0002\u0134",
-    "\u0165\u0005\"\u0012\u0015\u0135\u0136\f\u0012\u0002\u0002\u0136\u0137",
-    "\u00072\u0002\u0002\u0137\u0165\u0005\"\u0012\u0013\u0138\u0139\f\u0011",
-    "\u0002\u0002\u0139\u013a\t\u0004\u0002\u0002\u013a\u0165\u0005\"\u0012",
-    "\u0012\u013b\u013c\f\u0010\u0002\u0002\u013c\u013d\t\u0005\u0002\u0002",
-    "\u013d\u0165\u0005\"\u0012\u0011\u013e\u013f\f\u000f\u0002\u0002\u013f",
-    "\u0140\u00077\u0002\u0002\u0140\u0165\u0005\"\u0012\u0010\u0141\u0142",
-    "\f\u001d\u0002\u0002\u0142\u0143\u0007&\u0002\u0002\u0143\u0146\u0005",
-    "\"\u0012\u0002\u0144\u0145\u0007\'\u0002\u0002\u0145\u0147\u0005\"\u0012",
-    "\u0002\u0146\u0144\u0003\u0002\u0002\u0002\u0146\u0147\u0003\u0002\u0002",
-    "\u0002\u0147\u0165\u0003\u0002\u0002\u0002\u0148\u0149\f\r\u0002\u0002",
-    "\u0149\u0152\u0007\u0005\u0002\u0002\u014a\u014c\u0007\u0003\u0002\u0002",
-    "\u014b\u014a\u0003\u0002\u0002\u0002\u014b\u014c\u0003\u0002\u0002\u0002",
-    "\u014c\u014d\u0003\u0002\u0002\u0002\u014d\u014e\u0005\"\u0012\u0002",
-    "\u014e\u014f\u0007\u0006\u0002\u0002\u014f\u0151\u0003\u0002\u0002\u0002",
-    "\u0150\u014b\u0003\u0002\u0002\u0002\u0151\u0154\u0003\u0002\u0002\u0002",
-    "\u0152\u0150\u0003\u0002\u0002\u0002\u0152\u0153\u0003\u0002\u0002\u0002",
-    "\u0153\u0159\u0003\u0002\u0002\u0002\u0154\u0152\u0003\u0002\u0002\u0002",
-    "\u0155\u0157\u0007\u0003\u0002\u0002\u0156\u0155\u0003\u0002\u0002\u0002",
-    "\u0156\u0157\u0003\u0002\u0002\u0002\u0157\u0158\u0003\u0002\u0002\u0002",
-    "\u0158\u015a\u0005\"\u0012\u0002\u0159\u0156\u0003\u0002\u0002\u0002",
-    "\u0159\u015a\u0003\u0002\u0002\u0002\u015a\u015b\u0003\u0002\u0002\u0002",
-    "\u015b\u0165\u0007\u0007\u0002\u0002\u015c\u015d\f\f\u0002\u0002\u015d",
-    "\u015e\u0007\u0012\u0002\u0002\u015e\u015f\u0005\"\u0012\u0002\u015f",
-    "\u0160\u0007\u0013\u0002\u0002\u0160\u0165\u0003\u0002\u0002\u0002\u0161",
-    "\u0162\f\u000b\u0002\u0002\u0162\u0163\u0007\u0004\u0002\u0002\u0163",
-    "\u0165\u0005\u0004\u0003\u0002\u0164\u0117\u0003\u0002\u0002\u0002\u0164",
-    "\u011d\u0003\u0002\u0002\u0002\u0164\u0120\u0003\u0002\u0002\u0002\u0164",
-    "\u0123\u0003\u0002\u0002\u0002\u0164\u0126\u0003\u0002\u0002\u0002\u0164",
-    "\u0129\u0003\u0002\u0002\u0002\u0164\u012c\u0003\u0002\u0002\u0002\u0164",
-    "\u012f\u0003\u0002\u0002\u0002\u0164\u0132\u0003\u0002\u0002\u0002\u0164",
-    "\u0135\u0003\u0002\u0002\u0002\u0164\u0138\u0003\u0002\u0002\u0002\u0164",
-    "\u013b\u0003\u0002\u0002\u0002\u0164\u013e\u0003\u0002\u0002\u0002\u0164",
-    "\u0141\u0003\u0002\u0002\u0002\u0164\u0148\u0003\u0002\u0002\u0002\u0164",
-    "\u015c\u0003\u0002\u0002\u0002\u0164\u0161\u0003\u0002\u0002\u0002\u0165",
-    "\u0168\u0003\u0002\u0002\u0002\u0166\u0164\u0003\u0002\u0002\u0002\u0166",
-    "\u0167\u0003\u0002\u0002\u0002\u0167#\u0003\u0002\u0002\u0002\u0168",
-    "\u0166\u0003\u0002\u0002\u0002%&(2:>HM\\`dp\u007f\u0084\u0088\u008f",
-    "\u0093\u0096\u00a0\u00a4\u00a7\u00b2\u00ba\u00dd\u00e0\u00ed\u00f5\u00fd",
-    "\u0115\u0146\u014b\u0152\u0156\u0159\u0164\u0166"].join("");
+    "\u0002\u00ff\u0100\b\u0012\u0001\u0002\u0100\u0116\u0005\u0004\u0003",
+    "\u0002\u0101\u0116\u0005\n\u0006\u0002\u0102\u0116\u0005\u0016\f\u0002",
+    "\u0103\u0116\u0005\u0014\u000b\u0002\u0104\u0116\u0007?\u0002\u0002",
+    "\u0105\u0116\u0007>\u0002\u0002\u0106\u0116\t\u0003\u0002\u0002\u0107",
+    "\u0108\u0007$\u0002\u0002\u0108\u0116\u0005\"\u0012\u0019\u0109\u010a",
+    "\u0007%\u0002\u0002\u010a\u0116\u0005\"\u0012\u0018\u010b\u010c\u0007",
+    "&\u0002\u0002\u010c\u0116\u0005\"\u0012\u0017\u010d\u010e\u00074\u0002",
+    "\u0002\u010e\u0116\u0005\"\u0012\b\u010f\u0110\u00076\u0002\u0002\u0110",
+    "\u0116\u0005\"\u0012\u0006\u0111\u0112\u0007\u0005\u0002\u0002\u0112",
+    "\u0113\u0005\"\u0012\u0002\u0113\u0114\u0007\u0007\u0002\u0002\u0114",
+    "\u0116\u0003\u0002\u0002\u0002\u0115\u00ff\u0003\u0002\u0002\u0002\u0115",
+    "\u0101\u0003\u0002\u0002\u0002\u0115\u0102\u0003\u0002\u0002\u0002\u0115",
+    "\u0103\u0003\u0002\u0002\u0002\u0115\u0104\u0003\u0002\u0002\u0002\u0115",
+    "\u0105\u0003\u0002\u0002\u0002\u0115\u0106\u0003\u0002\u0002\u0002\u0115",
+    "\u0107\u0003\u0002\u0002\u0002\u0115\u0109\u0003\u0002\u0002\u0002\u0115",
+    "\u010b\u0003\u0002\u0002\u0002\u0115\u010d\u0003\u0002\u0002\u0002\u0115",
+    "\u010f\u0003\u0002\u0002\u0002\u0115\u0111\u0003\u0002\u0002\u0002\u0116",
+    "\u0166\u0003\u0002\u0002\u0002\u0117\u0118\f\u0016\u0002\u0002\u0118",
+    "\u0119\t\u0004\u0002\u0002\u0119\u0165\u0005\"\u0012\u0017\u011a\u011b",
+    "\f\u0015\u0002\u0002\u011b\u011c\t\u0005\u0002\u0002\u011c\u0165\u0005",
+    "\"\u0012\u0016\u011d\u011e\f\u0014\u0002\u0002\u011e\u011f\u0007*\u0002",
+    "\u0002\u011f\u0165\u0005\"\u0012\u0015\u0120\u0121\f\u0013\u0002\u0002",
+    "\u0121\u0122\u0007+\u0002\u0002\u0122\u0165\u0005\"\u0012\u0014\u0123",
+    "\u0124\f\u000f\u0002\u0002\u0124\u0125\u0007,\u0002\u0002\u0125\u0165",
+    "\u0005\"\u0012\u0010\u0126\u0127\f\u000e\u0002\u0002\u0127\u0128\u0007",
+    "-\u0002\u0002\u0128\u0165\u0005\"\u0012\u000f\u0129\u012a\f\r\u0002",
+    "\u0002\u012a\u012b\u0007.\u0002\u0002\u012b\u0165\u0005\"\u0012\u000e",
+    "\u012c\u012d\f\f\u0002\u0002\u012d\u012e\u0007/\u0002\u0002\u012e\u0165",
+    "\u0005\"\u0012\r\u012f\u0130\f\u000b\u0002\u0002\u0130\u0131\u00070",
+    "\u0002\u0002\u0131\u0165\u0005\"\u0012\f\u0132\u0133\f\n\u0002\u0002",
+    "\u0133\u0134\u00071\u0002\u0002\u0134\u0135\u0005\"\u0012\u0002\u0135",
+    "\u0136\u0007\u0016\u0002\u0002\u0136\u0137\u0005\"\u0012\u000b\u0137",
+    "\u0165\u0003\u0002\u0002\u0002\u0138\u0139\f\u0007\u0002\u0002\u0139",
+    "\u013a\u00075\u0002\u0002\u013a\u0165\u0005\"\u0012\b\u013b\u013c\f",
+    "\u0005\u0002\u0002\u013c\u013d\u00077\u0002\u0002\u013d\u0165\u0005",
+    "\"\u0012\u0006\u013e\u013f\f\u0004\u0002\u0002\u013f\u0140\u00078\u0002",
+    "\u0002\u0140\u0165\u0005\"\u0012\u0005\u0141\u0142\f\u0012\u0002\u0002",
+    "\u0142\u014b\u0007\u0005\u0002\u0002\u0143\u0145\u0007\u0003\u0002\u0002",
+    "\u0144\u0143\u0003\u0002\u0002\u0002\u0144\u0145\u0003\u0002\u0002\u0002",
+    "\u0145\u0146\u0003\u0002\u0002\u0002\u0146\u0147\u0005\"\u0012\u0002",
+    "\u0147\u0148\u0007\u0006\u0002\u0002\u0148\u014a\u0003\u0002\u0002\u0002",
+    "\u0149\u0144\u0003\u0002\u0002\u0002\u014a\u014d\u0003\u0002\u0002\u0002",
+    "\u014b\u0149\u0003\u0002\u0002\u0002\u014b\u014c\u0003\u0002\u0002\u0002",
+    "\u014c\u0152\u0003\u0002\u0002\u0002\u014d\u014b\u0003\u0002\u0002\u0002",
+    "\u014e\u0150\u0007\u0003\u0002\u0002\u014f\u014e\u0003\u0002\u0002\u0002",
+    "\u014f\u0150\u0003\u0002\u0002\u0002\u0150\u0151\u0003\u0002\u0002\u0002",
+    "\u0151\u0153\u0005\"\u0012\u0002\u0152\u014f\u0003\u0002\u0002\u0002",
+    "\u0152\u0153\u0003\u0002\u0002\u0002\u0153\u0154\u0003\u0002\u0002\u0002",
+    "\u0154\u0165\u0007\u0007\u0002\u0002\u0155\u0156\f\u0011\u0002\u0002",
+    "\u0156\u0157\u0007\u0012\u0002\u0002\u0157\u0158\u0005\"\u0012\u0002",
+    "\u0158\u0159\u0007\u0013\u0002\u0002\u0159\u0165\u0003\u0002\u0002\u0002",
+    "\u015a\u015b\f\u0010\u0002\u0002\u015b\u015c\u0007\u0004\u0002\u0002",
+    "\u015c\u0165\u0005\u0004\u0003\u0002\u015d\u015e\f\t\u0002\u0002\u015e",
+    "\u015f\u00072\u0002\u0002\u015f\u0162\u0005\"\u0012\u0002\u0160\u0161",
+    "\u00073\u0002\u0002\u0161\u0163\u0005\"\u0012\u0002\u0162\u0160\u0003",
+    "\u0002\u0002\u0002\u0162\u0163\u0003\u0002\u0002\u0002\u0163\u0165\u0003",
+    "\u0002\u0002\u0002\u0164\u0117\u0003\u0002\u0002\u0002\u0164\u011a\u0003",
+    "\u0002\u0002\u0002\u0164\u011d\u0003\u0002\u0002\u0002\u0164\u0120\u0003",
+    "\u0002\u0002\u0002\u0164\u0123\u0003\u0002\u0002\u0002\u0164\u0126\u0003",
+    "\u0002\u0002\u0002\u0164\u0129\u0003\u0002\u0002\u0002\u0164\u012c\u0003",
+    "\u0002\u0002\u0002\u0164\u012f\u0003\u0002\u0002\u0002\u0164\u0132\u0003",
+    "\u0002\u0002\u0002\u0164\u0138\u0003\u0002\u0002\u0002\u0164\u013b\u0003",
+    "\u0002\u0002\u0002\u0164\u013e\u0003\u0002\u0002\u0002\u0164\u0141\u0003",
+    "\u0002\u0002\u0002\u0164\u0155\u0003\u0002\u0002\u0002\u0164\u015a\u0003",
+    "\u0002\u0002\u0002\u0164\u015d\u0003\u0002\u0002\u0002\u0165\u0168\u0003",
+    "\u0002\u0002\u0002\u0166\u0164\u0003\u0002\u0002\u0002\u0166\u0167\u0003",
+    "\u0002\u0002\u0002\u0167#\u0003\u0002\u0002\u0002\u0168\u0166\u0003",
+    "\u0002\u0002\u0002%&(2:>HM\\`dp\u007f\u0084\u0088\u008f\u0093\u0096",
+    "\u00a0\u00a4\u00a7\u00b2\u00ba\u00dd\u00e0\u00ed\u00f5\u00fd\u0115\u0144",
+    "\u014b\u014f\u0152\u0162\u0164\u0166"].join("");
 
 
 var atn = new antlr4.atn.ATNDeserializer().deserialize(serializedATN);
@@ -275,10 +275,10 @@ var literalNames = [ null, "'...'", "'.'", "'('", "','", "')'", "'void'",
                      "'if'", "'elif'", "'else'", "'['", "']'", "'{'", "'}'", 
                      "':'", "'='", "'*='", "'/='", "'+='", "'-='", "'%='", 
                      "'++'", "'--'", "'stat'", "'pub'", "'var'", "'~{'", 
-                     "'return'", "'new'", "'class'", "'to'", "'by'", "'?'", 
-                     "'!='", "'=='", "'>'", "'>='", "'<'", "'<='", "'&&'", 
-                     "'||'", "'!'", "'%'", "'*'", "'/'", "'+'", "'-'", "'_'", 
-                     "'#'", "'true'", "'false'" ];
+                     "'return'", "'new'", "'class'", "'-'", "'*'", "'/'", 
+                     "'+'", "'%'", "'_'", "'>'", "'>='", "'<'", "'<='", 
+                     "'!='", "'?'", "'to'", "'by'", "'#'", "'=='", "'!'", 
+                     "'&&'", "'||'", "'true'", "'false'" ];
 
 var symbolicNames = [ null, null, null, null, null, null, null, null, null, 
                       null, null, null, null, null, null, null, null, null, 
@@ -466,7 +466,7 @@ GrammarParser.prototype.all = function() {
         this.state = 38;
         this._errHandler.sync(this);
         _la = this._input.LA(1);
-        while((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << GrammarParser.T__0) | (1 << GrammarParser.T__1) | (1 << GrammarParser.T__2) | (1 << GrammarParser.T__5) | (1 << GrammarParser.T__7) | (1 << GrammarParser.T__8) | (1 << GrammarParser.T__12) | (1 << GrammarParser.T__15) | (1 << GrammarParser.T__17) | (1 << GrammarParser.T__28) | (1 << GrammarParser.T__29) | (1 << GrammarParser.T__30))) !== 0) || ((((_la - 32)) & ~0x1f) == 0 && ((1 << (_la - 32)) & ((1 << (GrammarParser.T__31 - 32)) | (1 << (GrammarParser.T__32 - 32)) | (1 << (GrammarParser.T__33 - 32)) | (1 << (GrammarParser.T__34 - 32)) | (1 << (GrammarParser.T__46 - 32)) | (1 << (GrammarParser.T__51 - 32)) | (1 << (GrammarParser.T__53 - 32)) | (1 << (GrammarParser.TRUE - 32)) | (1 << (GrammarParser.FALSE - 32)) | (1 << (GrammarParser.COMMENT - 32)) | (1 << (GrammarParser.WORD - 32)) | (1 << (GrammarParser.STRING - 32)) | (1 << (GrammarParser.NUM - 32)))) !== 0)) {
+        while((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << GrammarParser.T__0) | (1 << GrammarParser.T__1) | (1 << GrammarParser.T__2) | (1 << GrammarParser.T__5) | (1 << GrammarParser.T__7) | (1 << GrammarParser.T__8) | (1 << GrammarParser.T__12) | (1 << GrammarParser.T__15) | (1 << GrammarParser.T__17) | (1 << GrammarParser.T__28) | (1 << GrammarParser.T__29) | (1 << GrammarParser.T__30))) !== 0) || ((((_la - 32)) & ~0x1f) == 0 && ((1 << (_la - 32)) & ((1 << (GrammarParser.T__31 - 32)) | (1 << (GrammarParser.T__32 - 32)) | (1 << (GrammarParser.T__33 - 32)) | (1 << (GrammarParser.T__34 - 32)) | (1 << (GrammarParser.T__35 - 32)) | (1 << (GrammarParser.T__49 - 32)) | (1 << (GrammarParser.T__51 - 32)) | (1 << (GrammarParser.TRUE - 32)) | (1 << (GrammarParser.FALSE - 32)) | (1 << (GrammarParser.COMMENT - 32)) | (1 << (GrammarParser.WORD - 32)) | (1 << (GrammarParser.STRING - 32)) | (1 << (GrammarParser.NUM - 32)))) !== 0)) {
             this.state = 36;
             this._errHandler.sync(this);
             var la_ = this._interp.adaptivePredict(this._input,0,this._ctx);
@@ -1354,7 +1354,7 @@ GrammarParser.prototype.iter = function() {
             this.state = 90;
             this._errHandler.sync(this);
             _la = this._input.LA(1);
-            if((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << GrammarParser.T__0) | (1 << GrammarParser.T__1) | (1 << GrammarParser.T__2) | (1 << GrammarParser.T__5) | (1 << GrammarParser.T__7) | (1 << GrammarParser.T__8) | (1 << GrammarParser.T__12) | (1 << GrammarParser.T__15) | (1 << GrammarParser.T__17) | (1 << GrammarParser.T__28) | (1 << GrammarParser.T__29) | (1 << GrammarParser.T__30))) !== 0) || ((((_la - 32)) & ~0x1f) == 0 && ((1 << (_la - 32)) & ((1 << (GrammarParser.T__31 - 32)) | (1 << (GrammarParser.T__32 - 32)) | (1 << (GrammarParser.T__33 - 32)) | (1 << (GrammarParser.T__34 - 32)) | (1 << (GrammarParser.T__46 - 32)) | (1 << (GrammarParser.T__51 - 32)) | (1 << (GrammarParser.T__53 - 32)) | (1 << (GrammarParser.TRUE - 32)) | (1 << (GrammarParser.FALSE - 32)) | (1 << (GrammarParser.COMMENT - 32)) | (1 << (GrammarParser.WORD - 32)) | (1 << (GrammarParser.STRING - 32)) | (1 << (GrammarParser.NUM - 32)))) !== 0)) {
+            if((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << GrammarParser.T__0) | (1 << GrammarParser.T__1) | (1 << GrammarParser.T__2) | (1 << GrammarParser.T__5) | (1 << GrammarParser.T__7) | (1 << GrammarParser.T__8) | (1 << GrammarParser.T__12) | (1 << GrammarParser.T__15) | (1 << GrammarParser.T__17) | (1 << GrammarParser.T__28) | (1 << GrammarParser.T__29) | (1 << GrammarParser.T__30))) !== 0) || ((((_la - 32)) & ~0x1f) == 0 && ((1 << (_la - 32)) & ((1 << (GrammarParser.T__31 - 32)) | (1 << (GrammarParser.T__32 - 32)) | (1 << (GrammarParser.T__33 - 32)) | (1 << (GrammarParser.T__34 - 32)) | (1 << (GrammarParser.T__35 - 32)) | (1 << (GrammarParser.T__49 - 32)) | (1 << (GrammarParser.T__51 - 32)) | (1 << (GrammarParser.TRUE - 32)) | (1 << (GrammarParser.FALSE - 32)) | (1 << (GrammarParser.COMMENT - 32)) | (1 << (GrammarParser.WORD - 32)) | (1 << (GrammarParser.STRING - 32)) | (1 << (GrammarParser.NUM - 32)))) !== 0)) {
                 this.state = 89;
                 this.statement();
             }
@@ -1364,7 +1364,7 @@ GrammarParser.prototype.iter = function() {
             this.state = 94;
             this._errHandler.sync(this);
             _la = this._input.LA(1);
-            if((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << GrammarParser.T__0) | (1 << GrammarParser.T__1) | (1 << GrammarParser.T__2) | (1 << GrammarParser.T__5) | (1 << GrammarParser.T__15) | (1 << GrammarParser.T__17))) !== 0) || ((((_la - 34)) & ~0x1f) == 0 && ((1 << (_la - 34)) & ((1 << (GrammarParser.T__33 - 34)) | (1 << (GrammarParser.T__34 - 34)) | (1 << (GrammarParser.T__46 - 34)) | (1 << (GrammarParser.T__51 - 34)) | (1 << (GrammarParser.T__53 - 34)) | (1 << (GrammarParser.TRUE - 34)) | (1 << (GrammarParser.FALSE - 34)) | (1 << (GrammarParser.WORD - 34)) | (1 << (GrammarParser.STRING - 34)) | (1 << (GrammarParser.NUM - 34)))) !== 0)) {
+            if((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << GrammarParser.T__0) | (1 << GrammarParser.T__1) | (1 << GrammarParser.T__2) | (1 << GrammarParser.T__5) | (1 << GrammarParser.T__15) | (1 << GrammarParser.T__17))) !== 0) || ((((_la - 34)) & ~0x1f) == 0 && ((1 << (_la - 34)) & ((1 << (GrammarParser.T__33 - 34)) | (1 << (GrammarParser.T__34 - 34)) | (1 << (GrammarParser.T__35 - 34)) | (1 << (GrammarParser.T__49 - 34)) | (1 << (GrammarParser.T__51 - 34)) | (1 << (GrammarParser.TRUE - 34)) | (1 << (GrammarParser.FALSE - 34)) | (1 << (GrammarParser.WORD - 34)) | (1 << (GrammarParser.STRING - 34)) | (1 << (GrammarParser.NUM - 34)))) !== 0)) {
                 this.state = 93;
                 this.value(0);
             }
@@ -1374,7 +1374,7 @@ GrammarParser.prototype.iter = function() {
             this.state = 98;
             this._errHandler.sync(this);
             _la = this._input.LA(1);
-            if((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << GrammarParser.T__0) | (1 << GrammarParser.T__1) | (1 << GrammarParser.T__2) | (1 << GrammarParser.T__5) | (1 << GrammarParser.T__7) | (1 << GrammarParser.T__8) | (1 << GrammarParser.T__12) | (1 << GrammarParser.T__15) | (1 << GrammarParser.T__17) | (1 << GrammarParser.T__28) | (1 << GrammarParser.T__29) | (1 << GrammarParser.T__30))) !== 0) || ((((_la - 32)) & ~0x1f) == 0 && ((1 << (_la - 32)) & ((1 << (GrammarParser.T__31 - 32)) | (1 << (GrammarParser.T__32 - 32)) | (1 << (GrammarParser.T__33 - 32)) | (1 << (GrammarParser.T__34 - 32)) | (1 << (GrammarParser.T__46 - 32)) | (1 << (GrammarParser.T__51 - 32)) | (1 << (GrammarParser.T__53 - 32)) | (1 << (GrammarParser.TRUE - 32)) | (1 << (GrammarParser.FALSE - 32)) | (1 << (GrammarParser.COMMENT - 32)) | (1 << (GrammarParser.WORD - 32)) | (1 << (GrammarParser.STRING - 32)) | (1 << (GrammarParser.NUM - 32)))) !== 0)) {
+            if((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << GrammarParser.T__0) | (1 << GrammarParser.T__1) | (1 << GrammarParser.T__2) | (1 << GrammarParser.T__5) | (1 << GrammarParser.T__7) | (1 << GrammarParser.T__8) | (1 << GrammarParser.T__12) | (1 << GrammarParser.T__15) | (1 << GrammarParser.T__17) | (1 << GrammarParser.T__28) | (1 << GrammarParser.T__29) | (1 << GrammarParser.T__30))) !== 0) || ((((_la - 32)) & ~0x1f) == 0 && ((1 << (_la - 32)) & ((1 << (GrammarParser.T__31 - 32)) | (1 << (GrammarParser.T__32 - 32)) | (1 << (GrammarParser.T__33 - 32)) | (1 << (GrammarParser.T__34 - 32)) | (1 << (GrammarParser.T__35 - 32)) | (1 << (GrammarParser.T__49 - 32)) | (1 << (GrammarParser.T__51 - 32)) | (1 << (GrammarParser.TRUE - 32)) | (1 << (GrammarParser.FALSE - 32)) | (1 << (GrammarParser.COMMENT - 32)) | (1 << (GrammarParser.WORD - 32)) | (1 << (GrammarParser.STRING - 32)) | (1 << (GrammarParser.NUM - 32)))) !== 0)) {
                 this.state = 97;
                 this.statement();
             }
@@ -1635,7 +1635,7 @@ GrammarParser.prototype.array = function() {
         this.state = 148;
         this._errHandler.sync(this);
         _la = this._input.LA(1);
-        if((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << GrammarParser.T__0) | (1 << GrammarParser.T__1) | (1 << GrammarParser.T__2) | (1 << GrammarParser.T__5) | (1 << GrammarParser.T__15) | (1 << GrammarParser.T__17))) !== 0) || ((((_la - 34)) & ~0x1f) == 0 && ((1 << (_la - 34)) & ((1 << (GrammarParser.T__33 - 34)) | (1 << (GrammarParser.T__34 - 34)) | (1 << (GrammarParser.T__46 - 34)) | (1 << (GrammarParser.T__51 - 34)) | (1 << (GrammarParser.T__53 - 34)) | (1 << (GrammarParser.TRUE - 34)) | (1 << (GrammarParser.FALSE - 34)) | (1 << (GrammarParser.WORD - 34)) | (1 << (GrammarParser.STRING - 34)) | (1 << (GrammarParser.NUM - 34)))) !== 0)) {
+        if((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << GrammarParser.T__0) | (1 << GrammarParser.T__1) | (1 << GrammarParser.T__2) | (1 << GrammarParser.T__5) | (1 << GrammarParser.T__15) | (1 << GrammarParser.T__17))) !== 0) || ((((_la - 34)) & ~0x1f) == 0 && ((1 << (_la - 34)) & ((1 << (GrammarParser.T__33 - 34)) | (1 << (GrammarParser.T__34 - 34)) | (1 << (GrammarParser.T__35 - 34)) | (1 << (GrammarParser.T__49 - 34)) | (1 << (GrammarParser.T__51 - 34)) | (1 << (GrammarParser.TRUE - 34)) | (1 << (GrammarParser.FALSE - 34)) | (1 << (GrammarParser.WORD - 34)) | (1 << (GrammarParser.STRING - 34)) | (1 << (GrammarParser.NUM - 34)))) !== 0)) {
             this.state = 145;
             this._errHandler.sync(this);
             var la_ = this._interp.adaptivePredict(this._input,15,this._ctx);
@@ -3038,7 +3038,7 @@ GrammarParser.prototype.statement = function() {
             this.state = 235;
             this._errHandler.sync(this);
             _la = this._input.LA(1);
-            while((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << GrammarParser.T__0) | (1 << GrammarParser.T__1) | (1 << GrammarParser.T__2) | (1 << GrammarParser.T__5) | (1 << GrammarParser.T__7) | (1 << GrammarParser.T__8) | (1 << GrammarParser.T__12) | (1 << GrammarParser.T__15) | (1 << GrammarParser.T__17) | (1 << GrammarParser.T__28) | (1 << GrammarParser.T__29) | (1 << GrammarParser.T__30))) !== 0) || ((((_la - 32)) & ~0x1f) == 0 && ((1 << (_la - 32)) & ((1 << (GrammarParser.T__31 - 32)) | (1 << (GrammarParser.T__32 - 32)) | (1 << (GrammarParser.T__33 - 32)) | (1 << (GrammarParser.T__34 - 32)) | (1 << (GrammarParser.T__46 - 32)) | (1 << (GrammarParser.T__51 - 32)) | (1 << (GrammarParser.T__53 - 32)) | (1 << (GrammarParser.TRUE - 32)) | (1 << (GrammarParser.FALSE - 32)) | (1 << (GrammarParser.COMMENT - 32)) | (1 << (GrammarParser.WORD - 32)) | (1 << (GrammarParser.STRING - 32)) | (1 << (GrammarParser.NUM - 32)))) !== 0)) {
+            while((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << GrammarParser.T__0) | (1 << GrammarParser.T__1) | (1 << GrammarParser.T__2) | (1 << GrammarParser.T__5) | (1 << GrammarParser.T__7) | (1 << GrammarParser.T__8) | (1 << GrammarParser.T__12) | (1 << GrammarParser.T__15) | (1 << GrammarParser.T__17) | (1 << GrammarParser.T__28) | (1 << GrammarParser.T__29) | (1 << GrammarParser.T__30))) !== 0) || ((((_la - 32)) & ~0x1f) == 0 && ((1 << (_la - 32)) & ((1 << (GrammarParser.T__31 - 32)) | (1 << (GrammarParser.T__32 - 32)) | (1 << (GrammarParser.T__33 - 32)) | (1 << (GrammarParser.T__34 - 32)) | (1 << (GrammarParser.T__35 - 32)) | (1 << (GrammarParser.T__49 - 32)) | (1 << (GrammarParser.T__51 - 32)) | (1 << (GrammarParser.TRUE - 32)) | (1 << (GrammarParser.FALSE - 32)) | (1 << (GrammarParser.COMMENT - 32)) | (1 << (GrammarParser.WORD - 32)) | (1 << (GrammarParser.STRING - 32)) | (1 << (GrammarParser.NUM - 32)))) !== 0)) {
                 this.state = 232;
                 this.statement();
                 this.state = 237;
@@ -3057,7 +3057,7 @@ GrammarParser.prototype.statement = function() {
             this.state = 243;
             this._errHandler.sync(this);
             _la = this._input.LA(1);
-            while((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << GrammarParser.T__0) | (1 << GrammarParser.T__1) | (1 << GrammarParser.T__2) | (1 << GrammarParser.T__5) | (1 << GrammarParser.T__7) | (1 << GrammarParser.T__8) | (1 << GrammarParser.T__12) | (1 << GrammarParser.T__15) | (1 << GrammarParser.T__17) | (1 << GrammarParser.T__28) | (1 << GrammarParser.T__29) | (1 << GrammarParser.T__30))) !== 0) || ((((_la - 32)) & ~0x1f) == 0 && ((1 << (_la - 32)) & ((1 << (GrammarParser.T__31 - 32)) | (1 << (GrammarParser.T__32 - 32)) | (1 << (GrammarParser.T__33 - 32)) | (1 << (GrammarParser.T__34 - 32)) | (1 << (GrammarParser.T__46 - 32)) | (1 << (GrammarParser.T__51 - 32)) | (1 << (GrammarParser.T__53 - 32)) | (1 << (GrammarParser.TRUE - 32)) | (1 << (GrammarParser.FALSE - 32)) | (1 << (GrammarParser.COMMENT - 32)) | (1 << (GrammarParser.WORD - 32)) | (1 << (GrammarParser.STRING - 32)) | (1 << (GrammarParser.NUM - 32)))) !== 0)) {
+            while((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << GrammarParser.T__0) | (1 << GrammarParser.T__1) | (1 << GrammarParser.T__2) | (1 << GrammarParser.T__5) | (1 << GrammarParser.T__7) | (1 << GrammarParser.T__8) | (1 << GrammarParser.T__12) | (1 << GrammarParser.T__15) | (1 << GrammarParser.T__17) | (1 << GrammarParser.T__28) | (1 << GrammarParser.T__29) | (1 << GrammarParser.T__30))) !== 0) || ((((_la - 32)) & ~0x1f) == 0 && ((1 << (_la - 32)) & ((1 << (GrammarParser.T__31 - 32)) | (1 << (GrammarParser.T__32 - 32)) | (1 << (GrammarParser.T__33 - 32)) | (1 << (GrammarParser.T__34 - 32)) | (1 << (GrammarParser.T__35 - 32)) | (1 << (GrammarParser.T__49 - 32)) | (1 << (GrammarParser.T__51 - 32)) | (1 << (GrammarParser.TRUE - 32)) | (1 << (GrammarParser.FALSE - 32)) | (1 << (GrammarParser.COMMENT - 32)) | (1 << (GrammarParser.WORD - 32)) | (1 << (GrammarParser.STRING - 32)) | (1 << (GrammarParser.NUM - 32)))) !== 0)) {
                 this.state = 240;
                 this.statement();
                 this.state = 245;
@@ -3612,41 +3612,6 @@ DictionaryValueContext.prototype.accept = function(visitor) {
 };
 
 
-function BracketValueContext(parser, ctx) {
-	ValueContext.call(this, parser);
-    ValueContext.prototype.copyFrom.call(this, ctx);
-    return this;
-}
-
-BracketValueContext.prototype = Object.create(ValueContext.prototype);
-BracketValueContext.prototype.constructor = BracketValueContext;
-
-GrammarParser.BracketValueContext = BracketValueContext;
-
-BracketValueContext.prototype.value = function() {
-    return this.getTypedRuleContext(ValueContext,0);
-};
-BracketValueContext.prototype.enterRule = function(listener) {
-    if(listener instanceof GrammarListener ) {
-        listener.enterBracketValue(this);
-	}
-};
-
-BracketValueContext.prototype.exitRule = function(listener) {
-    if(listener instanceof GrammarListener ) {
-        listener.exitBracketValue(this);
-	}
-};
-
-BracketValueContext.prototype.accept = function(visitor) {
-    if ( visitor instanceof GrammarVisitor ) {
-        return visitor.visitBracketValue(this);
-    } else {
-        return visitor.visitChildren(this);
-    }
-};
-
-
 function NumberValueContext(parser, ctx) {
 	ValueContext.call(this, parser);
     ValueContext.prototype.copyFrom.call(this, ctx);
@@ -3676,6 +3641,41 @@ NumberValueContext.prototype.exitRule = function(listener) {
 NumberValueContext.prototype.accept = function(visitor) {
     if ( visitor instanceof GrammarVisitor ) {
         return visitor.visitNumberValue(this);
+    } else {
+        return visitor.visitChildren(this);
+    }
+};
+
+
+function BracketValueContext(parser, ctx) {
+	ValueContext.call(this, parser);
+    ValueContext.prototype.copyFrom.call(this, ctx);
+    return this;
+}
+
+BracketValueContext.prototype = Object.create(ValueContext.prototype);
+BracketValueContext.prototype.constructor = BracketValueContext;
+
+GrammarParser.BracketValueContext = BracketValueContext;
+
+BracketValueContext.prototype.value = function() {
+    return this.getTypedRuleContext(ValueContext,0);
+};
+BracketValueContext.prototype.enterRule = function(listener) {
+    if(listener instanceof GrammarListener ) {
+        listener.enterBracketValue(this);
+	}
+};
+
+BracketValueContext.prototype.exitRule = function(listener) {
+    if(listener instanceof GrammarListener ) {
+        listener.exitBracketValue(this);
+	}
+};
+
+BracketValueContext.prototype.accept = function(visitor) {
+    if ( visitor instanceof GrammarVisitor ) {
+        return visitor.visitBracketValue(this);
     } else {
         return visitor.visitChildren(this);
     }
@@ -4318,121 +4318,59 @@ GrammarParser.prototype.value = function(_p) {
         var la_ = this._interp.adaptivePredict(this._input,27,this._ctx);
         switch(la_) {
         case 1:
-            localctx = new BracketValueContext(this, localctx);
+            localctx = new IdenValueContext(this, localctx);
             this._ctx = localctx;
             _prevctx = localctx;
 
             this.state = 254;
-            this.match(GrammarParser.T__2);
-            this.state = 255;
-            this.value(0);
-            this.state = 256;
-            this.match(GrammarParser.T__4);
-            break;
-
-        case 2:
-            localctx = new InstanceValueContext(this, localctx);
-            this._ctx = localctx;
-            _prevctx = localctx;
-            this.state = 258;
-            this.match(GrammarParser.T__33);
-            this.state = 259;
-            this.value(29);
-            break;
-
-        case 3:
-            localctx = new ClassValueContext(this, localctx);
-            this._ctx = localctx;
-            _prevctx = localctx;
-            this.state = 260;
-            this.match(GrammarParser.T__34);
-            this.state = 261;
-            this.value(28);
-            break;
-
-        case 4:
-            localctx = new NotValueContext(this, localctx);
-            this._ctx = localctx;
-            _prevctx = localctx;
-            this.state = 262;
-            this.match(GrammarParser.T__46);
-            this.state = 263;
-            this.value(17);
-            break;
-
-        case 5:
-            localctx = new NegateValueContext(this, localctx);
-            this._ctx = localctx;
-            _prevctx = localctx;
-            this.state = 264;
-            this.match(GrammarParser.T__51);
-            this.state = 265;
-            this.value(12);
-            break;
-
-        case 6:
-            localctx = new StringRepValueContext(this, localctx);
-            this._ctx = localctx;
-            _prevctx = localctx;
-            this.state = 266;
-            this.match(GrammarParser.T__53);
-            this.state = 267;
-            this.value(8);
-            break;
-
-        case 7:
-            localctx = new IdenValueContext(this, localctx);
-            this._ctx = localctx;
-            _prevctx = localctx;
-            this.state = 268;
             this.iden();
             break;
 
-        case 8:
+        case 2:
             localctx = new FuncValueContext(this, localctx);
             this._ctx = localctx;
             _prevctx = localctx;
-            this.state = 269;
+            this.state = 255;
             this.func();
             break;
 
-        case 9:
+        case 3:
             localctx = new DictionaryValueContext(this, localctx);
             this._ctx = localctx;
             _prevctx = localctx;
-            this.state = 270;
+            this.state = 256;
             this.dictionary();
             break;
 
-        case 10:
+        case 4:
             localctx = new ArrayValueContext(this, localctx);
             this._ctx = localctx;
             _prevctx = localctx;
-            this.state = 271;
+            this.state = 257;
             this.array();
             break;
 
-        case 11:
+        case 5:
             localctx = new NumberValueContext(this, localctx);
             this._ctx = localctx;
             _prevctx = localctx;
-            this.state = 272;
+            this.state = 258;
             this.match(GrammarParser.NUM);
             break;
 
-        case 12:
+        case 6:
             localctx = new StringValueContext(this, localctx);
             this._ctx = localctx;
             _prevctx = localctx;
-            this.state = 273;
+            this.state = 259;
             this.match(GrammarParser.STRING);
             break;
 
-        case 13:
+        case 7:
             localctx = new BoolValueContext(this, localctx);
             this._ctx = localctx;
             _prevctx = localctx;
-            this.state = 274;
+            this.state = 260;
             _la = this._input.LA(1);
             if(!(_la===GrammarParser.TRUE || _la===GrammarParser.FALSE)) {
             this._errHandler.recoverInline(this);
@@ -4441,6 +4379,68 @@ GrammarParser.prototype.value = function(_p) {
             	this._errHandler.reportMatch(this);
                 this.consume();
             }
+            break;
+
+        case 8:
+            localctx = new InstanceValueContext(this, localctx);
+            this._ctx = localctx;
+            _prevctx = localctx;
+            this.state = 261;
+            this.match(GrammarParser.T__33);
+            this.state = 262;
+            this.value(23);
+            break;
+
+        case 9:
+            localctx = new ClassValueContext(this, localctx);
+            this._ctx = localctx;
+            _prevctx = localctx;
+            this.state = 263;
+            this.match(GrammarParser.T__34);
+            this.state = 264;
+            this.value(22);
+            break;
+
+        case 10:
+            localctx = new NegateValueContext(this, localctx);
+            this._ctx = localctx;
+            _prevctx = localctx;
+            this.state = 265;
+            this.match(GrammarParser.T__35);
+            this.state = 266;
+            this.value(21);
+            break;
+
+        case 11:
+            localctx = new StringRepValueContext(this, localctx);
+            this._ctx = localctx;
+            _prevctx = localctx;
+            this.state = 267;
+            this.match(GrammarParser.T__49);
+            this.state = 268;
+            this.value(6);
+            break;
+
+        case 12:
+            localctx = new NotValueContext(this, localctx);
+            this._ctx = localctx;
+            _prevctx = localctx;
+            this.state = 269;
+            this.match(GrammarParser.T__51);
+            this.state = 270;
+            this.value(4);
+            break;
+
+        case 13:
+            localctx = new BracketValueContext(this, localctx);
+            this._ctx = localctx;
+            _prevctx = localctx;
+            this.state = 271;
+            this.match(GrammarParser.T__2);
+            this.state = 272;
+            this.value(0);
+            this.state = 273;
+            this.match(GrammarParser.T__4);
             break;
 
         }
@@ -4459,293 +4459,293 @@ GrammarParser.prototype.value = function(_p) {
                 var la_ = this._interp.adaptivePredict(this._input,33,this._ctx);
                 switch(la_) {
                 case 1:
-                    localctx = new TernaryValueContext(this, new ValueContext(this, _parentctx, _parentState));
+                    localctx = new MultValueContext(this, new ValueContext(this, _parentctx, _parentState));
                     this.pushNewRecursionContext(localctx, _startState, GrammarParser.RULE_value);
                     this.state = 277;
-                    if (!( this.precpred(this._ctx, 26))) {
-                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 26)");
-                    }
-                    this.state = 278;
-                    this.match(GrammarParser.T__37);
-                    this.state = 279;
-                    this.value(0);
-                    this.state = 280;
-                    this.match(GrammarParser.T__19);
-                    this.state = 281;
-                    this.value(27);
-                    break;
-
-                case 2:
-                    localctx = new InequalValueContext(this, new ValueContext(this, _parentctx, _parentState));
-                    this.pushNewRecursionContext(localctx, _startState, GrammarParser.RULE_value);
-                    this.state = 283;
-                    if (!( this.precpred(this._ctx, 25))) {
-                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 25)");
-                    }
-                    this.state = 284;
-                    this.match(GrammarParser.T__38);
-                    this.state = 285;
-                    this.value(26);
-                    break;
-
-                case 3:
-                    localctx = new EqualValueContext(this, new ValueContext(this, _parentctx, _parentState));
-                    this.pushNewRecursionContext(localctx, _startState, GrammarParser.RULE_value);
-                    this.state = 286;
-                    if (!( this.precpred(this._ctx, 24))) {
-                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 24)");
-                    }
-                    this.state = 287;
-                    this.match(GrammarParser.T__39);
-                    this.state = 288;
-                    this.value(25);
-                    break;
-
-                case 4:
-                    localctx = new GtValueContext(this, new ValueContext(this, _parentctx, _parentState));
-                    this.pushNewRecursionContext(localctx, _startState, GrammarParser.RULE_value);
-                    this.state = 289;
-                    if (!( this.precpred(this._ctx, 23))) {
-                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 23)");
-                    }
-                    this.state = 290;
-                    this.match(GrammarParser.T__40);
-                    this.state = 291;
-                    this.value(24);
-                    break;
-
-                case 5:
-                    localctx = new GteValueContext(this, new ValueContext(this, _parentctx, _parentState));
-                    this.pushNewRecursionContext(localctx, _startState, GrammarParser.RULE_value);
-                    this.state = 292;
-                    if (!( this.precpred(this._ctx, 22))) {
-                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 22)");
-                    }
-                    this.state = 293;
-                    this.match(GrammarParser.T__41);
-                    this.state = 294;
-                    this.value(23);
-                    break;
-
-                case 6:
-                    localctx = new LtValueContext(this, new ValueContext(this, _parentctx, _parentState));
-                    this.pushNewRecursionContext(localctx, _startState, GrammarParser.RULE_value);
-                    this.state = 295;
-                    if (!( this.precpred(this._ctx, 21))) {
-                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 21)");
-                    }
-                    this.state = 296;
-                    this.match(GrammarParser.T__42);
-                    this.state = 297;
-                    this.value(22);
-                    break;
-
-                case 7:
-                    localctx = new LteValueContext(this, new ValueContext(this, _parentctx, _parentState));
-                    this.pushNewRecursionContext(localctx, _startState, GrammarParser.RULE_value);
-                    this.state = 298;
                     if (!( this.precpred(this._ctx, 20))) {
                         throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 20)");
                     }
-                    this.state = 299;
-                    this.match(GrammarParser.T__43);
-                    this.state = 300;
+                    this.state = 278;
+                    _la = this._input.LA(1);
+                    if(!(_la===GrammarParser.T__36 || _la===GrammarParser.T__37)) {
+                    this._errHandler.recoverInline(this);
+                    }
+                    else {
+                    	this._errHandler.reportMatch(this);
+                        this.consume();
+                    }
+                    this.state = 279;
                     this.value(21);
                     break;
 
-                case 8:
-                    localctx = new AndValueContext(this, new ValueContext(this, _parentctx, _parentState));
+                case 2:
+                    localctx = new AddValueContext(this, new ValueContext(this, _parentctx, _parentState));
                     this.pushNewRecursionContext(localctx, _startState, GrammarParser.RULE_value);
-                    this.state = 301;
+                    this.state = 280;
                     if (!( this.precpred(this._ctx, 19))) {
                         throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 19)");
                     }
-                    this.state = 302;
-                    this.match(GrammarParser.T__44);
-                    this.state = 303;
+                    this.state = 281;
+                    _la = this._input.LA(1);
+                    if(!(_la===GrammarParser.T__35 || _la===GrammarParser.T__38)) {
+                    this._errHandler.recoverInline(this);
+                    }
+                    else {
+                    	this._errHandler.reportMatch(this);
+                        this.consume();
+                    }
+                    this.state = 282;
                     this.value(20);
                     break;
 
-                case 9:
-                    localctx = new OrValueContext(this, new ValueContext(this, _parentctx, _parentState));
+                case 3:
+                    localctx = new ModValueContext(this, new ValueContext(this, _parentctx, _parentState));
                     this.pushNewRecursionContext(localctx, _startState, GrammarParser.RULE_value);
-                    this.state = 304;
+                    this.state = 283;
                     if (!( this.precpred(this._ctx, 18))) {
                         throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 18)");
                     }
-                    this.state = 305;
-                    this.match(GrammarParser.T__45);
-                    this.state = 306;
+                    this.state = 284;
+                    this.match(GrammarParser.T__39);
+                    this.state = 285;
                     this.value(19);
                     break;
 
-                case 10:
-                    localctx = new ModValueContext(this, new ValueContext(this, _parentctx, _parentState));
-                    this.pushNewRecursionContext(localctx, _startState, GrammarParser.RULE_value);
-                    this.state = 307;
-                    if (!( this.precpred(this._ctx, 16))) {
-                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 16)");
-                    }
-                    this.state = 308;
-                    this.match(GrammarParser.T__47);
-                    this.state = 309;
-                    this.value(17);
-                    break;
-
-                case 11:
-                    localctx = new MultValueContext(this, new ValueContext(this, _parentctx, _parentState));
-                    this.pushNewRecursionContext(localctx, _startState, GrammarParser.RULE_value);
-                    this.state = 310;
-                    if (!( this.precpred(this._ctx, 15))) {
-                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 15)");
-                    }
-                    this.state = 311;
-                    _la = this._input.LA(1);
-                    if(!(_la===GrammarParser.T__48 || _la===GrammarParser.T__49)) {
-                    this._errHandler.recoverInline(this);
-                    }
-                    else {
-                    	this._errHandler.reportMatch(this);
-                        this.consume();
-                    }
-                    this.state = 312;
-                    this.value(16);
-                    break;
-
-                case 12:
-                    localctx = new AddValueContext(this, new ValueContext(this, _parentctx, _parentState));
-                    this.pushNewRecursionContext(localctx, _startState, GrammarParser.RULE_value);
-                    this.state = 313;
-                    if (!( this.precpred(this._ctx, 14))) {
-                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 14)");
-                    }
-                    this.state = 314;
-                    _la = this._input.LA(1);
-                    if(!(_la===GrammarParser.T__50 || _la===GrammarParser.T__51)) {
-                    this._errHandler.recoverInline(this);
-                    }
-                    else {
-                    	this._errHandler.reportMatch(this);
-                        this.consume();
-                    }
-                    this.state = 315;
-                    this.value(15);
-                    break;
-
-                case 13:
+                case 4:
                     localctx = new BlankConcatValueContext(this, new ValueContext(this, _parentctx, _parentState));
                     this.pushNewRecursionContext(localctx, _startState, GrammarParser.RULE_value);
-                    this.state = 316;
+                    this.state = 286;
+                    if (!( this.precpred(this._ctx, 17))) {
+                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 17)");
+                    }
+                    this.state = 287;
+                    this.match(GrammarParser.T__40);
+                    this.state = 288;
+                    this.value(18);
+                    break;
+
+                case 5:
+                    localctx = new GtValueContext(this, new ValueContext(this, _parentctx, _parentState));
+                    this.pushNewRecursionContext(localctx, _startState, GrammarParser.RULE_value);
+                    this.state = 289;
                     if (!( this.precpred(this._ctx, 13))) {
                         throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 13)");
                     }
-                    this.state = 317;
-                    this.match(GrammarParser.T__52);
-                    this.state = 318;
+                    this.state = 290;
+                    this.match(GrammarParser.T__41);
+                    this.state = 291;
                     this.value(14);
                     break;
 
-                case 14:
-                    localctx = new RangeValueContext(this, new ValueContext(this, _parentctx, _parentState));
+                case 6:
+                    localctx = new GteValueContext(this, new ValueContext(this, _parentctx, _parentState));
                     this.pushNewRecursionContext(localctx, _startState, GrammarParser.RULE_value);
-                    this.state = 319;
-                    if (!( this.precpred(this._ctx, 27))) {
-                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 27)");
+                    this.state = 292;
+                    if (!( this.precpred(this._ctx, 12))) {
+                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 12)");
                     }
-                    this.state = 320;
-                    this.match(GrammarParser.T__35);
-                    this.state = 321;
-                    this.value(0);
-                    this.state = 324;
-                    this._errHandler.sync(this);
-                    var la_ = this._interp.adaptivePredict(this._input,28,this._ctx);
-                    if(la_===1) {
-                        this.state = 322;
-                        this.match(GrammarParser.T__36);
-                        this.state = 323;
-                        this.value(0);
-
-                    }
+                    this.state = 293;
+                    this.match(GrammarParser.T__42);
+                    this.state = 294;
+                    this.value(13);
                     break;
 
-                case 15:
-                    localctx = new ApplyFuncValueContext(this, new ValueContext(this, _parentctx, _parentState));
+                case 7:
+                    localctx = new LtValueContext(this, new ValueContext(this, _parentctx, _parentState));
                     this.pushNewRecursionContext(localctx, _startState, GrammarParser.RULE_value);
-                    this.state = 326;
+                    this.state = 295;
                     if (!( this.precpred(this._ctx, 11))) {
                         throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 11)");
                     }
-                    this.state = 327;
-                    this.match(GrammarParser.T__2);
-                    this.state = 336;
-                    this._errHandler.sync(this);
-                    var _alt = this._interp.adaptivePredict(this._input,30,this._ctx)
-                    while(_alt!=2 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER) {
-                        if(_alt===1) {
-                            this.state = 329;
-                            this._errHandler.sync(this);
-                            var la_ = this._interp.adaptivePredict(this._input,29,this._ctx);
-                            if(la_===1) {
-                                this.state = 328;
-                                this.match(GrammarParser.T__0);
-
-                            }
-                            this.state = 331;
-                            this.value(0);
-                            this.state = 332;
-                            this.match(GrammarParser.T__3); 
-                        }
-                        this.state = 338;
-                        this._errHandler.sync(this);
-                        _alt = this._interp.adaptivePredict(this._input,30,this._ctx);
-                    }
-
-                    this.state = 343;
-                    this._errHandler.sync(this);
-                    _la = this._input.LA(1);
-                    if((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << GrammarParser.T__0) | (1 << GrammarParser.T__1) | (1 << GrammarParser.T__2) | (1 << GrammarParser.T__5) | (1 << GrammarParser.T__15) | (1 << GrammarParser.T__17))) !== 0) || ((((_la - 34)) & ~0x1f) == 0 && ((1 << (_la - 34)) & ((1 << (GrammarParser.T__33 - 34)) | (1 << (GrammarParser.T__34 - 34)) | (1 << (GrammarParser.T__46 - 34)) | (1 << (GrammarParser.T__51 - 34)) | (1 << (GrammarParser.T__53 - 34)) | (1 << (GrammarParser.TRUE - 34)) | (1 << (GrammarParser.FALSE - 34)) | (1 << (GrammarParser.WORD - 34)) | (1 << (GrammarParser.STRING - 34)) | (1 << (GrammarParser.NUM - 34)))) !== 0)) {
-                        this.state = 340;
-                        this._errHandler.sync(this);
-                        var la_ = this._interp.adaptivePredict(this._input,31,this._ctx);
-                        if(la_===1) {
-                            this.state = 339;
-                            this.match(GrammarParser.T__0);
-
-                        }
-                        this.state = 342;
-                        this.value(0);
-                    }
-
-                    this.state = 345;
-                    this.match(GrammarParser.T__4);
+                    this.state = 296;
+                    this.match(GrammarParser.T__43);
+                    this.state = 297;
+                    this.value(12);
                     break;
 
-                case 16:
-                    localctx = new ElementValueContext(this, new ValueContext(this, _parentctx, _parentState));
+                case 8:
+                    localctx = new LteValueContext(this, new ValueContext(this, _parentctx, _parentState));
                     this.pushNewRecursionContext(localctx, _startState, GrammarParser.RULE_value);
-                    this.state = 346;
+                    this.state = 298;
                     if (!( this.precpred(this._ctx, 10))) {
                         throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 10)");
                     }
-                    this.state = 347;
-                    this.match(GrammarParser.T__15);
-                    this.state = 348;
-                    this.value(0);
-                    this.state = 349;
-                    this.match(GrammarParser.T__16);
+                    this.state = 299;
+                    this.match(GrammarParser.T__44);
+                    this.state = 300;
+                    this.value(11);
                     break;
 
-                case 17:
-                    localctx = new PropertyValueContext(this, new ValueContext(this, _parentctx, _parentState));
+                case 9:
+                    localctx = new InequalValueContext(this, new ValueContext(this, _parentctx, _parentState));
                     this.pushNewRecursionContext(localctx, _startState, GrammarParser.RULE_value);
-                    this.state = 351;
+                    this.state = 301;
                     if (!( this.precpred(this._ctx, 9))) {
                         throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 9)");
                     }
-                    this.state = 352;
+                    this.state = 302;
+                    this.match(GrammarParser.T__45);
+                    this.state = 303;
+                    this.value(10);
+                    break;
+
+                case 10:
+                    localctx = new TernaryValueContext(this, new ValueContext(this, _parentctx, _parentState));
+                    this.pushNewRecursionContext(localctx, _startState, GrammarParser.RULE_value);
+                    this.state = 304;
+                    if (!( this.precpred(this._ctx, 8))) {
+                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 8)");
+                    }
+                    this.state = 305;
+                    this.match(GrammarParser.T__46);
+                    this.state = 306;
+                    this.value(0);
+                    this.state = 307;
+                    this.match(GrammarParser.T__19);
+                    this.state = 308;
+                    this.value(9);
+                    break;
+
+                case 11:
+                    localctx = new EqualValueContext(this, new ValueContext(this, _parentctx, _parentState));
+                    this.pushNewRecursionContext(localctx, _startState, GrammarParser.RULE_value);
+                    this.state = 310;
+                    if (!( this.precpred(this._ctx, 5))) {
+                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 5)");
+                    }
+                    this.state = 311;
+                    this.match(GrammarParser.T__50);
+                    this.state = 312;
+                    this.value(6);
+                    break;
+
+                case 12:
+                    localctx = new AndValueContext(this, new ValueContext(this, _parentctx, _parentState));
+                    this.pushNewRecursionContext(localctx, _startState, GrammarParser.RULE_value);
+                    this.state = 313;
+                    if (!( this.precpred(this._ctx, 3))) {
+                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 3)");
+                    }
+                    this.state = 314;
+                    this.match(GrammarParser.T__52);
+                    this.state = 315;
+                    this.value(4);
+                    break;
+
+                case 13:
+                    localctx = new OrValueContext(this, new ValueContext(this, _parentctx, _parentState));
+                    this.pushNewRecursionContext(localctx, _startState, GrammarParser.RULE_value);
+                    this.state = 316;
+                    if (!( this.precpred(this._ctx, 2))) {
+                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 2)");
+                    }
+                    this.state = 317;
+                    this.match(GrammarParser.T__53);
+                    this.state = 318;
+                    this.value(3);
+                    break;
+
+                case 14:
+                    localctx = new ApplyFuncValueContext(this, new ValueContext(this, _parentctx, _parentState));
+                    this.pushNewRecursionContext(localctx, _startState, GrammarParser.RULE_value);
+                    this.state = 319;
+                    if (!( this.precpred(this._ctx, 16))) {
+                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 16)");
+                    }
+                    this.state = 320;
+                    this.match(GrammarParser.T__2);
+                    this.state = 329;
+                    this._errHandler.sync(this);
+                    var _alt = this._interp.adaptivePredict(this._input,29,this._ctx)
+                    while(_alt!=2 && _alt!=antlr4.atn.ATN.INVALID_ALT_NUMBER) {
+                        if(_alt===1) {
+                            this.state = 322;
+                            this._errHandler.sync(this);
+                            var la_ = this._interp.adaptivePredict(this._input,28,this._ctx);
+                            if(la_===1) {
+                                this.state = 321;
+                                this.match(GrammarParser.T__0);
+
+                            }
+                            this.state = 324;
+                            this.value(0);
+                            this.state = 325;
+                            this.match(GrammarParser.T__3); 
+                        }
+                        this.state = 331;
+                        this._errHandler.sync(this);
+                        _alt = this._interp.adaptivePredict(this._input,29,this._ctx);
+                    }
+
+                    this.state = 336;
+                    this._errHandler.sync(this);
+                    _la = this._input.LA(1);
+                    if((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << GrammarParser.T__0) | (1 << GrammarParser.T__1) | (1 << GrammarParser.T__2) | (1 << GrammarParser.T__5) | (1 << GrammarParser.T__15) | (1 << GrammarParser.T__17))) !== 0) || ((((_la - 34)) & ~0x1f) == 0 && ((1 << (_la - 34)) & ((1 << (GrammarParser.T__33 - 34)) | (1 << (GrammarParser.T__34 - 34)) | (1 << (GrammarParser.T__35 - 34)) | (1 << (GrammarParser.T__49 - 34)) | (1 << (GrammarParser.T__51 - 34)) | (1 << (GrammarParser.TRUE - 34)) | (1 << (GrammarParser.FALSE - 34)) | (1 << (GrammarParser.WORD - 34)) | (1 << (GrammarParser.STRING - 34)) | (1 << (GrammarParser.NUM - 34)))) !== 0)) {
+                        this.state = 333;
+                        this._errHandler.sync(this);
+                        var la_ = this._interp.adaptivePredict(this._input,30,this._ctx);
+                        if(la_===1) {
+                            this.state = 332;
+                            this.match(GrammarParser.T__0);
+
+                        }
+                        this.state = 335;
+                        this.value(0);
+                    }
+
+                    this.state = 338;
+                    this.match(GrammarParser.T__4);
+                    break;
+
+                case 15:
+                    localctx = new ElementValueContext(this, new ValueContext(this, _parentctx, _parentState));
+                    this.pushNewRecursionContext(localctx, _startState, GrammarParser.RULE_value);
+                    this.state = 339;
+                    if (!( this.precpred(this._ctx, 15))) {
+                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 15)");
+                    }
+                    this.state = 340;
+                    this.match(GrammarParser.T__15);
+                    this.state = 341;
+                    this.value(0);
+                    this.state = 342;
+                    this.match(GrammarParser.T__16);
+                    break;
+
+                case 16:
+                    localctx = new PropertyValueContext(this, new ValueContext(this, _parentctx, _parentState));
+                    this.pushNewRecursionContext(localctx, _startState, GrammarParser.RULE_value);
+                    this.state = 344;
+                    if (!( this.precpred(this._ctx, 14))) {
+                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 14)");
+                    }
+                    this.state = 345;
                     this.match(GrammarParser.T__1);
-                    this.state = 353;
+                    this.state = 346;
                     this.iden();
+                    break;
+
+                case 17:
+                    localctx = new RangeValueContext(this, new ValueContext(this, _parentctx, _parentState));
+                    this.pushNewRecursionContext(localctx, _startState, GrammarParser.RULE_value);
+                    this.state = 347;
+                    if (!( this.precpred(this._ctx, 7))) {
+                        throw new antlr4.error.FailedPredicateException(this, "this.precpred(this._ctx, 7)");
+                    }
+                    this.state = 348;
+                    this.match(GrammarParser.T__47);
+                    this.state = 349;
+                    this.value(0);
+                    this.state = 352;
+                    this._errHandler.sync(this);
+                    var la_ = this._interp.adaptivePredict(this._input,32,this._ctx);
+                    if(la_===1) {
+                        this.state = 350;
+                        this.match(GrammarParser.T__48);
+                        this.state = 351;
+                        this.value(0);
+
+                    }
                     break;
 
                 } 
@@ -4782,39 +4782,39 @@ GrammarParser.prototype.sempred = function(localctx, ruleIndex, predIndex) {
 GrammarParser.prototype.value_sempred = function(localctx, predIndex) {
 	switch(predIndex) {
 		case 0:
-			return this.precpred(this._ctx, 26);
-		case 1:
-			return this.precpred(this._ctx, 25);
-		case 2:
-			return this.precpred(this._ctx, 24);
-		case 3:
-			return this.precpred(this._ctx, 23);
-		case 4:
-			return this.precpred(this._ctx, 22);
-		case 5:
-			return this.precpred(this._ctx, 21);
-		case 6:
 			return this.precpred(this._ctx, 20);
-		case 7:
+		case 1:
 			return this.precpred(this._ctx, 19);
-		case 8:
+		case 2:
 			return this.precpred(this._ctx, 18);
-		case 9:
-			return this.precpred(this._ctx, 16);
-		case 10:
-			return this.precpred(this._ctx, 15);
-		case 11:
-			return this.precpred(this._ctx, 14);
-		case 12:
+		case 3:
+			return this.precpred(this._ctx, 17);
+		case 4:
 			return this.precpred(this._ctx, 13);
-		case 13:
-			return this.precpred(this._ctx, 27);
-		case 14:
+		case 5:
+			return this.precpred(this._ctx, 12);
+		case 6:
 			return this.precpred(this._ctx, 11);
-		case 15:
+		case 7:
 			return this.precpred(this._ctx, 10);
-		case 16:
+		case 8:
 			return this.precpred(this._ctx, 9);
+		case 9:
+			return this.precpred(this._ctx, 8);
+		case 10:
+			return this.precpred(this._ctx, 5);
+		case 11:
+			return this.precpred(this._ctx, 3);
+		case 12:
+			return this.precpred(this._ctx, 2);
+		case 13:
+			return this.precpred(this._ctx, 16);
+		case 14:
+			return this.precpred(this._ctx, 15);
+		case 15:
+			return this.precpred(this._ctx, 14);
+		case 16:
+			return this.precpred(this._ctx, 7);
 		default:
 			throw "No predicate with index:" + predIndex;
 	}
@@ -4938,10 +4938,10 @@ exports.AndValueContext = AndValueContext;
 GrammarParser.AndValueContext = AndValueContext;
 exports.DictionaryValueContext = DictionaryValueContext;
 GrammarParser.DictionaryValueContext = DictionaryValueContext;
-exports.BracketValueContext = BracketValueContext;
-GrammarParser.BracketValueContext = BracketValueContext;
 exports.NumberValueContext = NumberValueContext;
 GrammarParser.NumberValueContext = NumberValueContext;
+exports.BracketValueContext = BracketValueContext;
+GrammarParser.BracketValueContext = BracketValueContext;
 exports.ElementValueContext = ElementValueContext;
 GrammarParser.ElementValueContext = ElementValueContext;
 exports.AddValueContext = AddValueContext;
