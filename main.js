@@ -309,11 +309,14 @@ class Node {
                     case 'in': {
                         iter.ch[0].ch = [iter.ch[1]]
                         let iterR = iter.ch[0].exec(scope),
-                            valR = iter.ch[2].exec(scope)
-                        for (let i in valR.var.val) {
-                            if (i[0] == '$')
+                            valR = iter.ch[2].exec(scope).var
+                        for (let i in valR.val) {
+                            if (i[0] == '$' || (valR.type == 'dictionary' && i % 2 == 1))
                                 continue
-                            iter.ch[1].exec(scope).var.val = i
+                            if (valR.type == 'dictionary')
+                                iter.ch[1].exec(scope).var.val = valR.val[i].var.val
+                            else
+                                iter.ch[1].exec(scope).var.val = i
                             this.ch[1].exec(scope)
                             if (this.ch[1].value && this.ch[1].value.returnVal) {
                                 this.value = this.ch[1].value
@@ -325,11 +328,12 @@ class Node {
                     case 'of': {
                         iter.ch[0].ch = [iter.ch[1]]
                         let iterR = iter.ch[0].exec(scope),
-                            valR = iter.ch[2].exec(scope)
-                        for (let i in valR.var.val) {
-                            if (i[0] == '$')
+                            valR = iter.ch[2].exec(scope).var
+
+                        for (let i in valR.val) {
+                            if (i[0] == '$' || (valR.type == 'dictionary' && i % 2 == 0))
                                 continue
-                            iter.ch[1].exec(scope).var.val = valR.var.val[i].var.val
+                            iter.ch[1].exec(scope).var.val = valR.val[i].var.val
                             this.ch[1].exec(scope)
                             if (this.ch[1].value && this.ch[1].value.returnVal) {
                                 this.value = this.ch[1].value
