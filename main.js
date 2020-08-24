@@ -375,8 +375,7 @@ class Node {
             }
             case 'apply': {
                 let func = this.ch[0].exec(scope),
-                    params = []
-                params.push(func.object)
+                    params = func.object ? [func.object] : []
                 this.ch[1].ch.forEach(c => {
                     // if (c.type == 'spread')
                     // params.push(...c.exec(scope).var.val)
@@ -385,7 +384,8 @@ class Node {
                 })
                 let node = Node.root.getNodeByAddress(func.var.val),
                     expected = node.ch[0].ch.map(c => c.ch[0].symbol), newScope = {}
-                expected.unshift('this')
+                if (func.object)
+                    expected.unshift('this')
                 params = params.map(par => {
                     if (par.v.category() == 'primitive') {
                         par.delete()
@@ -874,11 +874,4 @@ class Variable {
     }
 }
 
-var input = fs.readFileSync('./code.prsm', 'utf8')
-// Node.root = Node.toNode(parse(input))
-Node.runCode(input)
-console.log(input + '\n')
-// console.log(Node.textTree())
-// console.log(Reference.memory(false))
-// console.log(Node.varOutput(false))
-console.log(Node.console(2))
+module.exports = { Node, Reference, Variable }

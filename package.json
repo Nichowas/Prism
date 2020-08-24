@@ -10,7 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "antlr4": "^4.8.0",
-    "antlr4-tool": "^1.1.0"
+    "antlr4-tool": "^1.1.0",
+    "eris": "^0.13.3"
   },
   "devDependencies": {},
   "description": ""
