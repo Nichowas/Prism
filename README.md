@@ -1,5 +1,5 @@
 # Prism
-This version or prism is in the nodejs environment
+This version of prism is in the nodejs environment
 New programming language
 Using Nodejs for getting files and processing them, ANTLR4 for lexing and parsing
 
