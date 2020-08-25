@@ -529,6 +529,12 @@ class Node {
             case 'TradFunc':
                 if (ch[2].symbol != 'block') ch[2] = new Node('block', [new Node('return', [ch[2]])])
                 return new Node('func', [ch[1], ch[2]])
+            case 'FuncStatement': {
+                if (ch[4].symbol != 'block') ch[4] = new Node('block', [new Node('return', [ch[4]])])
+                let func = new Node('func', [ch[3], ch[4]])
+                ch[0].ch = [ch[2]]
+                return new Node('block', [ch[0], new Node('assign', [ch[2], func])])
+            }
             case 'FuncValue':
                 return ch[0]
             case 'ApplyFuncValue': {
@@ -711,8 +717,8 @@ class Node {
         }
         return new Node(symb, ch)
     }
-    static runCode(code) {
-        var parsed = Node.toNode(parse(Node.setup + code))
+    static runCode(code = "", j = (s, c) => s + c) {
+        var parsed = Node.toNode(parse(j(Node.setup, code)))
         //Set up interpreter
         Node.root = parsed
         Reference.total = { r: 0, v: 0 }

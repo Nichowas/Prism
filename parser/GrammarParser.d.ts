@@ -198,6 +198,18 @@ export declare class CommentStatementContext extends ParserRuleContext {
     
 }
 
+export declare class FuncStatementContext extends ParserRuleContext {
+    
+    designator(): DesignatorContext;
+    
+    iden(): IdenContext;
+    
+    parameters(): ParametersContext;
+    
+    statement(): StatementContext;
+    
+}
+
 export declare class WhileloopStatementContext extends ParserRuleContext {
     
     whileloop(): WhileloopContext;

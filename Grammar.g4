@@ -60,6 +60,7 @@ statement:
     forloop                                                 #forloopStatement
     | whileloop                                             #whileloopStatement
     | cond                                                  #ifStatement
+    | designator 'void' iden parameters statement           #funcStatement
     | assign                                                #assignStatement    
     | declar                                                #declarStatement
     | '~{'statement*'}'                                     #groupStatement
