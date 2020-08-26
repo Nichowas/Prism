@@ -11,7 +11,6 @@ var parse = (code) => {
     return parser.all()
 }
 
-
 class Node {
     constructor(symbol, ch, add = {}) {
         this.symbol = symbol
@@ -468,7 +467,7 @@ class Node {
                 break
             }
             case '#': {
-                let v1 = this.ch[0].exec(scope), v2 = v1.valstr(false)
+                let v1 = this.ch[0].exec(scope), v2 = v1.var.toString()
                 this.value = (new Variable('string', v2)).saveTo('r')
                 return this.value
             }
@@ -734,7 +733,7 @@ class Node {
         return out
     }
     static console(i) {
-        return Reference.getRef('v', i).var.val.map(v => v.valstr(false)).join('\n')
+        return Reference.getRef('v', i).var.val.map(v => v.var.out()).join('\n')
     }
     static textTree() {
         let out = ''
@@ -876,6 +875,62 @@ class Variable {
                 return 'reference'
             case 'reference':
                 return 'reference'
+        }
+    }
+    toString() {
+        switch (this.type) {
+            case 'number':
+                return `${this.val}`
+            case 'string':
+                return this.val
+            case 'boolean':
+                return this.val ? 'true' : 'false'
+            case 'array':
+                return `${this.val.map(v => v.var.toString())}`
+            case 'dictionary': {
+                let out = '{'
+                this.val.forEach((v, i) => {
+                    out += v.var.toString()
+                    if (i % 2 == 0)
+                        out += ': '
+                    else
+                        out += ', '
+                })
+                out += '}'
+                return out
+            }
+            case 'function':
+                return `void (${this.val})`
+            case 'reference':
+                return this.val.var.toString()
+        }
+    }
+    out() {
+        switch (this.type) {
+            case 'number':
+                return `${this.val}`
+            case 'string':
+                return `"${this.val}"`
+            case 'boolean':
+                return this.val ? 'true' : 'false'
+            case 'array':
+                return `[${this.val.map(v => v.var.out())}]`
+            case 'dictionary': {
+                let out = '{'
+                this.val.forEach((v, i) => {
+                    out += v.var.out()
+                    if (i % 2 == 0)
+                        out += ': '
+                    else
+                        out += ', '
+                })
+                out += '}'
+                return out
+            }
+            case 'function':
+                return `void (${this.val})`
+            case 'reference':
+                return this.val.var.out()
         }
     }
 }
