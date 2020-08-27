@@ -260,6 +260,14 @@ export declare class GroupStatementContext extends ParserRuleContext {
     
 }
 
+export declare class UnpackStatementContext extends ParserRuleContext {
+    
+    designator(): DesignatorContext;
+    
+    value(): ValueContext;
+    
+}
+
 export declare class StatementContext extends ParserRuleContext {
     
 }

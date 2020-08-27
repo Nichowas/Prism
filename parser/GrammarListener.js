@@ -308,6 +308,15 @@ GrammarListener.prototype.exitFuncStatement = function(ctx) {
 };
 
 
+// Enter a parse tree produced by GrammarParser#unpackStatement.
+GrammarListener.prototype.enterUnpackStatement = function(ctx) {
+};
+
+// Exit a parse tree produced by GrammarParser#unpackStatement.
+GrammarListener.prototype.exitUnpackStatement = function(ctx) {
+};
+
+
 // Enter a parse tree produced by GrammarParser#assignStatement.
 GrammarListener.prototype.enterAssignStatement = function(ctx) {
 };

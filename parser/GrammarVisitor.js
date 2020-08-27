@@ -210,6 +210,12 @@ GrammarVisitor.prototype.visitFuncStatement = function(ctx) {
 };
 
 
+// Visit a parse tree produced by GrammarParser#unpackStatement.
+GrammarVisitor.prototype.visitUnpackStatement = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
 // Visit a parse tree produced by GrammarParser#assignStatement.
 GrammarVisitor.prototype.visitAssignStatement = function(ctx) {
   return this.visitChildren(ctx);

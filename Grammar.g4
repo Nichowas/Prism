@@ -61,6 +61,7 @@ statement:
     | whileloop                                             #whileloopStatement
     | cond                                                  #ifStatement
     | designator 'void' iden parameters statement           #funcStatement
+    | designator 'unpack' value                             #unpackStatement
     | assign                                                #assignStatement    
     | declar                                                #declarStatement
     | '~{'statement*'}'                                     #groupStatement

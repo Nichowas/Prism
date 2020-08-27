@@ -97,18 +97,7 @@ class Node {
             }
             case 'designator': {
                 for (let c of this.ch) {
-                    let symb = c.ch[0].symbol
-                    let val = new Variable('undefined', undefined)
-                    let ref = val.saveTo('v')
-                    // console.log(this.type)
-                    switch (this.type.join(' ')) {
-                        case 'var':
-                            scope[symb] = ref
-                            break
-                        case 'pub':
-                            Node.root.scope[symb] = ref
-                            break
-                    }
+                    Node.declar(c.ch[0].symbol, this.type, scope)
                 }
                 break;
             }
@@ -372,6 +361,16 @@ class Node {
                 }
                 break
             }
+            case 'unpack': {
+                let des = this.ch[0].type, obj = this.ch[1].exec(scope), prop = obj.var
+                prop.val.forEach((v, i) => {
+                    if (i % 2 == 1)
+                        return
+                    let iden = v.var.val, val = prop.val[i + 1]
+                    Node.declar(iden, des, scope, val)
+                })
+                break
+            }
             case 'apply': {
                 let func = this.ch[0].exec(scope),
                     params = func.object ? [func.object] : []
@@ -486,6 +485,23 @@ class Node {
         if (address.length != 0)
             return this.ch[address[0]].getNodeByAddress(address.slice(1), d + 1)
         return this
+    }
+    static declar(symb, type, scope, val) {
+        let ref
+        if (!val) {
+            val = new Variable('undefined', undefined)
+            ref = val.saveTo('v')
+        } else
+            ref = val
+        switch (type.join(' ')) {
+            case 'var':
+                scope[symb] = ref
+                break
+            case 'pub':
+                Node.root.scope[symb] = ref
+                break
+        }
+        return ref
     }
     static number(n) {
         return new Node('number', [new Node(n, [])])
@@ -663,6 +679,9 @@ class Node {
                 ch = ch.filter(c => c.symbol != ',')
                 ch[0].ch = ch.slice(1).map(c => c.ch[0])
                 return new Node('block', ch)
+            case 'UnpackStatement':
+                return new Node('unpack', [ch[0], ch[2]])
+
             //Operations
             case 'AddValue':
                 return new Node(ch[1].symbol, [ch[0], ch[2]])
