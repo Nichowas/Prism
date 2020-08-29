@@ -2,10 +2,13 @@
     var push = (item) => {
         ~PUSHARR(this, item)
     }
+    var map = f => {
+        return ~MAPARR(this, f)
+    }
     var log = str => {
         ~LOG(str)
     }
     pub console = {
-        log: log,
+        log: log
     }
 }

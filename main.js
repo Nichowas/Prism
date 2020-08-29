@@ -364,79 +364,24 @@ class Node {
                 break
             }
             case 'apply': {
-                //get func and paramaters parsed in
                 let func = this.ch[0].exec(scope),
                     params = Node.parametrise(this.ch[1].ch, scope)
-                params = params.map(par => {
-                    if (par.var.category() == 'primitive') {
-                        par.delete()
-                        return par.var.copy().saveTo('r')
-                    }
-                    return par
-                })
-                //get func node and expected paramaters to be parsed in
-                let node = Node.root.getNodeByAddress(func.var.val),
-                    expected = node.ch[0].ch.map(c => ({
-                        symbol: c.ch[0].symbol,
-                        type: c.type
-                    })), newScope = {}
-                if (func.object) newScope['this'] = func.object
-                //make a scope for the paramaters
-                let spreadOff = 0
-                expected.forEach((v, I) => {
-                    switch (v.type) {
-                        case 'spread': {
-                            spreadOff += params.length - expected.length
-                            let spreadArr = new Variable('array', params.slice(I, I + 1 + spreadOff))
-                            newScope[v.symbol] = spreadArr.saveTo('r')
-                            spreadArr.array()
-                            break
-                        }
-                        case 'iden': {
-                            newScope[v.symbol] = params[I + spreadOff]
-                            break
-                        }
-                        case 'property': {
-                            let changed = false
-                            func.object.var.val.forEach((V, i) => {
-                                if (i % 2 == 0 && V.var.val == v.symbol) {
-                                    func.object.var.val[i + 1].setVal(params[I + spreadOff])
-                                    changed = true
-                                }
-                            })
-                            if (!changed) {
-                                func.object.var.val.push(
-                                    new Variable('string', v.symbol).saveTo('r'),
-                                    params[I + spreadOff]
-                                )
-                                params[I + spreadOff].object = func.object
-                            }
-                        }
-                    }
-                })
-                //execute func node with new scope
-                let val = node.ch[1].exec({ ...node.scope, ...newScope })
-                params.forEach(par => par.delete())
-                this.value = val && val.returnVal
+                this.value = Node.applyFunc(func, params)
                 return this.value
             }
             case 'meta': {
                 let string = this.ch[0].ch[0].symbol,
                     params = Node.parametrise(this.ch[1].ch, scope)
-                Node.metaFunctions[string](...params)
-                break
+                this.value = Node.metaFunctions[string](scope, ...params)
+                return this.value
             }
             case 'element': {
                 let obj = this.ch[0].exec(scope),
                     index = this.ch[1].exec(scope)
                 let string = index.var.val
-                let overwrite = { 'push': '$push', 'length': '$length' }
-                string = overwrite[string] || string
+                string = (`$${string}` in Node.array) ? `$${string}` : string
                 if (obj.var.type == 'array')
-                    if (string == '$length')
-                        this.value = (new Variable('number', obj.var.val.length)).saveTo('r')
-                    else
-                        this.value = obj.var.val[string]
+                    this.value = obj.var.val[string]
                 else if (obj.var.type == 'dictionary') {
                     let key = obj.var.val.findIndex((ref, i) => i % 2 == 0 && ref.var.val === index.var.val)
                     this.value = obj.var.val[key + 1]
@@ -508,6 +453,60 @@ class Node {
         if (address.length != 0)
             return this.ch[address[0]].getNodeByAddress(address.slice(1), d + 1)
         return this
+    }
+    static applyFunc(func, params) {
+        // get params parsed in
+        params = params.map(par => {
+            if (par.var.category() == 'primitive') {
+                par.delete()
+                return par.var.copy().saveTo('r')
+            }
+            return par
+        })
+        //get func node and expected paramaters to be parsed in
+        let node = Node.root.getNodeByAddress(func.var.val),
+            expected = node.ch[0].ch.map(c => ({
+                symbol: c.ch[0].symbol,
+                type: c.type
+            })), newScope = {}
+        if (func.object) newScope['this'] = func.object
+        //make a scope for the paramaters
+        let spreadOff = 0
+        expected.forEach((v, I) => {
+            switch (v.type) {
+                case 'spread': {
+                    spreadOff += params.length - expected.length
+                    let spreadArr = new Variable('array', params.slice(I, I + 1 + spreadOff))
+                    newScope[v.symbol] = spreadArr.saveTo('r')
+                    spreadArr.array()
+                    break
+                }
+                case 'iden': {
+                    newScope[v.symbol] = params[I + spreadOff]
+                    break
+                }
+                case 'property': {
+                    let changed = false
+                    func.object.var.val.forEach((V, i) => {
+                        if (i % 2 == 0 && V.var.val == v.symbol) {
+                            func.object.var.val[i + 1].setVal(params[I + spreadOff])
+                            changed = true
+                        }
+                    })
+                    if (!changed) {
+                        func.object.var.val.push(
+                            new Variable('string', v.symbol).saveTo('r'),
+                            params[I + spreadOff]
+                        )
+                        params[I + spreadOff].object = func.object
+                    }
+                }
+            }
+        })
+        //execute func node with new scope
+        let val = node.ch[1].exec({ ...node.scope, ...newScope })
+        params.forEach(par => par.delete())
+        return val && val.returnVal
     }
     static parametrise(ch, scope) {
         let params = []
@@ -817,10 +816,15 @@ class Node {
 Node.setup = fs.readFileSync('setup.prsm')
 Node.logs = []
 Node.metaFunctions = {
-    PUSHARR: (arr, ...item) => {
+    PUSHARR: (scope, arr, ...item) => {
         arr.var.val.push(...item)
     },
-    LOG: (str) => {
+    MAPARR: (scope, arr, f) => {
+        let arrVal = arr.var.copy()
+        arrVal.val = arrVal.val.map(v => Node.applyFunc(f, [v]))
+        return arrVal.saveTo('r')
+    },
+    LOG: (scope, str) => {
         Node.logs += str.var.out() + '\n'
     }
 }
@@ -925,15 +929,23 @@ class Reference {
     }
 }
 
+Node.array = {
+    $push: _ => Reference.getRef('v', 0),
+    $map: _ => Reference.getRef('v', 1)
+}
 class Variable {
     constructor(type, val) {
         this.type = type
         this.val = val
     }
     array() {
-        this.val['$push'] = new Variable('reference', Reference.getRef('v', 0)).saveTo('r')
-        this.val.forEach(c => c.object = this.ref)
-        this.val['$push'].object = this.ref
+        for (let i in Node.array) {
+            this.val[i] = new Variable('reference', Node.array[i]()).saveTo('r')
+            this.val[i].object = this.ref
+        }
+        this.val.forEach((c, i) => {
+            c.object = this.ref
+        })
     }
     saveTo(reg) {
         let i = Reference.total[reg]
@@ -1021,5 +1033,7 @@ class Variable {
         }
     }
 }
-
-module.exports = { Node, Reference, Variable }
+let input = fs.readFileSync('code.prsm')
+Node.runCode(input)
+console.log(Node.logs)
+// module.exports = { Node, Reference, Variable }
