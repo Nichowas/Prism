@@ -1,14 +1,11 @@
 ~{
     var push = (item) => {
-        this = [...this, item]
+        ~PUSHARR(this, item)
     }
     var log = str => {
-        this.logs.push(str)
-        return str
+        ~LOG(str)
     }
-    var logs = []
     pub console = {
         log: log,
-        logs: logs
     }
 }

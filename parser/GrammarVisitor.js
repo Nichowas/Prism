@@ -294,6 +294,12 @@ GrammarVisitor.prototype.visitModValue = function(ctx) {
 };
 
 
+// Visit a parse tree produced by GrammarParser#metaValue.
+GrammarVisitor.prototype.visitMetaValue = function(ctx) {
+  return this.visitChildren(ctx);
+};
+
+
 // Visit a parse tree produced by GrammarParser#stringValue.
 GrammarVisitor.prototype.visitStringValue = function(ctx) {
   return this.visitChildren(ctx);

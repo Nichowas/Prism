@@ -362,24 +362,21 @@ class Node {
                 break
             }
             case 'unpack': {
-                let des = this.ch[0].type, obj = this.ch[1].exec(scope), prop = obj.var
-                prop.val.forEach((v, i) => {
-                    if (i % 2 == 1)
-                        return
-                    let iden = v.var.val, val = prop.val[i + 1]
-                    Node.declar(iden, des, scope, val)
+                let des = this.ch[0].type
+                this.ch.slice(1).forEach(c => {
+                    let prop = c.exec(scope).var
+                    prop.val.forEach((v, i) => {
+                        if (i % 2 == 1)
+                            return
+                        let iden = v.var.val, val = prop.val[i + 1]
+                        Node.declar(iden, des, scope, val)
+                    })
                 })
                 break
             }
             case 'apply': {
                 let func = this.ch[0].exec(scope),
-                    params = func.object ? [func.object] : []
-                this.ch[1].ch.forEach(c => {
-                    // if (c.type == 'spread')
-                    // params.push(...c.exec(scope).var.val)
-                    // else
-                    params.push(c.exec(scope))
-                })
+                    params = [...(func.object ? [func.object] : []), ...Node.parametrise(this.ch[1].ch, scope)]
                 let node = Node.root.getNodeByAddress(func.var.val),
                     expected = node.ch[0].ch.map(c => c.ch[0].symbol), newScope = {}
                 if (func.object)
@@ -402,6 +399,12 @@ class Node {
                 params.forEach(par => par.delete())
                 this.value = val && val.returnVal
                 return this.value
+            }
+            case 'meta': {
+                let string = this.ch[0].ch[0].symbol,
+                    params = Node.parametrise(this.ch[1].ch, scope)
+                Node.metaFunctions[string](...params)
+                break
             }
             case 'element': {
                 let obj = this.ch[0].exec(scope),
@@ -486,6 +489,16 @@ class Node {
             return this.ch[address[0]].getNodeByAddress(address.slice(1), d + 1)
         return this
     }
+    static parametrise(ch, scope) {
+        let params = []
+        ch.forEach(c => {
+            if (c.type == 'spread')
+                params.push(...(c.exec(scope).var.val))
+            else
+                params.push(c.exec(scope))
+        })
+        return params
+    }
     static declar(symb, type, scope, val) {
         let ref
         if (!val) {
@@ -565,6 +578,21 @@ class Node {
                     i++
                 }
                 ch = [ch[0], new Node('params', params)]
+                break
+            }
+            case 'MetaValue': {
+                symb = 'meta'
+                let params = ch.slice(3, ch.length - 1)
+                for (let i = 0; i < params.length;) {
+                    if (params[i].symbol == '...') {
+                        params.splice(i, 1)
+                        params[i].type = 'spread'
+                        continue
+                    }
+                    if (params[i].symbol == ',') { params.splice(i, 1); continue }
+                    i++
+                }
+                ch = [ch[1], new Node('params', params)]
                 break
             }
             case 'ReturnStatement':
@@ -680,7 +708,7 @@ class Node {
                 ch[0].ch = ch.slice(1).map(c => c.ch[0])
                 return new Node('block', ch)
             case 'UnpackStatement':
-                return new Node('unpack', [ch[0], ch[2]])
+                return new Node('unpack', [ch[0], ...ch.slice(2).filter(c => c.symbol != ',')])
 
             //Operations
             case 'AddValue':
@@ -751,8 +779,8 @@ class Node {
         }
         return out
     }
-    static console(i) {
-        return Reference.getRef('v', i).var.val.map(v => v.var.out()).join('\n')
+    static console() {
+        return Node.logs.map(v => v.var.out()).join('\n')
     }
     static textTree() {
         let out = ''
@@ -770,6 +798,15 @@ class Node {
     }
 }
 Node.setup = fs.readFileSync('setup.prsm')
+Node.logs = []
+Node.metaFunctions = {
+    PUSHARR: (arr, ...item) => {
+        arr.var.val.push(...item)
+    },
+    LOG: (...str) => {
+        Node.logs.push(...str)
+    }
+}
 
 class Reference {
     constructor(type, index) {
@@ -954,4 +991,7 @@ class Variable {
     }
 }
 
+// var input = fs.readFileSync('code.prsm')
+// Node.runCode(input)
+// console.log(Node.console())
 module.exports = { Node, Reference, Variable }

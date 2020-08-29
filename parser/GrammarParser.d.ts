@@ -264,8 +264,6 @@ export declare class UnpackStatementContext extends ParserRuleContext {
     
     designator(): DesignatorContext;
     
-    value(): ValueContext;
-    
 }
 
 export declare class StatementContext extends ParserRuleContext {
@@ -295,6 +293,12 @@ export declare class InstanceValueContext extends ParserRuleContext {
 }
 
 export declare class ModValueContext extends ParserRuleContext {
+    
+}
+
+export declare class MetaValueContext extends ParserRuleContext {
+    
+    iden(): IdenContext;
     
 }
 

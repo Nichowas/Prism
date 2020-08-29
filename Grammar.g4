@@ -61,7 +61,7 @@ statement:
     | whileloop                                             #whileloopStatement
     | cond                                                  #ifStatement
     | designator 'void' iden parameters statement           #funcStatement
-    | designator 'unpack' value                             #unpackStatement
+    | designator 'unpack' (value ',')* value                #unpackStatement
     | assign                                                #assignStatement    
     | declar                                                #declarStatement
     | '~{'statement*'}'                                     #groupStatement
@@ -89,6 +89,7 @@ value:
     | value ('+'|'-') value                                 #addValue
     | value '%' value                                       #modValue
     | value '_' value                                       #blankConcatValue
+    | ('~' iden)  '(' ('...'? value ',')* ('...'? value)? ')' #metaValue
     | value '(' ('...'? value ',')* ('...'? value)? ')'     #applyFuncValue
     | value '[' value ']'                                   #elementValue
     | value '.' iden                                        #propertyValue

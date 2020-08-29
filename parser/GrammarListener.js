@@ -434,6 +434,15 @@ GrammarListener.prototype.exitModValue = function(ctx) {
 };
 
 
+// Enter a parse tree produced by GrammarParser#metaValue.
+GrammarListener.prototype.enterMetaValue = function(ctx) {
+};
+
+// Exit a parse tree produced by GrammarParser#metaValue.
+GrammarListener.prototype.exitMetaValue = function(ctx) {
+};
+
+
 // Enter a parse tree produced by GrammarParser#stringValue.
 GrammarListener.prototype.enterStringValue = function(ctx) {
 };
