@@ -104,18 +104,7 @@ class Node {
             case 'assign': {
                 let iden = this.ch[0].exec(scope), val = this.ch[1].exec(scope)
                 if (val) {
-                    if (val.var.category() == 'primitive') {
-                        iden.setVar(val.var.copy())
-                        val.delete()
-                        // if (val.deleted && val.v.val.type == 'array')
-                        //     val.v.val.forEach(c => c.object = iden)
-                        // if (val.deleted && val.v.val.type == 'dictionary')
-                        //     val.v.val.forEach((c, i) => {
-                        //         if (i % 2 == 1)
-                        //             c.object = iden
-                        //     })
-                    } else
-                        iden.setVar(new Variable('reference', val))
+                    iden.setVal(val)
                     this.value = iden
                     return this.value
                 }
@@ -125,7 +114,7 @@ class Node {
                 let v1 = this.ch[0].exec(scope), v2 = this.ch[1].exec(scope)
                 if (v1 && v2) {
                     v1.delete(); v2.delete()
-                    let v3 = new Variable('number', v1.var.val + v2.var.val)
+                    let v3 = new Variable(v1.var.type, v1.var.val + v2.var.val)
                     this.value = v3.saveTo('r')
                     return this.value
                 }
@@ -375,26 +364,57 @@ class Node {
                 break
             }
             case 'apply': {
+                //get func and paramaters parsed in
                 let func = this.ch[0].exec(scope),
-                    params = [...(func.object ? [func.object] : []), ...Node.parametrise(this.ch[1].ch, scope)]
-                let node = Node.root.getNodeByAddress(func.var.val),
-                    expected = node.ch[0].ch.map(c => c.ch[0].symbol), newScope = {}
-                if (func.object)
-                    expected.unshift('this')
+                    params = Node.parametrise(this.ch[1].ch, scope)
                 params = params.map(par => {
-                    if (par.v.category() == 'primitive') {
+                    if (par.var.category() == 'primitive') {
                         par.delete()
-                        return par.v.copy().saveTo('r')
+                        return par.var.copy().saveTo('r')
                     }
                     return par
                 })
+                //get func node and expected paramaters to be parsed in
+                let node = Node.root.getNodeByAddress(func.var.val),
+                    expected = node.ch[0].ch.map(c => ({
+                        symbol: c.ch[0].symbol,
+                        type: c.type
+                    })), newScope = {}
+                if (func.object) newScope['this'] = func.object
+                //make a scope for the paramaters
+                let spreadOff = 0
                 expected.forEach((v, I) => {
-                    if (v.var && v.var.type == 'spread') {
-                        // for (let i of v.var.val)
-                        newScope[v] = [...params[I]]
-                    } else
-                        newScope[v] = params[I]
+                    switch (v.type) {
+                        case 'spread': {
+                            spreadOff += params.length - expected.length
+                            let spreadArr = new Variable('array', params.slice(I, I + 1 + spreadOff))
+                            newScope[v.symbol] = spreadArr.saveTo('r')
+                            spreadArr.array()
+                            break
+                        }
+                        case 'iden': {
+                            newScope[v.symbol] = params[I + spreadOff]
+                            break
+                        }
+                        case 'property': {
+                            let changed = false
+                            func.object.var.val.forEach((V, i) => {
+                                if (i % 2 == 0 && V.var.val == v.symbol) {
+                                    func.object.var.val[i + 1].setVal(params[I + spreadOff])
+                                    changed = true
+                                }
+                            })
+                            if (!changed) {
+                                func.object.var.val.push(
+                                    new Variable('string', v.symbol).saveTo('r'),
+                                    params[I + spreadOff]
+                                )
+                                params[I + spreadOff].object = func.object
+                            }
+                        }
+                    }
                 })
+                //execute func node with new scope
                 let val = node.ch[1].exec({ ...node.scope, ...newScope })
                 params.forEach(par => par.delete())
                 this.value = val && val.returnVal
@@ -779,9 +799,6 @@ class Node {
         }
         return out
     }
-    static console() {
-        return Node.logs.map(v => v.var.out()).join('\n')
-    }
     static textTree() {
         let out = ''
         let txtTree = (tree, indent = "", last = true, notroot = false) => {
@@ -803,8 +820,8 @@ Node.metaFunctions = {
     PUSHARR: (arr, ...item) => {
         arr.var.val.push(...item)
     },
-    LOG: (...str) => {
-        Node.logs.push(...str)
+    LOG: (str) => {
+        Node.logs += str.var.out() + '\n'
     }
 }
 
@@ -854,6 +871,20 @@ class Reference {
     setVar(v) {
         v.ref = this
         this.v = v
+    }
+    setVal(val) {
+        if (val.var.category() == 'primitive') {
+            this.setVar(val.var.copy())
+            val.delete()
+            // if (val.deleted && val.v.val.type == 'array')
+            //     val.v.val.forEach(c => c.object = this)
+            // if (val.deleted && val.v.val.type == 'dictionary')
+            //     val.v.val.forEach((c, i) => {
+            //         if (i % 2 == 1)
+            //             c.object = this
+            //     })
+        } else
+            this.setVar(new Variable('reference', val))
     }
     str() {
         return `${this.type}x${this.index}${this.deleted ? ' (X)' : ''}`
@@ -942,14 +973,14 @@ class Variable {
             case 'boolean':
                 return this.val ? 'true' : 'false'
             case 'array':
-                return `${this.val.map(v => v.var.toString())}`
+                return this.val.map(v => v.var.toString()).join(',')
             case 'dictionary': {
                 let out = '{'
                 this.val.forEach((v, i) => {
                     out += v.var.toString()
                     if (i % 2 == 0)
                         out += ': '
-                    else
+                    else if (i != this.val.length - 1)
                         out += ', '
                 })
                 out += '}'
@@ -977,7 +1008,7 @@ class Variable {
                     out += v.var.out()
                     if (i % 2 == 0)
                         out += ': '
-                    else
+                    else if (i != this.val.length - 1)
                         out += ', '
                 })
                 out += '}'
@@ -991,7 +1022,4 @@ class Variable {
     }
 }
 
-// var input = fs.readFileSync('code.prsm')
-// Node.runCode(input)
-// console.log(Node.console())
 module.exports = { Node, Reference, Variable }

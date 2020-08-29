@@ -81,6 +81,8 @@ value:
     | STRING                                                #stringValue
     | (TRUE|FALSE)                                          #boolValue
 
+    | '#' value                                             #stringRepValue
+
     | 'new' value                                           #instanceValue
     | 'class' value                                         #classValue
 
@@ -89,7 +91,7 @@ value:
     | value ('+'|'-') value                                 #addValue
     | value '%' value                                       #modValue
     | value '_' value                                       #blankConcatValue
-    | ('~' iden)  '(' ('...'? value ',')* ('...'? value)? ')' #metaValue
+    | '~' iden '(' ('...'? value ',')* ('...'? value)? ')'  #metaValue
     | value '(' ('...'? value ',')* ('...'? value)? ')'     #applyFuncValue
     | value '[' value ']'                                   #elementValue
     | value '.' iden                                        #propertyValue
@@ -102,7 +104,6 @@ value:
     | value '?' value ':' value                             #ternaryValue
 
     | value 'to' value ('by' value)?                        #rangeValue
-    | '#' value                                             #stringRepValue
     | value '==' value                                      #equalValue
 
     | '!' value                                             #notValue
